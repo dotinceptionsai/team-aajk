@@ -12,5 +12,5 @@ We have a board setup to track deliverables, and to keep the project on track - 
 
 We can keep all conversation in our [slack](https://fourthbrainstudents.slack.com/archives/C04FSNK28RJ) channel
 
-channel - https://fourthbrainstudents.slack.com/archives/C04FSNK28RJ
+channel - https://fourthbrainstudents.slack.com/archives/C04FSNK28RJ <br/>
 huddle  - https://app.slack.com/huddle/T01BXTF0JNM/C04FSNK28RJ
