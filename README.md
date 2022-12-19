@@ -19,7 +19,7 @@ Taken from our  cohorts "Structured Learning Recommendations" [0] as it does enc
   * Build out a GitHub with README.md describing your project
   * Create a YouTube video demonstration and presentation
 
-## Develop Workflow
+## Development
 
 We have a board setup to track deliverables, and to keep the project on track - timewise.
 
