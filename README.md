@@ -34,8 +34,8 @@ huddle  - https://app.slack.com/huddle/T01BXTF0JNM/C04FSNK28RJ
 
 ## Resources
 
-[0][Structured Learning Recommendations](https://canvas.instructure.com/courses/5752963/modules/items/76313313)
-[1][MLOps Tools Demos](https://www.youtube.com/playlist?list=PL6iGeSA2pl0UR_qHhQx-gsI2WXSN8RNyJ)
-[2][MLOps Dev Environment Setup](https://www.youtube.com/playlist?list=PL6iGeSA2pl0XsNI-HHuwU2obOQd56RyqW)
-[3][Learn GitHub and FastAPI](https://www.youtube.com/watch?v=Mk-KFP0r3oM)
-[4][Data to deployment - Step-by-Step](https://www.youtube.com/playlist?list=PL6iGeSA2pl0WPlpUTEtaNDmzqkbipqEJ0)
+[0][Structured Learning Recommendations](https://canvas.instructure.com/courses/5752963/modules/items/76313313) <br/>
+[1][MLOps Tools Demos](https://www.youtube.com/playlist?list=PL6iGeSA2pl0UR_qHhQx-gsI2WXSN8RNyJ) <br/>
+[2][MLOps Dev Environment Setup](https://www.youtube.com/playlist?list=PL6iGeSA2pl0XsNI-HHuwU2obOQd56RyqW) <br/>
+[3][Learn GitHub and FastAPI](https://www.youtube.com/watch?v=Mk-KFP0r3oM) <br/>
+[4][Data to deployment - Step-by-Step](https://www.youtube.com/playlist?list=PL6iGeSA2pl0WPlpUTEtaNDmzqkbipqEJ0) <br/>
