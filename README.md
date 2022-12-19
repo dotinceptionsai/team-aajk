@@ -1,4 +1,4 @@
-# AAJK Team Project
+# 🐱‍👤 AAJK Team Project
 
 This is a temporary workspace for us to share code and processes.
 
