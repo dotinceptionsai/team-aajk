@@ -6,7 +6,7 @@ This is a temporary workspace for us to share code and processes.
 
 We have a board setup to track deliverables, and to keep the project on track - timewise.
 
-[Team Board](#https://github.com/users/dotinceptionsai/projects/1)
+[Team Board](https://github.com/users/dotinceptionsai/projects/1)
 
 ## Communication
 
