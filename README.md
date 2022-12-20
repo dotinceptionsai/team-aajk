@@ -48,4 +48,6 @@ huddle  - https://app.slack.com/huddle/T01BXTF0JNM/C04FSNK28RJ
 [1] [MLOps Tools Demos](https://www.youtube.com/playlist?list=PL6iGeSA2pl0UR_qHhQx-gsI2WXSN8RNyJ) <br/>
 [2] [MLOps Dev Environment Setup](https://www.youtube.com/playlist?list=PL6iGeSA2pl0XsNI-HHuwU2obOQd56RyqW) <br/>
 [3] [Learn GitHub and FastAPI](https://www.youtube.com/watch?v=Mk-KFP0r3oM) <br/>
-[4] [Data to deployment - Step-by-Step](https://www.youtube.com/playlist?list=PL6iGeSA2pl0WPlpUTEtaNDmzqkbipqEJ0) <br/>
+[4] [Data to Deployment - Step-by-Step](https://www.youtube.com/playlist?list=PL6iGeSA2pl0WPlpUTEtaNDmzqkbipqEJ0) <br/>
+[5] [Weekly Project Deliverables](/weekly-project-deliverables.pdf)
+[6] [Syllabus](/syllabus.pdf)
