@@ -4,7 +4,7 @@ This is a temporary workspace for us to share code and processes.
 
 ## Objective
 
-Taken from our  cohorts "Structured Learning Recommendations" [0] as it does encompass all the work. Specific details linked in the [resources](#resources) section below.
+Taken from our  cohorts "[Structured Learning Recommendations][0]" as it does encompass all the work. Specific details linked in the [resources](#resources) section below.
 
 * Learn data and modeling tools in Python [1]
 * Set up your software development environment [2]
@@ -44,7 +44,7 @@ huddle  - https://app.slack.com/huddle/T01BXTF0JNM/C04FSNK28RJ
 
 ## Resources
 
-[0] [Structured Learning Recommendations](/docs/MLE-Structured-Learning.pdf) <br/>
+[0]: </docs/MLE-Structured-Learning.pdf> "Structured Learning Recommendations" <br/>
 [1] [MLOps Tools Demos](https://www.youtube.com/playlist?list=PL6iGeSA2pl0UR_qHhQx-gsI2WXSN8RNyJ) <br/>
 [2] [MLOps Dev Environment Setup](https://www.youtube.com/playlist?list=PL6iGeSA2pl0XsNI-HHuwU2obOQd56RyqW) <br/>
 [3] [Learn GitHub and FastAPI](https://www.youtube.com/watch?v=Mk-KFP0r3oM) <br/>
