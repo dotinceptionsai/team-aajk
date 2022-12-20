@@ -31,7 +31,7 @@ TBD (e.g. Define feature story on Team board > Develop feature > Create issue fr
 
 ## Calendar
 
-The project's deliverables have been added as milestones by due date.
+The project's weekly deliverables [5][6] have been added as milestones by due date.
 
 [Project Milestones](https://github.com/dotinceptionsai/team-aajk/milestones?direction=asc&sort=due_date&state=open)
 
@@ -49,5 +49,5 @@ huddle  - https://app.slack.com/huddle/T01BXTF0JNM/C04FSNK28RJ
 [2] [MLOps Dev Environment Setup](https://www.youtube.com/playlist?list=PL6iGeSA2pl0XsNI-HHuwU2obOQd56RyqW) <br/>
 [3] [Learn GitHub and FastAPI](https://www.youtube.com/watch?v=Mk-KFP0r3oM) <br/>
 [4] [Data to Deployment - Step-by-Step](https://www.youtube.com/playlist?list=PL6iGeSA2pl0WPlpUTEtaNDmzqkbipqEJ0) <br/>
-[5] [Weekly Project Deliverables](/weekly-project-deliverables.pdf)
-[6] [Syllabus](/syllabus.pdf)
+[5] [Weekly Project Deliverables](/docs/weekly-project-deliverables.pdf) <br/>
+[6] [Syllabus](/docs/syllabus.pdf) <br/>
