@@ -1,0 +1,15 @@
+
+A: Lunch was delicious.
+B: Thank you.
+A: What kind of soup was that?
+B: It was tomato soup.
+A: That tasted so good.
+B: I put lemon and butter in it.
+A: The sandwich was good, too.
+B: Everyone likes bacon and tomato sandwiches.
+A: Especially on toast.
+B: And the pickles were great, too.
+A: Tomorrow we'll have rice and fish for lunch.
+B: I can't wait.
+
+

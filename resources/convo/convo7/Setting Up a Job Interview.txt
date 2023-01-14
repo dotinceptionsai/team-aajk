@@ -1,0 +1,10 @@
+Bob:  Hi Ryan.  This is Bob Martinez.  I just reviewed your resume.
+Ryan:  That was quick.
+Bob:  Your resume is very impressive.  
+Ryan:  Thank you.
+Bob:  Would you be available to meet with me next week?
+Ryan:  Yes.  That would be great!
+Bob:  I would also like you to meet with our Vice-president.
+Ryan:  Ok.  What day is good for you?
+Bob:  I will be out of the office Monday and Tuesday.  What about Wednesday at noon?
+Ryan:  Wednesday at noon is perfect for me.

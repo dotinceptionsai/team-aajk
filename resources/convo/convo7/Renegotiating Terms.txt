@@ -1,0 +1,10 @@
+Customer:  I need to place another order of office supplies.
+Sales clerk:  I can help you with that.
+Customer:  I notice we are paying a lot for delivery charges each month.
+Sales clerk:  We can give you a discount depending on how much you order per month.
+Customer:  We've been a good customer for over five years.
+Sales clerk:  Yes, I see your order history.
+Customer:  Can you waive the delivery fee for all future orders?
+Sales clerk:  I don't know if I can do that.  I will talk to my manager and get back to you.
+Customer:  We would love to continue doing business with you, but your delivery fees are too expensive.
+Sales clerk:  I understand.  I will call you back as soon as possible.

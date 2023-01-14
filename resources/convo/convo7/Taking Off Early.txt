@@ -1,0 +1,6 @@
+Mike:  I have to leave work early today.
+Nick:  We're not done with the project.
+Mike:  But I have tickets to a game.
+Nick:  You haven't done your share of the work.
+Mike:  I'll do it tomorrow.
+Nick:  The project is due tomorrow.

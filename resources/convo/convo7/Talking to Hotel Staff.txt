@@ -1,0 +1,10 @@
+Hotel customer:  I'm not happy with my room.
+Hotel clerk:  May I ask what is wrong?
+Hotel customer:  I asked for a room with a view.  This room has no view.
+Hotel clerk:  I'm sorry, but we do not have any more rooms available tonight.
+Hotel customer:  When I made the reservation, I paid for a room with a view.
+Hotel clerk:  I understand.  I'm very sorry, but all of the rooms are occupied.
+Hotel customer:  This is unacceptable.
+Hotel clerk:  We will discount your room rate.
+Hotel customer:  Our company does a lot of business with this hotel.  I will be telling my boss about this.
+Hotel clerk:  May we offer you a free stay next time?   It will be a room with a view.  I will guarantee it.

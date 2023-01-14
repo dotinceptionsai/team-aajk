@@ -1,0 +1,10 @@
+Customer:  I see that the interest rates are rising.
+Banker:  Yes, the rates have gone up.  
+Customer:  What does that mean for my loan?
+Banker:  Your loan payments will be higher.
+Customer:  I can't afford higher payments.
+Banker:  I'm sorry.  There's nothing I can do.
+Customer:  I will have to wait for the rates to go back down.
+Banker:  That's probably a good idea.
+Customer:  Will you contact me when the rates are lower?
+Banker:  Yes, I will keep your loan application on file.

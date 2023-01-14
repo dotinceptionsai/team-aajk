@@ -1,0 +1,63 @@
+
+Brett and Senun play the game "Twenty Questions."
+
+Brett (American Accent)
+Senum (Australia)
+Senum: Hey, Brett, how are you? 
+Brett: Pretty good, how are you? 
+Senum: Good, thank you. 
+Brett: Hey, do you want to play a game? 
+Senum: Sure. What sort of game? 
+Brett: Let's play 20 questions. 
+Senum: OK, go ahead. 
+Brett: OK, who am I thinking about? 
+Senum: Man? Is it a male? 
+Brett: Yes, it's a male. 
+Senum: Is he an actor? 
+Brett: Yes, he's an actor. 
+Senum: Does he have short hair? 
+Brett: Yes, he has short hair. 
+Senum: Right. Is he famous? 
+Brett: Yes, he's famous. 
+Senum: Does he have blue eyes? 
+Brett: Yes. 
+Senum: He does have blue eyes? 
+Brett: No, he has... 
+Senum: He doesn't have blue eyes? 
+Brett: No, he doesn't have blue eyes. 
+Senum: Does he have brown eyes? 
+Brett: Yes.  
+Senum: Is he short? 
+Brett: No. 
+Senum: Is he in the Ocean's 12? 
+Brett: Yes.  
+Senum: He is! 
+Brett: Yes. 
+Senum: OK. Is he married, currently? 
+Brett: NO. Senum: He isn't married? 
+Brett: No. 
+Senum: OK. Is he tall? 
+Brett: Yes. 
+Senum: OK. Is he George Clooney? 
+Brett: Yes.  S
+enum: Great. OK, my turn now. Who am I think about it?  
+Brett: Is he a male? 
+Senum: Yes.  
+Brett: Is he an actor? 
+Senum: No.  
+Brett: Is he a singer? 
+Senum: No. 
+Brett: Is he a politician? 
+Senum: Yes.  
+Brett: Does he have white hair? 
+Senum: Yes. 
+Brett: Yes. Is he American? 
+Senum: No. 
+Brett: Is he British? 
+Senum: No. 
+Brett: Is he Australian? 
+Senum: Yes.  
+Brett: Is he your Prime Minister? 
+Senum: He is. 
+Brett: Is he John Howard? 
+Senum: Yes, he is. Well done.  

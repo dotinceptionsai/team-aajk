@@ -1,0 +1,15 @@
+
+A: How good is your math?
+B: I can add two and two.
+A: So you're not very good at math?
+B: I'm terrible at math.
+A: Well, I need some help.
+B: With what?
+A: I'm taking a math course in school.
+B: Well, you should ask your teacher or your classmates for help.
+A: I can't do that.
+B: Why not?
+A: They might think I'm stupid.
+B: They're not going to think that! They'll be glad to help you.
+
+

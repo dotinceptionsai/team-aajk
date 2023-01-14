@@ -1,0 +1,10 @@
+Rhonda:  We need a new sink.  This one is leaking again.
+Walter:  I'll call a plumber.
+Rhonda:  Can we just buy a new sink?
+Walter:  Why?
+Rhonda:  This one is so old.  
+Walter:  It's in good condition.
+Rhonda:  No, it is not.  It is leaking again.
+Walter:  We just need to fix the leak.
+Rhonda:  We've fixed it three times already.
+Walter:  You're right.  We need a new sink.

@@ -1,0 +1,15 @@
+
+A: You're driving too fast.
+B: Why do you say that?
+A: The speed limit is 65.
+B: I know that.
+A: But you're doing 75.
+B: So is everyone else.
+A: But a cop might stop you.
+B: No, he won't. Some cars are doing 85.
+A: So the cop will stop those cars?
+B: Of course. He stops the fastest cars.
+A: My friend got a ticket for doing 75.
+B: Your friend was unlucky.
+
+

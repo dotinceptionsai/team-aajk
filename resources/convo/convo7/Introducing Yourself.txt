@@ -1,0 +1,10 @@
+Michael:  Hi.  My name is Michael Lee.  I'm a new employee here.
+Antonio:  What do you do here, Michael?
+Michael:  I'm a sales executive.  My boss is Susan Smith.
+Antonio:  I'm Antonio Johnson, the General Manager of the company.
+Michael:  I know.  I was hoping to meet you.
+Antonio:  Do you like Sales, Michael?
+Michael:  Yes, sir.  I am the best sales executive in my department.
+Antonio:  Do you have a business card, Michael?
+Michael:  Yes, I do.
+Antonio:    Let's have a lunch meeting some time.  We can discuss your future at this company.

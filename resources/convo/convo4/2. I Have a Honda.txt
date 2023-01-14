@@ -1,0 +1,15 @@
+
+A: Do you have a car?
+B: Yes, I do.
+A: What kind of car do you have?
+B: I have a Honda.
+A: Is it new?
+B: It was new in 2003.
+A: So, it's pretty old now.
+B: Yes, it is. But it still looks good.
+A: Do you take good care of it?
+B: Oh, yes. I wash it once a week.
+A: Do you change the oil?
+B: My mechanic changes the oil twice a year.
+
+

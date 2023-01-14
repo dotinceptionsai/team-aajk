@@ -1,0 +1,15 @@
+
+A: I'm sleepy.
+B: So am I.
+A: I had a long day.
+B: So did I.
+A: I didn't even have lunch.
+B: Neither did I.
+A: I was busy the whole day.
+B: So was I.
+A: I had to bring work home with me.
+B: I did too.
+A: Your day was just like mine.
+B: Of course it was. We work together!
+
+

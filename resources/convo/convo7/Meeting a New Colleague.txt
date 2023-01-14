@@ -1,0 +1,6 @@
+Diane:  Hi.  My name is Diane Taylor.  I am the office manager.
+Cody:  Hi Diane.  I'm Cody Smith.  Nice to meet you.
+Diane:  Nice to meet you too.  Please let me know if you have any questions.
+Cody:  I will.  I don't have any questions right now.
+Diane:  Here is my business card.  You can contact me by email, office phone, or cell phone.
+Cody:  Great!  I'm sure I will have lots of questions soon.

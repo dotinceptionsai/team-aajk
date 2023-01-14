@@ -1,0 +1,33 @@
+What kinds of corruption are there?
+Has corruption affected your life?
+Why do you think people are corrupt.
+Can corruption be a good thing?
+How do you reduce corruption?
+Which countries have a lot of corruption?
+What can you do about corruption in your country?
+How do you remove corrupt workers from their jobs?
+What is the largest bribe you have paid?
+Can corruption be a good thing in some societies?
+What would you do if your boss tells you that at Christmas it is usual to receive small presents from local companies?
+Would you accept a free ticket for a football match, a free drink by virtue of your position?
+What would you do if you receive a complaint from a citizen of an attempted bribery from a police officer?
+Do you think corrupt police officers are natural-born criminals?
+Do you know a corruption case?
+Do you think discipline is fair within the police?
+How are you going to prevent corruption and misconduct in the group that you command ?
+Is corruption within the police a result of low pay?
+Have you ever heard of a drug-related corruption case?
+Do you think police unions play a good role in the prevention of corruption?
+Is corruption ever justifiable?
+Have you ever received a bribe?
+Have you ever bribed someone?
+Do you know someone who has been bribed?
+Is bribery a big problem in the country where you live?
+Will you accept a dinner invitation from an important businessman of your city? (He has good connections in the council and you nephew is unemployed.)
+Would you revert to bribery if your life was at stake? If your child's or one of your family members' life was threatened?
+Is there a sum of money that might persuade you to "look the other way"?
+If you can think of another good question for this list, please add it.
+
+Copyright © 1997-2010 by The Internet TESL Journal
+if(top.location!=self.location){top.location=self.location}
+questionsmessage();

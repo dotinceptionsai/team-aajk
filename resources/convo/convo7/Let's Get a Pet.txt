@@ -1,0 +1,6 @@
+John:  Let's get a pet.
+Elizabeth:  How about a cat?
+John:  I was thinking about a dog.
+Elizabeth:  Dogs are too much work.
+John:  I'm allergic to cats.
+Elizabeth:  No, you're not.  You just don't like cats.

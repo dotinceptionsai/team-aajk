@@ -1,0 +1,15 @@
+
+A: What do you need for school?
+B: I need pencils.
+A: Anything else?
+B: I need a notebook.
+A: Do you need a pen?
+B: No. I already have a pen.
+A: Do you need a calculator?
+B: No. The teacher doesn't permit calculators.
+A: How about a dictionary?
+B: No, we have a big dictionary in the classroom.
+A: Well, I guess that's it.
+B: Yes, that's all I need for now.
+
+

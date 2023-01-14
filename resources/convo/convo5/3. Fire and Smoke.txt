@@ -1,0 +1,15 @@
+
+A: The house burned down.
+B: What happened?
+A: The man fell asleep.
+B: Was he smoking?
+A: Yes, he was smoking a cigarette.
+B: Did he die?
+A: Yes, he did. His cat died, too.
+B: That's too bad. What about his smoke alarm?
+A: The battery was dead.
+B: A good battery would have saved his life.
+A: He had cigarettes, but no battery.
+B: It happens all the time.
+
+

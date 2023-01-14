@@ -1,0 +1,10 @@
+Alice:  Kelly, your customer is asking for you.
+Kelly:  Can you take my table's order?
+Alice:  No.  You've been on the phone for 15 minutes.  
+Kelly:  It's an important call.
+Alice:  We have a lot of customers waiting right now.
+Kelly:  It'll be just a few more minutes.
+Alice:  You make too many personal calls during work.
+Kelly:  That's none of your business.
+Alice:  Ok.  I should let you know that your customer is the boss's daughter.
+Kelly:  I'll be right there.

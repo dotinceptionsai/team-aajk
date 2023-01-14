@@ -1,0 +1,10 @@
+Mike:  How's work going?
+Klay:  Great!
+Mike:  I heard you were having some problems with the report.
+Klay:  Who did you hear that from?
+Mike:  Kevin.
+Klay:  No.  Everything is fine.
+Mike:  Do you need any help?
+Klay:  Nope.  Well, look at the time.  I need to go now.
+Mike:  You just got here.
+Klay:  Yeah.  I'm late for a meeting.

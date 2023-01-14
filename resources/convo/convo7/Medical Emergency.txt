@@ -1,0 +1,10 @@
+Rob:  I need to see Dr. Johnson right away.
+Receptionist:  What is wrong?
+Rob:  I think I broke my arm.
+Receptionist:  Can you move it?
+Rob:  No.  It hurts if I try to move it.
+Receptionist:  You need to go to the emergency room.
+Rob:  The emergency room is too expensive.  I do not have medical insurance.
+Receptionist:  Do you have someone who can bring you here?
+Rob:  Yes, my friend is going to drive.
+Receptionist:  OK.  Dr. Johnson will take a look at your arm.  Please come as soon as possible.

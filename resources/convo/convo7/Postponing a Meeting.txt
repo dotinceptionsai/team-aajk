@@ -1,0 +1,11 @@
+Bob:  Lucy, where is Todd?
+Lucy:  He's in the conference room.  He's been waiting for you.
+Bob:  Could you tell him my flight has been delayed?
+Lucy:  He's not going to be happy.  He's been waiting for an hour.
+Bob:  My flight isn't leaving for another hour.  
+Lucy:  Ok.  I'll let him know.
+Bob:  Tell him I need to reschedule the meeting.
+Lucy:  I don't think I can tell him now.
+Bob:  Why?
+Lucy:  He's not here.  I think he left.
+Bob:  I'll call him on his cell phone.

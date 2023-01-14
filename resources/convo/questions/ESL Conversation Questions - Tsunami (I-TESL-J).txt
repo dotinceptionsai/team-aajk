@@ -1,0 +1,51 @@
+What language is this word?
+Why is this word used internationally?
+What is the difference between a "tsunami" and a "tidal wave"?
+What is another word for tsunami?
+What is the origin of the word tsunami?
+What does it mean?
+What could your class do to help victims of a tsunami?
+How can people help victims of a tsunami?
+Have you ever volunteered for a group that helps victims of a natural disasters?
+What are some groups or organizations that help the victims of natural disasters?
+What outside aid might come in cases of a tsunami emergency?
+How might people be educated to understand the dangers of a tsunami?
+What methods might be used to help family get back together after a tsunami? To identify corpses?
+How might a family prepare for a tsunami emergency?
+Should assistance in preparing for disasters such as typhoons have priority over an early warning system for tsunami?
+
+Why is a tsunami an emergency?
+Why is a tsunami so dangerous?
+How should countries respond to natural disasters?
+What are some essential things that are needed after a natural disaster?
+Is the newspaper or television always correct?
+Why is it so hard to get accurate information after a tsunami?
+
+Have you ever experienced a tsunami?
+Do you know anyone who has experienced the tsunami disaster?
+Do you know someone who has been affected by a tsunami?
+Has a tsunami ever hit the area where you live?
+
+
+What causes a tsunami?
+Is there an early warning system for tsunamis in the area you live?
+What are some areas of the world that have many tsunamis?
+How do you know that a tsunami is going to hit soon?
+How fast do tsunamis travel?
+Can you surf on a tsunami?
+What are you suppose to do when you know a tsunami is coming?
+Why does the sea water level go down very low right before a tsunami hits?
+What are the immediate health effects of tsunami?
+What are the secondary (short term) health effects of tsunami?
+What are the long term health effects of tsunami?
+When do you know it is safe to return to your home?
+What kind of ecological damage do tsunamis cause?
+How fast do tsunamis travel in the ocean?
+Why do people continue to live in tsunami areas?
+
+If you can think of another good question for this list, please add it.
+http://iteslj.org/questions/
+Started with 30 questions in January 2005.
+Copyright © 1997-2010 by The Internet TESL Journal
+if(top.location!=self.location){top.location=self.location}
+questionsmessage();

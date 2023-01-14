@@ -1,0 +1,15 @@
+
+A: Let's take a walk.
+B: What's the weather like?
+A: Let me step outside and see.
+B: It's a little chilly, right?
+A: Yes, it is.
+B: I'll put on my cap.
+A: Wear a jacket, too.
+B: I wonder if I should bring my gloves.
+A: Maybe you should, just in case it gets colder.
+B: I'll put a glove in each pocket.
+A: We'll get warmer as we walk.
+B: Yes, but it gets colder as the sun goes down.
+
+

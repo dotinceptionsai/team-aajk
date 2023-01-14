@@ -1,0 +1,7 @@
+Tina:  Our company is doing a massive recall.
+John:  What is your company recalling?
+Tina:  Spinach.  There are reports of e-coli found in some of our spinach.  
+John:  That's scary!
+Tina:  I know.  It can be fatal.
+John:  Have there been any deaths?
+Tina:  We haven't received any reports of deaths yet.

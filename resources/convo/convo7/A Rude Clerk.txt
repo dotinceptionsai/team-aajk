@@ -1,0 +1,6 @@
+Customer:  May I speak with the store manager, please?
+Store manager:  I am the store manager.  How can I help you?
+Customer:  One of your sales clerks was very rude to me.
+Store manager:  I am very sorry to hear that.  Could you please tell me which clerk?
+Customer:  His name is Bob.  He works in the mornings.
+Store manager:  I will talk to Bob as soon as possible.  

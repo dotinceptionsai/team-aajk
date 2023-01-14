@@ -1,0 +1,15 @@
+
+A: I can't read my book.
+B: Turn on the light.
+A: The light is on.
+B: Open the book.
+A: The book is open.
+B: See an eye doctor.
+A: That's what I need to do.
+B: He'll give you a prescription for glasses.
+A: I'll make an appointment tomorrow.
+B: I'll get the yellow pages for an eye doctor.
+A: Read the phone number to me.
+B: I'll read it very loud, in case your hearing is getting bad, too.
+
+

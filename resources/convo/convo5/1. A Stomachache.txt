@@ -1,0 +1,15 @@
+
+A: I have a stomachache.
+B: Is it something you ate?
+A: Maybe. I'm not sure.
+B: What did you have for breakfast?
+A: The usual, cereal with milk and a banana.
+B: Maybe the milk was bad.
+A: It didn't smell bad.
+B: Maybe the banana was bad.
+A: No, the banana was delicious.
+B: Maybe you just need to go to the bathroom.
+A: No, that's not the problem.
+B: Maybe it will go away in a little while.
+
+

@@ -1,0 +1,10 @@
+Isabel:  Hi Vicky, this is Isabel.  I'm the company's travel coordinator.
+Vicky:  Hi Isabel.  Is there a problem?
+Isabel:  No.  I see that you take quite a few business trips a month.
+Vicky:  Yes, I do.
+Isabel:  I noticed that you are not signed up for frequent flier miles.
+Vicky:  No, I haven't signed up yet.
+Isabel:  Please sign up before your next trip.  You can earn miles and get a free trip anywhere in the country.
+Vicky:  I didn't know that.
+Isabel:  It's easy to sign up.  You can do it online.
+Vicky:  I will do that today since I have another business trip at the end of the week.

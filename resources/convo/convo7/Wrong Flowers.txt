@@ -1,0 +1,10 @@
+Customer:  I have a problem with my online order.
+Customer service rep:  What is the problem?
+Customer:  I ordered red roses for my wife, but she received daisies.  
+Customer service rep:  I'm sorry to hear that.  
+Customer:  It is our anniversary and roses are her favorite flowers.
+Customer service rep:  I will have red roses delivered to her as soon as possible.
+Customer:  What should I do with the daisies? 
+Customer service rep:  Please keep them since we made the error.
+Customer:  That's very nice of you.
+Customer service rep:  I hope your wife enjoys both flower bouquets.

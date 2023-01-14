@@ -1,0 +1,15 @@
+
+A: I lost my new pen.
+B: Where did you lose it?
+A: I don't know.
+B: When did you lose it?
+A: I think I lost it today. I used it yesterday.
+B: Did you check all your pockets?
+A: I checked all my pockets.
+B: Did you look in your desk?
+A: Yes. It isn't there, either.
+B: It's probably around somewhere.
+A: Oh, well, it only cost me a dollar.
+B: Only a dollar? Don't even look for it.
+
+

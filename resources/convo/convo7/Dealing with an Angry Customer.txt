@@ -1,0 +1,10 @@
+Sales clerk:  I have a very difficult customer on the phone.
+Manager:  What is the problem?
+Sales clerk:  The customer wants a full refund on something she purchased over a year ago.
+Manager:  We only give a refund within 30 days of purchase.
+Sales clerk:  I explained that to her, but she is demanding a refund.
+Manager:  Is the product broken?
+Sales clerk:  Yes.  I told her she needs to contact the manufacturer.
+Manager:  What did she say about that?
+Sales clerk:  She is refusing to call the manufacturer because she doesn't have a warranty.
+Manager:  I will talk to her.  Transfer the call to me.

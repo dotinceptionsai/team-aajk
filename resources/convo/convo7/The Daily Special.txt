@@ -1,0 +1,10 @@
+Meredith:  Hello, can I help you?
+Max:  I'd like to order your daily special.
+Meredith:  Ok.  Would you like it spicy or non-spicy?
+Max:  I guess non-spicy.  I've never been asked that before.
+Meredith:  Would you like white rice or fried rice?
+Max:  Rice?  Is this Max's Pizza Place?
+Meredith:  No, this is a Chinese restaurant.
+Max:  I thought I was ordering pizza.
+Meredith:  No, our daily special is Mongolian beef with rice.
+Max:  That sounds good.  I'll take one order to go with white rice.

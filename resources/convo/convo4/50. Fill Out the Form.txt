@@ -1,0 +1,15 @@
+
+A: Will you look at this form?
+B: Are you having problems with it?
+A: I don't understand some things.
+B: Let me help you.
+A: What does "MI" mean?
+B: "MI" stands for Middle Initial.
+A: What does "MM/DD/YY" mean?
+B: That means Month/Day/Year. Use numbers.
+A: I don't understand.
+B: For example, if your birth date is January 12, 1987, write 01/12/87.
+A: Oh. That's simple enough.
+B: Always print clearly, and fill in the bubbles completely.
+
+

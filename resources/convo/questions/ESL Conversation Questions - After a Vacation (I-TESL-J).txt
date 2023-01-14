@@ -1,0 +1,46 @@
+Did you enjoy your last vacation? (How was your vacation?)
+How do you feel after a long vacation?
+How many days was your vacation?
+How much money did you spend on your last vacation?
+Did you encounter any problems during your vacation? How did you resolve them?
+Did you have a part-time job during the holidays?
+Did you have any bad experiences?
+Did you meet any interesting people? Cn you tell me about them.
+Did you notice any cross-cultural differences during your vacation?
+Did you study during the vacation? If so, what did you study?
+
+
+How was your trip?Why did you visit the place(s) you went to?How did you get there?Why did you choose the means of transportation that you chose?How much luggage did you take?Would you take the same or different equipment next time?
+In what ways did you obtain real satisfaction when you were on vacation?
+Was the place you went to very different from where you live? What were the women like? What were the men like? Were people friendly? Did you stay in a hotel? What was the daily rate? 
+What historical sites did you visit and what did you learn?
+What interesting people did you meet? Tell me about them.
+What souvenirs did you buy?
+What was the best food you ate during your vacation?
+What was the most enjoyable thing that you did during your vacation?
+What was the most interesting thing that you did during the vacation?
+What was the most interesting thing you did during the holiday?
+Where did you go for your last vacation?Did people speak English there?Did you have any problems?Did you use a lot of English?How did you get there?How long did it take to get there?How long were you there?How much money did you spend?What did you do there?What did you see in each place?What kind of food did you eat?What souvenirs did you buy?What was the activity you enjoyed the most, and why?What was the weather/food/scenery like?What were the people/restaurants/scenic spots like?Where did you stay?Where did you visit?Where would you like to go next?Who did you travel with?Would you recommend your friends visit there, why or why not?
+Where did you go? How long did you stay? How did you get there?
+Where is your favorite place to go on vacation?
+Where in the world would you most like to go for your next vacation?
+Of all the places you visited, which would you recommend to your friends?
+How do you get to sleep when you are traveling on a plane?
+How far was it to the beaches, to the nearest town, village etc.?
+How long did it take you to get there?
+What sort of condition was the hotel in?
+Did the room overlook the sea?
+Did you have a nice view from your room?
+Have you ever run out of money when you are on holidays?
+Who is the most remarkable person you have ever met on holiday?
+How would you feel if there weren't any holidays?
+Have you ever been mugged while on vacation?
+What is the most exotic or strangest thing you ate on holiday?
+Have you ever thought of giving up your holiday due to unavoidable reasons?
+ How did you resolve them?Why did you visit the place(s) you went to?How did you get there?Why did you choose the means of transportation that you chose?How much luggage did you take?Would you take the same or different equipment next time?What were the women like? What were the men like? Were people friendly? Did you stay in a hotel? What was the daily rate? Did people speak English there?Did you have any problems?Did you use a lot of English?How did you get there?How long did it take to get there?How long were you there?How much money did you spend?What did you do there?What did you see in each place?What kind of food did you eat?What souvenirs did you buy?What was the activity you enjoyed the most, and why?What was the weather/food/scenery like?What were the people/restaurants/scenic spots like?Where did you stay?Where did you visit?Where would you like to go next?Who did you travel with?Would you recommend your friends visit there, why or why not?Please summarize your vacation in one elaborative sentence.
+
+If you can think of another good question for this list, please add it.
+http://iteslj.org/questions/Many of these questions come from textbooks Copyright © 1982-2001 by Charles Kelly & Lawrence Kelly (Used by Permission)
+Copyright © 1997-2010 by The Internet TESL Journal
+if(top.location!=self.location){top.location=self.location}
+questionsmessage();

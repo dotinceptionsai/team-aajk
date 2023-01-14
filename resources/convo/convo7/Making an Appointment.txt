@@ -1,0 +1,6 @@
+Lebron:  I would like to make an appointment to see Dr. Smith.
+Receptionist:  What do you need to see the doctor for?
+Lebron:  I just need an annual checkup.
+Receptionist:  Ok.  The doctor's next available appointment is next Monday at 10 AM.
+Lebron:  That's perfect.  Do I need to bring anything with me?
+Receptionist:  Please bring your insurance card and photo ID.

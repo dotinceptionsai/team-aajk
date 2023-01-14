@@ -1,0 +1,10 @@
+Tony:  I forgot my wallet.  Could I borrow some money?
+Edgar:  You always forget your wallet.
+Tony:  I have a bad memory.
+Edgar:  How much do you need?
+Tony:  $20.
+Edgar:  Now, you owe me $40.
+Tony:  Did I borrow $20 before?
+Edgar:  Yes.  You haven't paid me back yet.
+Tony:  I told you that I have a bad memory.
+Edgar:  I hope you don't forget to pay me back.

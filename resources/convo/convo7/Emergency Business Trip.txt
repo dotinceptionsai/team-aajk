@@ -1,0 +1,7 @@
+Bill:  I need to make an emergency trip to our headquarters tonight.
+Donna:  There are no direct flights tonight.  There are only non-direct flights.
+Bill:  How many layovers? 
+Donna:  There is one layover in San Francisco for an hour.  
+Bill:  That's fine.  Can you book that flight please?
+Donna:  Do you need a ride to the airport?
+Bill:  No.  I will park my car at the airport.

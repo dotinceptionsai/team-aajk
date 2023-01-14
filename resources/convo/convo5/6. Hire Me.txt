@@ -1,0 +1,15 @@
+
+A: I need a job.
+B: What was your last job?
+A: I was a painter.
+B: What happened?
+A: I got laid off because there was no work.
+B: What else can you do?
+A: I'm a handyman.
+B: Can you fix a dripping faucet in a kitchen sink?
+A: Of course.
+B: Then I have a job for you in my kitchen.
+A: It will cost you only $20 plus parts.
+B: Okay. That sounds like a fair price.
+
+
