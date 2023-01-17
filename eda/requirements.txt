@@ -6,3 +6,6 @@ seaborn
 nltk
 pyyaml
 scikit-learn
+requests
+beautifulsoup4
+pyyaml

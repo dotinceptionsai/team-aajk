@@ -14,6 +14,9 @@ Thos resources are copied into folders `../resources/chatterbox` and `../resourc
 
 ## In-Domain data files 
 
-*In-domain* (ID) resources are sample knowledge bases. Those texts are focused to a specific domain.
+*In-domain* (ID) resources are sample knowledge bases. Those texts are scraped from different FAQs:
+- The Europcar FAQ, Average Size, from Car rental domain. Scrapped from all child pages of https://faq.europcar.com/
+- The Fedora Project FAQ (Linux distribution community project), Small Sized. Scrapped from a single page here https://fedoraproject.org/wiki/FAQ#Getting_Started
 
-The *in-domain* resources will be scraped from online FAQs in the future, but for the moment they are simple copy-paste of publicely available FAQs.
+Scrapping code (and run) can be found in notebook scraping.ipynb
+Results from scrapping are scores in `../resources/scraping`
