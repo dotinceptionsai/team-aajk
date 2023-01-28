@@ -1,0 +1,10 @@
+name: GaussianEmbeddingsAnomalyDetector
+run_params:
+  embedder_name: all-MiniLM-L6-v2
+  robust_covariance: true
+datasets:
+  train_id_datasets:
+  - europcar
+  train_ood_datasets: []
+  validation_id_dataset: validation_id
+  validation_ood_dataset: validation_ood

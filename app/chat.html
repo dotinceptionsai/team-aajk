@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css">
+    <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+<div id="alert-container"></div>
+<div id="chat-container">
+    <div id="chat-history"></div>
+    <div id="chat-input">
+        <textarea id="chat-textarea" placeholder="Type your message here"></textarea>
+        <button id="chat-send-button"><i class="fa fa-paper-plane"></i></button>
+        <button id="upload-kb-button"><i class="fa fa-upload"></i></button>
+        <input id="kb-files" type="file" name="files" hidden multiple/>
+    </div>
+</div>
+<script src="chat.js"></script>
+
+<script>
+    const fileInput = document.getElementById("kb-files");
+    const uploadButton = document.getElementById("upload-kb-button");
+    uploadButton.addEventListener("click", function () {
+        fileInput.click();
+    });
+    fileInput.addEventListener("change", function () {
+        const files = fileInput.files;
+        if (files.length > 0) {
+            const formData = new FormData();
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files', files[i]);
+            }
+            fetch('http://localhost:8000/import-kb', {
+                method: 'POST',
+                body: formData
+            }).then(response => response.json())
+                .then(data => {
+                    let container = document.getElementById("alert-container")
+                    if (data.error) {
+                        container.innerHTML = `
+                <div class="alert-error">
+                  <strong>Error:</strong> ${data.error}
+                  <button onclick="this.parentElement.style.display='none';">Close</button>
+                </div>
+                `
+                    } else {
+                        container.innerHTML = `
+                <div class="alert-success">
+                  <strong>Success:</strong> File uploaded successfully
+                  <button onclick="this.parentElement.style.display='none';">Close</button>
+                </div>
+                `
+                    }
+                })
+                .catch(error => {
+                    let container = document.getElementById("alert-container")
+                    container.innerHTML = `
+            <div class="alert-error">
+              <strong>Error:</strong> ${error}
+              <button onclick="this.parentElement.style.display='none';">Close</button>
+            </div>
+            `
+                });
+        }
+    });
+</script>
+</body>
+</html>

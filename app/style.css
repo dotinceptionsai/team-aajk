@@ -1,0 +1,96 @@
+.chat {
+  width: 60%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow-y: scroll;
+  height: 600px;
+}
+
+.message {
+  display: flex;
+  margin: 10px 0;
+  align-items: flex-end;
+}
+
+.bot {
+  display: flex;
+  align-items: flex-start;
+}
+
+.bot .text {
+  background-color: #c5879a;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: 10px;
+  min-width: 10%;
+}
+
+.user .text {
+  background-color: #b2f57a;
+  color: black;
+  padding: 10px;
+  border-radius: 10px;
+  margin-right: 10px;
+  min-width: 10%;
+}
+
+.text {
+  white-space: pre-wrap;
+}
+
+.input {
+  display: flex;
+  width: 100%;
+}
+
+.input input {
+  width: 80%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+}
+
+.input button {
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #F0E68C;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  outline: none;
+}
+
+.input button:hover {
+  background-color: #DAA520;
+}
+
+.feedback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedback i {
+  font-size: 24px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.fa-thumbs-up {
+  color: green;
+}
+
+.fa-thumbs-down {
+  color: red;
+}
