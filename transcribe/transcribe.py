@@ -82,7 +82,6 @@ class AudioTranscriber:
                         result = json.loads(result_str)
                         text = result["text"]
                         if text and result["message_type"] == "FinalTranscript":
-                            print("Transcribed text received:", text)
                             await self.callback(text)
                     except websockets.exceptions.ConnectionClosedError as e:
                         print(e)
