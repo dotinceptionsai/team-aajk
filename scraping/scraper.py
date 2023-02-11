@@ -13,6 +13,33 @@ class QA:
     answer: str
 
 
+class NIHScraper:
+    def __init__(self, url="https://search.grants.nih.gov/faq/api/faq/664"):
+        self.qa: list[QA] = []
+        NIHScraper._feed_qa_items(self.qa, url)
+
+    @staticmethod
+    def _feed_qa_items(qas: list[QA], url: str):
+        print(f"Visiting {url} ...")
+
+        resp = requests.get(url, headers={"Accept": "application/json"})
+        body = resp.json()
+
+        for data in body["data"]:
+            for header in data["headers"]:
+                print(f"Parsing {header['Header_Name']} ...")
+                for qa in header["questions"]:
+                    question = qa["Question"]
+                    a = BeautifulSoup(qa["Answer"].replace("&nbsp;", ""), "html.parser")
+                    answer_paragraphs = [p.get_text(strip=False) for p in a.find_all("p")]
+                    answer = ""
+                    for p in answer_paragraphs:
+                        suffix = " " if p.endswith(".") else ". "
+                        answer += p + suffix
+
+                    qas.append(QA(question, answer.strip()))
+
+
 class OlympicsScraper:
     def __init__(self, site="https://olympics.com", root_page="/ioc/faq"):
         self.qa = []
@@ -248,11 +275,12 @@ def save_scrape(scraper, dest_filename):
         for i in scraper.qa:
             items.append(i.question)
             items.append(i.answer)
-        yaml.dump(items, f)
+            # items.append({"question": i.question, "answer": i.answer})
+        yaml.dump(items, f, sort_keys=False)
 
 
 if __name__ == "__main__":
     # scrapers = {"europcar": EuropcarScraper, "fedora": FedoraScraper}
-    scrapers = {"fda": FdaCovidScraper, "wwf": WwfScraper, "olympics": OlympicsScraper}
+    scrapers = {"nih": NIHScraper}
     for name, scraper in scrapers.items():
         save_scrape(scraper(), f"{name}.yml")
