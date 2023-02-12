@@ -1,6 +1,0 @@
-Andrew:  Can you help me understand this report?
-James:  Sure.  What is the problem?
-Andrew:  I don't know what these numbers mean.
-James:  It's explained in the report.
-Andrew:  The explanations are not very clear.
-James:  I'll try to explain it better for you.

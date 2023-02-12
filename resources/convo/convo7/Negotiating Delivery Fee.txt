@@ -1,5 +1,0 @@
-Customer:  How much is the delivery charge?  
-Sales clerk:  5% of the total order amount.
-Customer:  That's expensive.  We're buying a large amount of office supplies.  Can you give us a discount on the delivery fee?
-Sales clerk:  Let me talk to my manager.  
-Customer:  If we are happy with the service, we will continue buying all of our supplies from your company.

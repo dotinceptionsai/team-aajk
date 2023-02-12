@@ -1,6 +1,0 @@
-Bill:  Hey Ron, can you help me?
-Ron:  Sure. What do you need?
-Bill:  My printer isn't working.
-Ron:  Try to reboot the computer and the printer.
-Bill:  I already tried that two times.
-Ron:  I see the problem.  Your printer is out of ink.

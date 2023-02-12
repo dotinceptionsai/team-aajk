@@ -29,7 +29,7 @@ def export_csv(scraper_name: str, scraped: Iterable[QA], target_folder: Path, se
 
 
 if __name__ == "__main__":
-    target_dir = Path("/Users/jlinho/Desktop/gr")
+    target_dir = Path("../resources/scraping")
     scrapers = Scraper.all()
     for name, scraper in scrapers.items():
         scraped = scraper.scrape()

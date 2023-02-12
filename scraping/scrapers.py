@@ -20,8 +20,8 @@ class QA:
     answer: str
 
     def __init__(self, question: str, answer: str):
-        self.question = question.replace(u"\u00A0", " ").strip()
-        self.answer = answer.replace(u"\u00A0", " ").strip()
+        self.question = question.replace("\u00A0", " ").strip()
+        self.answer = answer.replace("\u00A0", " ").strip()
 
 
 class Scraper(abc.ABC):
@@ -38,7 +38,10 @@ class Scraper(abc.ABC):
 
     @classmethod
     def all(cls) -> dict[str, "Scraper"]:
-        return {scraper_name: scraper_type() for scraper_name, scraper_type in cls._registered_types.items()}
+        return {
+            scraper_name: scraper_type()
+            for scraper_name, scraper_type in cls._registered_types.items()
+        }
 
 
 class NIHScraper(Scraper):
@@ -62,7 +65,9 @@ class NIHScraper(Scraper):
         question = json_qa["Question"]
         a = BeautifulSoup(json_qa["Answer"].replace("&nbsp;", ""), "html.parser")
         answer_paragraphs = [p.get_text(strip=False) for p in a.find_all("p")]
-        if len(answer_paragraphs) == 0:  # Some answers (4 out of 125) do not start with the <p> tag
+        if (
+            len(answer_paragraphs) == 0
+        ):  # Some answers (4 out of 125) do not start with the <p> tag
             answer_paragraphs = [a.get_text(strip=False)]
 
         answer = ""
@@ -81,7 +86,9 @@ class OlympicsScraper(Scraper):
     def scrape(self) -> Iterable[QA]:
         qas: list[QA] = []
 
-        root_page = requests.get(self.site + self.root_page, headers={"User-Agent": "Mozilla/5.0"})
+        root_page = requests.get(
+            self.site + self.root_page, headers={"User-Agent": "Mozilla/5.0"}
+        )
         root_page_soup = BeautifulSoup(root_page.content, "html.parser")
 
         for child_page in self.child_pages(root_page_soup):
@@ -116,11 +123,15 @@ class OlympicsScraper(Scraper):
 
     @staticmethod
     def _extract_qa(item: Tag) -> QA:
-        q_candidate = [d for d in item.find_all("div") if "data-accordion-opener-title" in d.attrs]
+        q_candidate = [
+            d for d in item.find_all("div") if "data-accordion-opener-title" in d.attrs
+        ]
         assert len(q_candidate) == 1, "Could not find question div"
         question = q_candidate[0].get_text(strip=True)
 
-        q_answer = [d for d in item.find_all("ul") if "data-accordion-content" in d.attrs]
+        q_answer = [
+            d for d in item.find_all("ul") if "data-accordion-content" in d.attrs
+        ]
         assert len(q_answer) == 1, "Could not find answer ul"
         answer = q_answer[0].get_text(strip=True, separator=" ")
         if (idx := answer.lower().find("learn more:")) >= 0:
@@ -265,8 +276,8 @@ class WwfScraper(Scraper):
         return "\n".join(content)
 
 
-class FdaCovidScraper:
-    name = "fda-covid"
+class FdaCovidScraper(Scraper):
+    name = "fda"
     site = "https://www.fda.gov/"
     page = "emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-frequently-asked-questions"
 
@@ -280,6 +291,7 @@ class FdaCovidScraper:
 
         for q_item in self._find_qa_sections(soup):
             qas.append(self._extract_qa(q_item))
+        return qas
 
     @staticmethod
     def _find_qa_sections(soup: BeautifulSoup) -> Iterable[BeautifulSoup]:

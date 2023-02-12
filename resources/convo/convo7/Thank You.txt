@@ -1,6 +1,0 @@
-Peter:  Hi.  I'm Peter, the Customer Service manager.
-Ted:  Hi Peter.  I'm Ted, the manager of the IT department.
-Peter:  Nice to meet you Ted.  I think I spoke with you on the phone last week.
-Ted:  You're right.  There was an issue with your computer.
-Peter:  Yes, that was it.  Thanks for fixing the problem quickly.
-Ted:  No problem.  You can call my office any time if you have any technical issues.

@@ -1,6 +1,0 @@
-Customer:  If I need help with the computer after I take it home who should I call?
-Sales clerk:  Please call us.  We offer after sales service.  
-Customer:  What is that?
-Sales clerk:  We are here to help and support you with your new product after you leave the store.
-Customer:  Is there an extra charge for this service?
-Sales clerk:  No, not at all.  If you need help with installation or operation, please call our store any time.

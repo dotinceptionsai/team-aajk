@@ -1,6 +1,0 @@
-Carl:  Hi.  I'm Carl.  I'm the new Customer Service Manager for this region.
-Robert:  Welcome to the company, Carl.  I'm Robert.  I'm the head of Operations.
-Carl:  I guess we will be working with each other.
-Robert:  Yes.  Contact me if your customers have any technical issues.
-Carl:  Good to know.  I'm looking forward to working with you.
-Robert:  Me too.   Let's have a drink after work some time.

@@ -1,6 +1,0 @@
-Amanda:  The sink is leaking again.
-Dan:  I'll try to fix it.
-Amanda:  Let's call a plumber.
-Dan:  Why? 
-Amanda:  Because you tried to fix it last time.
-Dan:  Ok.  Let's call a plumber.

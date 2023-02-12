@@ -1,7 +1,0 @@
-Customer:  I'd like to return these boots.
-Sales clerk:  Is there anything wrong with them?
-Customer:  Yes.  They are very uncomfortable.
-Sales clerk:  I think you have had these for a long time.  It looks like you have already worn them a lot.
-Customer:  Are you saying I can't return them?
-Sales clerk:  We only accept returns on unused items.
-Customer:  Where is the manager?  I demand a refund now!

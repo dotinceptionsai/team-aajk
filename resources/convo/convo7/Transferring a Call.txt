@@ -1,6 +1,0 @@
-Sales clerk:  The customer wants to speak with the manager.
-Manager:  What is the problem?
-Sales clerk:  His order was not delivered and he is very angry.
-Manager:  Did you try to calm him down?
-Sales clerk:  Yes.  He doesn't want to talk to me anymore.
-Manager:  Ok.  Transfer the customer to me.

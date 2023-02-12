@@ -1,6 +1,0 @@
-Rob:  Hey, Todd.  This is Rob.  My flight has been delayed.  I won't be there on time.
-Todd:  I guess I'll have to do the presentation alone.
-Rob:  Are you prepared to do that?
-Todd:  I have no choice.
-Rob:  Can we postpone the meeting?
-Todd:  No.  The clients are catching a flight right after the meeting.

@@ -1,5 +1,0 @@
-Customer:  I'm interested in this sofa.
-Sales clerk:  That's the last one we have.
-Customer:  This one has a small tear in it.  Can you give me a discount?  
-Sales clerk:  I can give you 30% off the price.
-Customer:  I'll take it!

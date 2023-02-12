@@ -1,6 +1,0 @@
-Passenger:  Is this all the luggage from this flight?
-Airline agent:  Yes.
-Passenger:  I can't find my luggage.
-Airline agent:  It looks like your luggage is lost.
-Passenger:  I need my suitcase.  I have a business meeting today and my suit is in it.
-Airline agent:  I'm very sorry.  If we locate it, we will send it to you right away.

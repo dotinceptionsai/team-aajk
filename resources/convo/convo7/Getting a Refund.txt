@@ -1,6 +1,0 @@
-Customer:  I would like to return this jacket.
-Store clerk:  Is there something wrong with it?
-Customer:  It does not fit.
-Store clerk:  Would you like to exchange it for another size?
-Customer:  No.  I would just like a refund please.
-Store clerk:  Ok.  The full amount will go back on your credit card.

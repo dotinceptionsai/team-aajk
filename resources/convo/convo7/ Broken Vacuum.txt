@@ -1,6 +1,0 @@
-Customer:  My vacuum cleaner  is not working.
-Repair shop clerk:  Do you have a warranty?
-Customer:  Yes, I do.
-Repair shop clerk:  We will repair the vacuum cleaner for free. 
-Customer:  When will it be ready?
-Repair shop clerk:  3-5 business days.
