@@ -19,6 +19,10 @@ class QA:
     question: str
     answer: str
 
+    def __init__(self, question: str, answer: str):
+        self.question = question.replace(u"\u00A0", " ").strip()
+        self.answer = answer.replace(u"\u00A0", " ").strip()
+
 
 class Scraper(abc.ABC):
     name: str
@@ -119,7 +123,7 @@ class OlympicsScraper(Scraper):
         q_answer = [d for d in item.find_all("ul") if "data-accordion-content" in d.attrs]
         assert len(q_answer) == 1, "Could not find answer ul"
         answer = q_answer[0].get_text(strip=True, separator=" ")
-        if (idx := answer.find("Learn More:")) >= 0:
+        if (idx := answer.lower().find("learn more:")) >= 0:
             answer = answer[:idx].strip()
 
         return QA(question, answer)
