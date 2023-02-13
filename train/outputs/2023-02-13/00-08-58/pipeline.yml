@@ -1,0 +1,10 @@
+name: GaussianEmbeddingsAnomalyDetector
+datasets:
+  train_id_datasets:
+  - fda
+  train_ood_datasets: []
+  validation_id_dataset: validation_fda_id
+  validation_ood_dataset: validation_fda_ood
+run_params:
+  embedder_name: all-MiniLM-L6-v2
+  robust_covariance: true

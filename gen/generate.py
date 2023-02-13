@@ -85,10 +85,10 @@ def generate_and_export_samples(target_dir: Path | str, domain_name: str):
     ood_samples = generate_ood_sample()
 
     with open(target_dir / f"validation_{domain_name}_id.yml", "w") as f:
-        yaml.dump(ood_samples, f, sort_keys=True)
-
-    with open(target_dir / f"validation_{domain_name}_id.yml", "w") as f:
         yaml.dump(id_samples, f, sort_keys=True)
+
+    with open(target_dir / f"validation_{domain_name}_ood.yml", "w") as f:
+        yaml.dump(ood_samples, f, sort_keys=True)
 
 
 if __name__ == "__main__":
