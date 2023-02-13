@@ -1,0 +1,122 @@
+- What is Virtualization?
+- Where can I find information for contributing to Fedora Package Collection?
+- Can I upgrade to the final release?
+- How can I get notices of new software releases?
+- What is SELinux, and where can I read more about it?
+- How will The Fedora Project be made available to the public?
+- What is Fedora?
+- Why doesn't Fedora include DVD video playback support?
+- Where can I request a newer version of a package in Fedora?
+- Where can I find information on Fedora security updates?
+- Why does the tag in my packages say "fc"?
+- Where can I find help?
+- What kind of project management method does each Fedora sub-project use?
+- Where I can learn more about security features and status in Fedora?
+- Why a project instead of a product?
+- I hear all of these terms that are unfamiliar, what do they mean?
+- How do I keep Fedora systems updated?
+- Where can I report bugs or request features for software packages existing in Fedora?
+- I have a pre-release version of Fedora.
+- Can schools and non-profits reference the "Fedora Project" name and other Fedora
+  marks if they are interacting with the Fedora community?
+- Alternative methods of tracking working hardware have been suggested, but the consensus
+  is that manually maintaining a complete list is unfeasible.
+- Technologies under stringent copyright or patent restrictions are not included in
+  Fedora.
+- From those individual pages, you can find all of the available information for that
+  project.
+- Spend your time doing stuff that you will enjoy and that others will use.
+- We also encourage our Ambassadors to engage their local LUGs.
+- The MP3 and MPEG formats are covered by patents, and the patent owners have not
+  released the technologies under licenses which are compatible with Fedora's requirements.
+- Fedora provides a very user-friendly installation system, with both graphical and
+  text interfaces.
+- If Fedora does not automatically detect a device, you may need to install additional
+  drivers or firmware.
+- Yes, you can donate your time to Fedora Project by contributing to Fedora, or to
+  free and open source software in general.
+- You can also donate money but that requires a bit more creativity!
+- Yes.
+- Refer also to the Overview page.
+- The bits may be actively pushed into content sharing networks such as BitTorrent.
+- 'Read the Fedora Installation Guide in Documentation Project or Quick Install Guide
+  in the wiki for step by step details:'
+- 'To start a full system update from the command-line, enter the following at the
+  prompt:'
+- You should be using Fedora because it includes the best, latest, and most robust
+  collection of free and open source software available.
+- Administrators may also move a running operating system between machines without
+  disrupting or shutting down services.
+- Fedora only supports and includes free and open source software.
+- Fedora Package Collection allows a vast array of additional Free and open source
+  solutions to be contributed by the community and maintained for Fedora.
+- Yes, as long as they make it clear whether or not they are representing the Project.
+- You can use set the preferences in System > Preferences > System > Software Updates.
+- Many of these programs are available for Fedora, and you are free to obtain them
+  elsewhere.
+- SELinux in Fedora, also has a 'strict' policy, which is useful for very security-sensitive
+  environments.
+- The Fedora Project is out front for you, leading the advancement of free, open software
+  and content.
+- Contributors can join committee members in regular IRC meetings.
+- Interested schools and non-profits are welcome to join us for discussions.
+- Hey, fair is fair.
+- You can find information for the various projects on the Communicate  page.
+- The Package Maintainer Documentation] will point you to all kinds of help.
+- Raw IRC logs are also sometimes available.
+- This and other uses of Fedora marks are subject to the terms of the   Trademark
+  Guidelines .
+- '"fc" used to denote "Fedora Core.'
+- Each of the sub-projects has leads or a steering committee to organize and guide
+  that project's development.
+- Updates are available for every release for the period denoted in the LifeCycle
+  page.
+- Fedora Project maintains any particular release of Fedora for a month after two
+  subsequent releases.
+- Fedora is a Linux-based operating system that showcases the latest in free and open
+  source software.
+- By default, Fedora configures the network cards on your computer to automatically
+  obtain the correct network settings with DHCP.
+- If you're not sure where you want to contribute, see the   join  page for different
+  areas that can use your help.
+- No, no formal Web or phone support for The Fedora Project will be available from
+  Red Hat.
+- Try the project's mailing list first, which gives the project leads and other community
+  members the chance to help you.
+- Fedora includes all of the drivers provided by the projects that are responsible
+  for Linux hardware support.
+- For other types of connections, you can use  Network Manager  which is installed
+  and enabled by default in Fedora.
+- The dnfdragora tool is available for the command line and is invokeda with sudo
+  dnfdragora.
+- These programs, processes or services are fenced-in with no access allowed outside
+  their registered rights.
+- "The rapid development pace we expect for Fedora doesn't suit retail distribution\
+  \ \u2014 it is a lot of work to get a box product in and out of the channel, and\
+  \ retail isn't set up to efficiently handle software that is updated as often as\
+  \ every six months."
+- Also refer to the Fedora Wireless Guide at docs.fedoraproject.org to learn more
+  about wireless, and its implementation in Fedora.
+- The Fedora Project is a collection of many smaller   projects , working together
+  to produce the platform and build the supporting community.
+- Red Hat's supported product line will be based in part on a recent release of Fedora,
+  and our development will be done externally as part of The Fedora Project as much
+  as possible.
+- 'The Overview  details many of Fedora''s strengths:'
+- If you have any ideas or suggestions to create such a program, please bring it to
+  the attention of   Fedora Marketing .
+- What more incentive do you need?
+- The SELinux configuration included in Fedora provides enhanced security by restricting
+  the actions of processes running on a Fedora system.
+- Second, if you're a Fedora contributor, you don't need a fancy resume; you can just
+  tell potential employers to 'Google' your name.
+- There is no list price for Fedora.
+- Details are available at
+- Fedora currently includes over 15 000 packages.
+- The people who lead Fedora are selected because they have proven they are willing
+  and able to do so.
+- Most sub-projects keep a schedule of tasks on this wiki.
+- Users who want support, or maintenance according to an SLA, may purchase the appropriate
+  Red Hat Enterprise Linux product for their use.
+- Technologies under stringent copyright or patent restrictions are not included in
+  Fedora.

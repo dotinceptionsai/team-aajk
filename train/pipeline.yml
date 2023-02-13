@@ -4,7 +4,7 @@ run_params:
   robust_covariance: true
 datasets:
   train_id_datasets:
-  - olympics
+  - wwf
   train_ood_datasets: []
-  validation_id_dataset: validation_olympics_id
-  validation_ood_dataset: validation_olympics_ood
+  validation_id_dataset: validation_wwf_id
+  validation_ood_dataset: validation_wwf_ood

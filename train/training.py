@@ -1,5 +1,6 @@
 import logging
 import os
+from pathlib import Path
 
 import hydra
 from hydra.utils import get_original_cwd
@@ -27,7 +28,7 @@ def train(cfg: DictConfig):
     pipeline = persistence.load_pipeline(
         original_config_dir, GaussianEmbeddingsAnomalyDetector
     )
-    registry = DataFilesRegistry(cfg.datafiles_root)
+    registry = DataFilesRegistry(Path(original_config_dir) / cfg.datafiles_root)
     pipeline.train(registry)
 
     persistence.save_pipeline(pipeline)
