@@ -1,4 +1,5 @@
 import abc
+import re
 import time
 import typing
 from dataclasses import dataclass
@@ -133,7 +134,14 @@ class OlympicsScraper(Scraper):
             d for d in item.find_all("ul") if "data-accordion-content" in d.attrs
         ]
         assert len(q_answer) == 1, "Could not find answer ul"
-        answer = q_answer[0].get_text(strip=True, separator=" ")
+        answer = (
+            q_answer[0]
+            .get_text(strip=True, separator=" ")
+            .replace("\n", " ")
+            .replace("\u201C", '"')
+            .replace("\u201D", '"')
+        )
+        answer = re.sub(r"\s+", " ", answer)
         if (idx := answer.lower().find("learn more:")) >= 0:
             answer = answer[:idx].strip()
 

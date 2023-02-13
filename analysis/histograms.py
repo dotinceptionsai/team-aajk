@@ -38,14 +38,10 @@ def plot_cutoff_histogram(experiment_folder: Path):
     df_ood = pd.DataFrame({"score": ood_scores, "origin": "OOD"})
     df = pd.concat([df_id, df_ood])
     sns.set_style("darkgrid")
-    graph = sns.histplot(
-        data=df,
-        x="score",
-        hue="origin",
-        legend=True,
-        stat="count"
+    graph = sns.histplot(data=df, x="score", hue="origin", legend=True, stat="count")
+    graph.axvline(
+        detector.cutoff_distance, color="grey", linestyle="--", label="Cutoff"
     )
-    graph.axvline(detector.cutoff_distance, color="grey", linestyle="--", label="Cutoff")
 
     plt.savefig(experiment_folder / "cutoff_val_histogram.png")
 

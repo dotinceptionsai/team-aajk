@@ -39,7 +39,9 @@ class Experiments:
     outputs_dir: Path
 
     def __init__(self, outputs_dir: Path | str):
-        self.outputs_dir = outputs_dir if isinstance(outputs_dir, Path) else Path(outputs_dir)
+        self.outputs_dir = (
+            outputs_dir if isinstance(outputs_dir, Path) else Path(outputs_dir)
+        )
 
     def list(self) -> Iterable[Experiment]:
         for day_folder in self.outputs_dir.iterdir():
