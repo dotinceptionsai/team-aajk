@@ -1,3 +1,4 @@
+import csv
 from pathlib import Path
 from typing import Iterable
 
@@ -19,13 +20,13 @@ def export_yml(scraper_name: str, scraped: Iterable[QA], target_folder: Path):
         yaml.dump(items, f, sort_keys=False)
 
 
-def export_csv(scraper_name: str, scraped: Iterable[QA], target_folder: Path, sep=";"):
-    filename = scraper_name + ".csv"
+def export_tsv(scraper_name: str, scraped: Iterable[QA], target_folder: Path):
+    filename = scraper_name + ".tsv"
     csv_file = target_folder / filename
     questions = [qa.question for qa in scraped]
-    answers = [qa.answer for qa in scraped]
+    answers = [qa.answer.replace('"', "") for qa in scraped]
     df = pd.DataFrame({"question": questions, "answer": answers})
-    df.to_csv(csv_file, sep=sep, index=False, header=True)
+    df.to_csv(csv_file, sep="\t", index=False, header=True)
 
 
 if __name__ == "__main__":
@@ -34,4 +35,4 @@ if __name__ == "__main__":
     for name, scraper in scrapers.items():
         scraped = scraper.scrape()
         export_yml(name, scraped, target_dir)
-        export_csv(name, scraped, target_dir)
+        export_tsv(name, scraped, target_dir)
