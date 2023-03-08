@@ -4,7 +4,7 @@ import yaml
 from fastapi import FastAPI, WebSocket
 
 from pipelines import persistence
-from pipelines.impl.anomaly_detection import GaussianEmbeddingsAnomalyDetector
+from pipelines.filtering import FilterPipeline
 from transcribe.transcribe import AudioTranscriber
 
 CONFIG_FILE = "config.yml"
@@ -21,9 +21,7 @@ config = read_yaml(CONFIG_FILE)
 MODEL_DIR = Path(config["model_dir"])
 API_KEY_ASSEMBLYAI = config["api_key_assemblyai"]
 
-filter_pipeline = persistence.load_pipeline(
-    MODEL_DIR, GaussianEmbeddingsAnomalyDetector
-)
+filter_pipeline: FilterPipeline = persistence.load_pipeline(MODEL_DIR)
 
 
 @app.websocket("/ws")

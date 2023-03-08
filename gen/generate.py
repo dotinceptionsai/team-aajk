@@ -5,7 +5,7 @@ from typing import Iterable, Collection, Optional, Callable
 import yaml
 
 from dataload import dataloading as dl
-from pipelines.impl.tokenizing import to_sentences
+from pipelines.impl.preprocessing import split_in_sentences
 
 CHATTERBOX_DIR = Path("../resources/chatterbox")
 RAW_SCRAPING_DIR = Path("../resources/scraping")
@@ -54,8 +54,8 @@ def generate_id_sample(domain_name: str) -> list[str]:
     questions = [para for idx, para in enumerate(id_paragraphs) if idx % 2 == 0]
     answers = [para for idx, para in enumerate(id_paragraphs) if idx % 2 == 1]
 
-    questions_sentences = [s for q in questions for s in to_sentences(q)]
-    answers_sentences = [s for q in answers for s in to_sentences(q)]
+    questions_sentences = [s for q in questions for s in split_in_sentences(q)]
+    answers_sentences = [s for q in answers for s in split_in_sentences(q)]
 
     sample_questions = random.sample(questions_sentences, 20)
     sample_answer = random.sample(answers_sentences, 60)

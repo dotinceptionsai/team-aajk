@@ -1,18 +1,178 @@
 import logging
-from typing import Any, Iterable
+from enum import Enum
+from typing import Any, Collection, Iterable, Sequence
 
-import nltk
 import numpy as np
-from numpy.typing import NDArray
+import pandas as pd
 from sentence_transformers import SentenceTransformer
+from sklearn.base import BaseEstimator, ClassifierMixin, TransformerMixin
 from sklearn.covariance import EmpiricalCovariance, MinCovDet
 from sklearn.metrics import precision_recall_curve
+from sklearn.pipeline import make_pipeline
 
-import pipelines.impl.tokenizing as tk
+import pipelines.impl.preprocessing as tk
 from dataload.dataloading import DataFilesRegistry
-from pipelines.filtering import FilterPipeline, FilteredSentence
+from pipelines.filtering import FilteredSentence, FilterPipeline
+from pipelines.impl.paragraph import ParagraphTransform
+
+logger = logging.getLogger(__name__)
+INVALID_SENTENCE_MSG = "Some inputs in your dataset are either less than 2 words, span multiple sentences or are duplicate"
 
 
+class EmbeddingTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, embedder_name: str = "all-MiniLM-L6-v2"):
+        self.embedder = None
+        self.embedder_name = embedder_name
+
+    def __do_init(self):
+        if not self.embedder:
+            self.embedder = SentenceTransformer(self.embedder_name)
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        self.__do_init()
+        return self.embedder.encode(X)
+
+
+class GaussianTransformer(BaseEstimator, TransformerMixin):
+    def __init__(self, robust_covariance: bool = False, support_fraction: float = 0.85):
+        self.gaussian = None
+        self.robust_covariance: bool = robust_covariance
+        self.support_fraction: float = support_fraction
+
+    def __do_init(self):
+        if not self.gaussian:
+            self.gaussian: EmpiricalCovariance = (
+                MinCovDet(support_fraction=self.support_fraction)
+                if self.robust_covariance
+                else EmpiricalCovariance()
+            )
+
+    def fit(self, X, y=None):
+        """X is an array-like of shape (n_samples, embeddings_dim)"""
+        self.__do_init()
+        self.gaussian.fit(X)
+        return self
+
+    def transform(self, X, y=None):
+        """X is an array-like of shape (n_samples, embeddings_dim) or (embeddings_dim,)"""
+        self._check_if_fitted()
+        if len(X.shape) == 1:
+            X = np.expand_dims(X, axis=0)
+        return self.gaussian.mahalanobis(X)
+
+    def transform_one(self, X) -> float:
+        return float(self.transform(X).squeeze())
+
+    def set_dist_params(self, location, covariance):
+        self.__do_init()
+        self.gaussian.location_ = location
+        self.gaussian._set_covariance(covariance)
+
+    def get_dist_params(self):
+        self._check_if_fitted()
+        return self.gaussian.location_, self.gaussian.covariance_
+
+    def _check_if_fitted(self):
+        if self.gaussian is None:
+            raise ValueError("Must fit the transformer first")
+
+
+class CutoffCalibrator(BaseEstimator, ClassifierMixin):
+    """Takes in a list of id and ood scores to compute a cutoff threshold that maximizes f1-score"""
+
+    def __init__(
+        self,
+        adjusted: bool = False,
+        score_column: str = "score",
+        label_column: str = "label",
+    ):
+        self.r_ood_ = None
+        self.r_id_ = None
+        self.cutoff_ = None
+        self.f1_score_ = None
+        self.score_column = score_column
+        self.label_column = label_column
+        self.adjusted = adjusted
+
+    def fit(self, X, y=None):
+        """Expects an array-like of shape (n_samples, 2) with the first column being the score and the second the label"""
+        if isinstance(X, pd.DataFrame):
+            y_true = X[self.label_column]
+            y_score = X[self.score_column]
+        else:
+            y_true = X[:, 1]
+            y_score = X[:, 0]
+
+        validation_id_scores = y_score[y_true == 0]
+        validation_ood_scores = y_score[y_true == 1]
+
+        precision, recall, pr_thresholds = precision_recall_curve(y_true, y_score)
+        f1_scores = (2 * precision * recall) / (precision + recall)
+        best_f1_idx = np.argmax(f1_scores)
+        self.f1_score_ = float(f1_scores[best_f1_idx])
+        self.cutoff_ = float(pr_thresholds[best_f1_idx])
+
+        if self.adjusted:
+            non_zero_id_scores = validation_id_scores[
+                validation_id_scores < self.cutoff_
+            ]
+            non_zero_ood_scores = validation_ood_scores[
+                validation_ood_scores > self.cutoff_
+            ]
+            nearest_id = np.argmin(np.abs(non_zero_id_scores - self.cutoff_))
+            nearest_ood = np.argmin(np.abs(non_zero_ood_scores - self.cutoff_))
+            self.cutoff_ = (
+                non_zero_id_scores[nearest_id] + non_zero_ood_scores[nearest_ood]
+            ) / 2
+
+        # Make score user friendly:
+        # idea from https://medium.com/balabit-unsupervised/calibrating-anomaly-scores-5e60b7e47553
+        self.r_id_ = float(np.percentile(validation_id_scores, 50))
+        self.r_ood_ = float(np.percentile(validation_ood_scores, 50))
+
+    def predict(self, X):
+        return X > self.cutoff_
+
+    def predict_proba(self, X):
+        distances = X - self.cutoff_
+        full_distances = np.where(
+            distances < 0, self.cutoff_ - self.r_id_, self.r_ood_ - self.cutoff_
+        )
+        proba = 0.5 + 0.5 * distances / full_distances
+        return np.clip(proba, 0, 1)
+
+
+class BinaryDictTransformer(BaseEstimator, TransformerMixin):
+    """Given a dict with two keys "id" and "ood" that are lists
+    returns a dataframe with two columns "score" and "label" where oods are mapped to 1 and ids to 0
+    """
+
+    def __init__(self, zero_mapped_key: str = "id", one_mapped_key: str = "ood"):
+        self.zero_mapped_key = zero_mapped_key
+        self.one_mapped_key = one_mapped_key
+
+    def fit(self, X, y=None):
+        return self
+
+    def transform(self, X, y=None):
+        zero_scores = np.squeeze(X[self.zero_mapped_key])
+        one_scores = np.squeeze(X[self.one_mapped_key])
+        y_score = np.hstack([zero_scores, one_scores])
+        y_true = np.hstack([np.zeros(len(zero_scores)), np.ones(len(one_scores))])
+
+        return pd.DataFrame({"score": y_score, "label": y_true})
+
+
+# Create an enum  class named OnInvalidSentence with values FAIL or WARN
+class OnInvalidSentence(Enum):
+    FAIL = 1
+    WARN = 2
+
+
+# noinspection PyAttributeOutsideInit
 class GaussianEmbeddingsAnomalyDetector(FilterPipeline):
     """
     The model first computes the embeddings of the sentences. Then, it fits a Gaussian distribution to those.
@@ -30,143 +190,149 @@ class GaussianEmbeddingsAnomalyDetector(FilterPipeline):
         "all-mpnet-base-v2",
         "all-distilroberta-v1",
     ]
+    available_text_normalizers = tk.get_available_normalizers()
     name: str = "GaussianEmbeddingsAnomalyDetector"
-    sentence_parser: tk.TextTransformer = tk.pipelined(tk.to_sentences, tk.chunker(25))
-    robust_covariance: bool = False
-    distribution: EmpiricalCovariance = None
-    embedder: SentenceTransformer = None
-    embedder_name: str = None
-    cutoff_distance: float = None
-    r_id: float = None
-    r_ood: float = None
 
     def _post_init(
-        self, embedder_name: str = "all-MiniLM-L6-v2", robust_covariance: bool = False
+        self,
+        embedder_name: str = "all-MiniLM-L6-v2",
+        robust_covariance: bool = False,
+        support_fraction: float = 0.85,
+        text_normalizer_keys: Sequence[str] | None = None,
     ):
+        # Text preprocessing
+        self.sentence_splitter = ParagraphTransform(
+            [
+                tk.make_text_normalizer(text_normalizer_keys),
+                tk.split_into_sentences,
+                tk.normalize_sent_min_words,
+            ]
+        )
+
+        # Embeddings setup
         if embedder_name not in self.available_embedders:
             raise ValueError(
                 f"Embedder {embedder_name} not available. Choose from {self.available_embedders}"
             )
+
         self.embedder_name = self.run_params.get("embedder_name", "all-MiniLM-L6-v2")
-        self.robust_covariance = self.run_params.get("robust_covariance", False)
-        self.embedder = SentenceTransformer(embedder_name)
-        self.distribution = GaussianEmbeddingsAnomalyDetector._distribution_estimator(
-            self.robust_covariance
+        self.embedder = EmbeddingTransformer(self.embedder_name)
+
+        # Gaussian fit setup
+        self.distribution = GaussianTransformer(robust_covariance, support_fraction)
+        self.train_pipe = make_pipeline(
+            self.sentence_splitter, self.embedder, self.distribution
         )
+
+        # Calibration init
+        self.binary_transformer = BinaryDictTransformer()
+        self.calibrator = CutoffCalibrator()
+        self.calibration_pipe = make_pipeline(self.binary_transformer, self.calibrator)
 
     def filter_sentences(self, text: str) -> Iterable[FilteredSentence]:
-        if not self.cutoff_distance:
-            raise ValueError("Anomaly detector has not been trained yet")
+        if not self.calibrator.r_id_:
+            raise ValueError("Calibrator has not been fitted yet.")
 
-        for sentence in GaussianEmbeddingsAnomalyDetector.sentence_parser(text):
-            score = self.mahalanobis(sentence)
-            yield FilteredSentence(
-                sentence, score < self.cutoff_distance, self._calibrated_score(score)
-            )
+        for sentence in self.sentence_splitter.transform_one(text):
+            embed = self.embedder.transform(sentence)
+            raw_score = self.distribution.transform_one(embed)
+            proba = self.calibrator.predict_proba(raw_score)
+            is_in_domain = proba > 0.5
+            friendly_score = np.squeeze(100 - proba * 100)
+            yield FilteredSentence(sentence, is_in_domain, float(friendly_score))
 
-    def mahalanobis(self, sentence: str):
-        embedding = self.embedding(sentence)
-        return self.distribution.mahalanobis(embedding.reshape(1, -1)).squeeze()
+    def fit(self, registry: DataFilesRegistry) -> None:
+        train_paragraphs = _load_paragraphs(self.datasets.train_id, registry)
+        self.train_pipe.fit(train_paragraphs)
+        self.calibrate_from_val_files(registry)
 
-    def embedding(self, sentence):
-        return self.embedder.encode(_standardize_sentence(sentence))
+    def predict(self, X, y=None, on_invalid_sentence=OnInvalidSentence.FAIL):
+        return self._do_predict(X, on_invalid_sentence, proba=False)
 
-    def train(self, registry: DataFilesRegistry) -> None:
-        # Fit distribution to embeddings of in-domain training data
-        sentence_embeddings = []
-        for file_id in self.files.train_id:
-            sentence_embeddings.extend(self._embed_file(file_id, registry))
-        self.distribution = GaussianEmbeddingsAnomalyDetector._distribution_estimator(
-            self.robust_covariance
+    def predict_proba(self, X, y=None, on_invalid_sentence=OnInvalidSentence.FAIL):
+        return self._do_predict(X, on_invalid_sentence, proba=True)
+
+    def _do_predict(self, X, on_invalid_sentence, proba: bool = False):
+        verified_sents = self._verified_sentences(X, on_invalid_sentence)
+        raw_scores = self.train_pipe.transform(verified_sents)
+        if proba:
+            predictions = self.calibrator.predict_proba(raw_scores)
+        else:
+            predictions = self.calibrator.predict(raw_scores)
+        return predictions, verified_sents
+
+    def calibrate_from_val_files(self, registry: DataFilesRegistry) -> None:
+        validation_id_paragraphs = _load_paragraphs(
+            self.datasets.validation_id, registry
         )
-        self.distribution.fit(np.vstack(sentence_embeddings))
-
-        # Fit cutoff based on validation data
-        self.cutoff_distance, id_scores, ood_scores = self._compute_cutoff(registry)
-
-        # Make score user friendly:
-        # idea from https://medium.com/balabit-unsupervised/calibrating-anomaly-scores-5e60b7e47553
-        self.r_id = float(np.percentile(id_scores, 50))
-        self.r_ood = float(np.percentile(ood_scores, 50))
-
-    @staticmethod
-    def _distribution_estimator(robust: bool) -> EmpiricalCovariance:
-        return MinCovDet(support_fraction=0.85) if robust else EmpiricalCovariance()
-
-    def _compute_cutoff(self, registry: DataFilesRegistry) -> (float, NDArray, NDArray):
-        validation_id_embeddings = list(
-            self._embed_file(self.files.validation_id, registry)
+        validation_ood_paragraphs = _load_paragraphs(
+            self.datasets.validation_ood, registry
         )
-        validation_ood_embeddings = list(
-            self._embed_file(self.files.validation_ood, registry)
-        )
-        validation_id_scores = self.distribution.mahalanobis(
-            np.vstack(validation_id_embeddings)
-        )
-        validation_ood_scores = self.distribution.mahalanobis(
-            np.vstack(validation_ood_embeddings)
+        self._calibrate(
+            validation_id_paragraphs, validation_ood_paragraphs, OnInvalidSentence.WARN
         )
 
-        y_true = np.hstack(
-            [
-                np.zeros(len(validation_id_embeddings)),
-                np.ones(len(validation_ood_embeddings)),
-            ]
-        )
-        y_score = np.hstack([validation_id_scores, validation_ood_scores])
+    def recalibrate(
+        self,
+        id_sentences: Sequence[str],
+        ood_sentences: Sequence[str],
+        registry: DataFilesRegistry | None = None,
+        on_invalid_sentence: OnInvalidSentence = OnInvalidSentence.FAIL,
+    ):
+        id_sents = list(id_sentences)
+        ood_sents = list(ood_sentences)
+        if registry:
+            id_sents.extend(_load_paragraphs(self.datasets.validation_id, registry))
+            ood_sents.extend(_load_paragraphs(self.datasets.validation_ood, registry))
+        self._calibrate(id_sents, ood_sents, on_invalid_sentence)
 
-        precision, recall, pr_thresholds = precision_recall_curve(y_true, y_score)
-        f1_scores = (2 * precision * recall) / (precision + recall)
-        best_f1_idx = np.argmax(f1_scores)
-        logging.info(
-            f"Best F1 cutoff={pr_thresholds[best_f1_idx]:.2f}, F1-Score={f1_scores[best_f1_idx]:.3f}"
-        )
-        return (
-            float(pr_thresholds[best_f1_idx]),
-            validation_id_scores,
-            validation_ood_scores,
-        )
+    def _calibrate(
+        self,
+        id_sentences: Sequence[str],
+        ood_sentences: Sequence[str],
+        on_invalid_sentence: OnInvalidSentence,
+    ) -> None:
+        id_sentences = self._verified_sentences(id_sentences, on_invalid_sentence)
+        ood_sentences = self._verified_sentences(ood_sentences, on_invalid_sentence)
+        raw_val_id_scores = self.train_pipe.transform(id_sentences)
+        raw_val_ood_scores = self.train_pipe.transform(ood_sentences)
+        self.calibration_pipe.fit({"id": raw_val_id_scores, "ood": raw_val_ood_scores})
 
-    def _embed_file(
-        self, file_id: str, registry: DataFilesRegistry
-    ) -> Iterable[NDArray]:
-        for sentence in _file_sentences(file_id, registry):
-            yield self.embedding(sentence)
-
-    def _calibrated_score(self, scores: float | NDArray) -> float | NDArray:
-        return np.clip(100 * (scores - self.r_id) / (self.r_ood - self.r_id), 0, 100)
+    def _verified_sentences(
+        self, sentences: Sequence[str], on_invalid_sentence: OnInvalidSentence
+    ) -> Sequence[str]:
+        verified_sentences = self.sentence_splitter.transform(sentences)
+        if len(verified_sentences) != len(sentences):
+            if on_invalid_sentence == OnInvalidSentence.FAIL:
+                raise ValueError(INVALID_SENTENCE_MSG)
+            else:
+                logger.warning(INVALID_SENTENCE_MSG)
+        return verified_sentences
 
     def export_weights(self) -> dict[str, Any]:
+        location, covariance = self.distribution.get_dist_params()
         return {
-            "cutoff_distance": self.cutoff_distance,
-            "r_id": self.r_id,
-            "r_ood": self.r_ood,
-            "mean": self.distribution.location_,
-            "covariance": self.distribution.covariance_,
+            "cutoff_distance": self.calibrator.cutoff_,
+            "r_id": self.calibrator.r_id_,
+            "r_ood": self.calibrator.r_ood_,
+            "mean": location,
+            "covariance": covariance,
         }
 
     def load_weights(self, weights: dict[str, Any]) -> None:
-        self.cutoff_distance = weights["cutoff_distance"]
-        self.r_id = weights["r_id"]
-        self.r_ood = weights["r_ood"]
-        self.distribution.location_ = weights["mean"]
-        self.distribution._set_covariance(weights["covariance"])
+        self.calibrator.cutoff_ = weights["cutoff_distance"]
+        self.calibrator.r_id_ = weights["r_id"]
+        self.calibrator.r_ood_ = weights["r_ood"]
+        self.distribution.set_dist_params(weights["mean"], weights["covariance"])
 
 
-def _file_sentences(file_id: str, registry: DataFilesRegistry) -> Iterable[str]:
-    sentences = set()
-    paragraphs = registry.load_items(file_id)
-    for para in paragraphs:
-        for sent in tk.to_sentences(para):
-            sentence = _standardize_sentence(sent)
-            if len(sentence):
-                sentences.add(sentence)
-    return sentences
-
-
-def _standardize_sentence(sentence: str) -> str:
-    words = []
-    for word in nltk.word_tokenize(sentence):
-        if word.isalpha():  # Maybe just punctuation?
-            words.append(word.strip())
-    return sentence.lower() if len(words) > 1 else ""
+def _load_paragraphs(
+    file_ids: str | Collection[str], registry: DataFilesRegistry
+) -> list[str]:
+    if isinstance(file_ids, str):
+        return registry.load_items(file_ids)
+    else:
+        paragraphs = []
+        for file_id in file_ids:
+            paragraphs.extend(registry.load_items(file_id))
+        return paragraphs

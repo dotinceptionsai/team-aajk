@@ -3,9 +3,11 @@ import math
 from collections import defaultdict
 from typing import Iterable, Mapping, Collection, MutableMapping, Any
 
-import tokenizing as tk
+import pipelines.impl.preprocessing as tk
 from dataload.dataloading import DataFilesRegistry
 from pipelines.filtering import FilterPipeline, FilteredSentence
+
+logger = logging.getLogger(__name__)
 
 
 class _OkapiBM25:
@@ -79,20 +81,10 @@ class _OkapiBM25:
         for wq in words_query:
             if wq in self.f[doc_name]:
                 idf = self.f[doc_name][wq]
-                word_score = (
-                    self.idf[wq]
-                    * idf
-                    * (self.k1 + 1)
-                    / (
-                        idf
-                        + self.k1
-                        * (
-                            1
-                            - self.b
-                            + self.b * self.doc_len[doc_name] / self.avg_doc_len
-                        )
-                    )
-                )
+                relative_len = self.doc_len[doc_name] / self.avg_doc_len
+                rel_len_adj = 1 - self.b + self.b * relative_len
+                denom = idf + self.k1 * rel_len_adj
+                word_score = self.idf[wq] * idf * (self.k1 + 1) / denom
                 score += word_score
         return score
 
@@ -108,7 +100,7 @@ class _OkapiBM25:
 
     def ready(self):
         if self.doc_count() < 2:
-            logging.error(
+            logger.error(
                 f"There should be at least 2 documents, only: {self.doc_names()}"
             )
         return self.doc_count() > 1
@@ -132,8 +124,9 @@ class _OkapiBM25:
 
 
 class Bm25FilterPipeline(FilterPipeline):
-    name: str = "BM25"
-    sentence_parser: tk.TextTransformer = tk.pipelined(tk.to_sentences, tk.chunker(20))
+    sentence_parser: tk.TextTransformer = tk.pipelined(
+        tk.split_in_sentences, tk.chunker(20)
+    )
     tokenizer: tk.TextTransformer = tk.pipelined(
         tk.to_words, tk.no_stop_words, tk.lemmatize
     )
@@ -148,8 +141,8 @@ class Bm25FilterPipeline(FilterPipeline):
                 "Keyword Bm25 service is not ready. Please train or load it before."
             )
 
-        for sentence in self.sentence_parser(text):
-            in_domain, score = self._tag(self.tokenizer(sentence))
+        for sentence in Bm25FilterPipeline.sentence_parser(text):
+            in_domain, score = self._tag(Bm25FilterPipeline.tokenizer(sentence))
             yield FilteredSentence(sentence, in_domain, score)
 
     def _tag(self, sentence_tokens: Iterable[str]) -> tuple[bool, float]:
@@ -164,9 +157,9 @@ class Bm25FilterPipeline(FilterPipeline):
         )
         return in_domain, best_score
 
-    def train(self, registry: DataFilesRegistry) -> None:
-        self._train_on_document("ID", self.files.train_id, registry)
-        self._train_on_document("OOD", self.files.train_ood, registry)
+    def fit(self, registry: DataFilesRegistry) -> None:
+        self._train_on_document("ID", self.datasets.train_id, registry)
+        self._train_on_document("OOD", self.datasets.train_ood, registry)
 
     def _train_on_document(
         self,
