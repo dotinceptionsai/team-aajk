@@ -34,7 +34,11 @@ minimal set of dependencies.
 - Go to http://localhost:63342/team-aajk/app/chat.html to see the app
 - You need to input one `starter` sentence in the chatbox before starting the conversation
 
-## Folder structure
+## Running notebooks
+- Ensure you got dependencies from `notebooks` group `poetry install --only main,ml,notebooks`
+
+
+# Folder structure
 Folders in the project:
 
 - **app**: contains a call center app that does the filtering of the useless utterances
@@ -48,14 +52,6 @@ Folders in the project:
 - tests: contains some unit tests
 - **train**: contains the scripts used to train the ML models
 - transcribe: contains the scripts used to transcribe the audio files using an existing service.
-
-
-- Run `poetry install` to install dependencies. Dependencies are listed in `pyproject.toml` and can be installed selectively by using one of the groups:
-  - `ml`: to train ML models use `poetry install --only main,ml`
-  - `scrape`: to run scraping code `poetry install --only main,scrape`
-  - `dev`: to run dev tools and unit tests also do `poetry install --only dev`
-  - `app`: to be able to run front-office application `poetry install --only main,app`
-  - `backoffice`: to be able to run the backoffice wizard application `poetry install --only main,ml,backoffice`
 
 
 
