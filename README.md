@@ -1,35 +1,63 @@
+
+# Pre-requisites
+
+To install from source:
+- Have python `3.10` or above ready
+- Install [poetry](https://python-poetry.org/docs/#installation)
+
+
+# Running the various webapps
+
+Following webapps can be run:
+- **backoffice**: Setup Wizard app that allows the customer to setup the call center app
+- **app**: call center app that does the filtering of the useless utterances
+- **mlflow**: MLFlow can be run to view the results of the experiments
+
+## Run experiments and view results using MLFlow
+- At the root of the project run command `poetry install --only main,ml` to install the
+minimal set of dependencies.
+- From folder `train` run command `mlflow ui`
+- Go to http://localhost:5000 to see the MLFlow UI web app
+
+## Running the backoffice/Setup Wizard app
+- Ensure you got dependencies from `backoffice` group `poetry install --only main,ml,backoffice`
+- From root folder run command `streamlit run backoffice/0_Welcome.py`
+- Go to http://localhost:8001 to see the app
+
+
+## Running the call-center front-office app
+- Go into folder `app`
+- Set properties in `app/config.yml` and set the 2 properties:
+  - the reference to the folder where chosen model is stored 
+  - and set API key for audio transcription
+- Run command `python app.py` to run the server
+- Go to http://localhost:63342/team-aajk/app/chat.html to see the app
+- You need to input one `starter` sentence in the chatbox before starting the conversation
+
+## Folder structure
 Folders in the project:
 
-- app: contains a call center app that does the filtering of the useless utterances
+- **app**: contains a call center app that does the filtering of the useless utterances
 - analysis: contains tools to track experiments and analyze results
+- **backoffice**: contains the wizard app that allows the customer to setup the call center app
 - datasets: cleaned up datasets for training and testing
-- dataload: abstraction of the datafiles for easier loading when files are moved around
-- gen: generate validation and test datasets by randomly selection utterances from the chatterbox dataset and from the faqs
+- dataload: abstract location of datafiles for easier loading when files are moved around
 - notebooks: contains the notebooks used for EDA and various analysis
 - resources: raw scrapings or raw provided data
 - scraping: contains the scripts used to scrape the FAQ data from the web
 - tests: contains some unit tests
+- **train**: contains the scripts used to train the ML models
 - transcribe: contains the scripts used to transcribe the audio files using an existing service.
 
 
-Installation from source:
-- Install [poetry](https://python-poetry.org/docs/#installation)
-- Run `poetry install` to install all the dependencies. Dependencies are listed in `pyproject.toml` and can be installed selectively by using one of the groups:
-  - `ml`: to experiment and run ML models
-  - `scrape`: to run scraping code
-  - `dev`: to run dev tools and unit tests
-  - `app`: to be able to run deno application
-  - `backoffice`: to be able to run the backoffice wizard application
+- Run `poetry install` to install dependencies. Dependencies are listed in `pyproject.toml` and can be installed selectively by using one of the groups:
+  - `ml`: to train ML models use `poetry install --only main,ml`
+  - `scrape`: to run scraping code `poetry install --only main,scrape`
+  - `dev`: to run dev tools and unit tests also do `poetry install --only dev`
+  - `app`: to be able to run front-office application `poetry install --only main,app`
+  - `backoffice`: to be able to run the backoffice wizard application `poetry install --only main,ml,backoffice`
 
-Running mlflow to list experiments:
-- Ensure you got dependencies from `ml` group (run `poetry install --no-dev --extras ml`)
-- From folder `train` run command `mlflow ui`
 
-Running the backoffice/Setup Wizard app:
-- Ensure you got dependencies from `backoffice` group (run `poetry install --no-dev --extras backoffice`)
-- From root folder run command `streamlit run backoffice/0_Welcome.py`
 
-Running the call-center app from source:
-- Go into folder `app`
-- Set properties in `app/config.yml` to reference the folder where model is stored and set API key for audio transcription
-- Run command `python app.py` to run the server
+
+
