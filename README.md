@@ -1,12 +1,12 @@
 
-# Pre-requisites
+# 0. Pre-requisites
 
 To install from source:
 - Have python `3.10` or above ready
 - Install [poetry](https://python-poetry.org/docs/#installation)
 
 
-# Running the various webapps
+# 1. Running the various webapps
 
 Following webapps can be run:
 - **backoffice**: Setup Wizard app that allows the customer to setup the call center app
@@ -38,7 +38,7 @@ minimal set of dependencies.
 - Ensure you got dependencies from `notebooks` group `poetry install --only main,ml,notebooks`
 
 
-# Folder structure
+# 3. Folder structure
 Folders in the project:
 
 - **app**: contains a call center app that does the filtering of the useless utterances
