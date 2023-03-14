@@ -9,6 +9,7 @@ import pandas as pd
 # create a dataclass with all the infos of a run
 @dataclass
 class RunInfo:
+    id: str
     status: str
     start_time: datetime
     experiment_name: str
@@ -17,7 +18,7 @@ class RunInfo:
     artifacts: list[str]
 
 
-def get_all_runs(experiment_name: str) -> list[RunInfo]:
+def get_all_runs(experiment_name: str, as_df: bool | None = True) -> list[RunInfo]:
     client = mlflow.tracking.client.MlflowClient()
     experiment = client.get_experiment_by_name(experiment_name)
     if experiment is None:
@@ -34,16 +35,23 @@ def get_all_runs(experiment_name: str) -> list[RunInfo]:
 
         # Put data into a dataclass of type RunInfo
         row = RunInfo(
-            run.info.status, start_time, experiment_name, params, metrics, artifacts
+            run.info.run_name,
+            run.info.status,
+            start_time,
+            experiment_name,
+            params,
+            metrics,
+            artifacts,
         )
         rows.append(row)
-    return rows
+    return to_dataframe(rows) if as_df else rows
 
 
 def to_dataframe(rows: list[RunInfo]) -> pd.DataFrame:
     all_rows_df = pd.DataFrame()
     for r in rows:
         row_dict = {
+            "id": r.id,
             "status": r.status,
             "start_time": r.start_time,
             "experiment_name": r.experiment_name,
@@ -52,6 +60,10 @@ def to_dataframe(rows: list[RunInfo]) -> pd.DataFrame:
         # concatenate the three dataframes
         df = pd.DataFrame.from_dict(row_dict, orient="index").T
         all_rows_df = pd.concat([all_rows_df, df], axis=0)
+
+    all_rows_df = all_rows_df.sort_values(by="comparison_score", ascending=False)
+    all_rows_df.index = range(0, len(all_rows_df))
+
     return all_rows_df
 
 
@@ -61,4 +73,4 @@ if __name__ == "__main__":
 
     rows = get_all_runs("wwf")
     # find experiment by name
-    to_dataframe(rows).to_csv("all_runs.csv", index=True)
+    rows.to_csv("all_runs.csv", index=True)
