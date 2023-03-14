@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/0d01105477d847e992b28f5a390a807a/artifacts
+deleted_time: 1678738928930
+end_time: 1678738709147
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 0d01105477d847e992b28f5a390a807a
+run_name: big-gull-719
+run_uuid: 0d01105477d847e992b28f5a390a807a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738703061
+status: 4
+tags: []
+user_id: jlinho

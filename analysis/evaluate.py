@@ -1,3 +1,4 @@
+import time
 from dataclasses import dataclass
 from typing import Iterable
 
@@ -15,6 +16,22 @@ class Scoring:
     fn_indices: Iterable[int]
     y_true: Iterable[int]
     y_pred: Iterable[int]
+
+
+def evaluate_speed_ms(my_model, sentences):
+    # measure the speed of the model
+    time_start = time.time_ns()
+    text = ".".join(sentences)
+
+    x = 1
+    repeats = 10
+    for i in range(repeats):
+        for fs in my_model.filter_sentences(text):
+            x += 1
+    time_end = time.time_ns()
+    elapsed_nanos = (time_end - time_start) / repeats / len(sentences)
+    # return in milliseconds
+    return elapsed_nanos / 1_000_000
 
 
 def evaluate_model(my_model, id_sentences, ood_sentences):

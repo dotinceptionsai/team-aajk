@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/bd00d880de744f3eacca886c3e7b61b9/artifacts
+deleted_time: 1678777824569
+end_time: 1678777734360
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: bd00d880de744f3eacca886c3e7b61b9
+run_name: kindly-crane-201
+run_uuid: bd00d880de744f3eacca886c3e7b61b9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777732660
+status: 4
+tags: []
+user_id: jlinho

@@ -17,12 +17,12 @@ __all__ = ["FilteredSentence", "FilterTrainFiles", "FilterPipeline", "FP"]
 @dataclass(frozen=True, eq=True)
 class FilteredSentence:
     """The result of the filtering of a sentence:
-    the sentence, a flag indicating if it is relevant to the domain and a confidence score.
+    the sentence plus a probability that it is out-of-domain (OOD)
     """
 
     sentence: str
-    relevant: bool
-    score: float
+    ood_proba: float
+    similar_sents: Collection[str] = field(default_factory=list)
 
 
 @dataclass

@@ -1,0 +1,4 @@
+- stop_words=allow
+- robust=robust80
+- +pipeline.run_params.embedder_name=all-distilroberta-v1
+- ds=europcar

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/679f70abe70d4073819e5794d14b532c/artifacts
+deleted_time: 1678777891465
+end_time: 1678777876393
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 679f70abe70d4073819e5794d14b532c
+run_name: sassy-hound-310
+run_uuid: 679f70abe70d4073819e5794d14b532c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777853502
+status: 4
+tags: []
+user_id: jlinho

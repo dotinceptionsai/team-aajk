@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/fc1e2a4c4287494daae9d983fb17cc33/artifacts
+end_time: 1678730798658
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: fc1e2a4c4287494daae9d983fb17cc33
+run_name: honorable-kit-110
+run_uuid: fc1e2a4c4287494daae9d983fb17cc33
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678730391825
+status: 3
+tags: []
+user_id: jlinho

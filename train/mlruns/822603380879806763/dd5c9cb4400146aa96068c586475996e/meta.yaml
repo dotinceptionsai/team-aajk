@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/dd5c9cb4400146aa96068c586475996e/artifacts
+deleted_time: 1678738928929
+end_time: 1678738730006
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: dd5c9cb4400146aa96068c586475996e
+run_name: fun-bird-297
+run_uuid: dd5c9cb4400146aa96068c586475996e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738723332
+status: 4
+tags: []
+user_id: jlinho

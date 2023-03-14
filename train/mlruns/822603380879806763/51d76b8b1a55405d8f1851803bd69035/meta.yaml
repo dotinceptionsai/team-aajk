@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/51d76b8b1a55405d8f1851803bd69035/artifacts
+end_time: 1678739101165
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: 51d76b8b1a55405d8f1851803bd69035
+run_name: selective-croc-121
+run_uuid: 51d76b8b1a55405d8f1851803bd69035
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678739056419
+status: 3
+tags: []
+user_id: jlinho

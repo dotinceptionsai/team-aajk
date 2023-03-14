@@ -1,8 +1,0 @@
-defaults:
-  - pipeline: template
-  - _self_
-datafiles_root: ../datasets
-output_dir: ${hydra:run.dir}
-hydra:
-  job:
-    chdir: false

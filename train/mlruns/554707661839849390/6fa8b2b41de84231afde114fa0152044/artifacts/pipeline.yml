@@ -1,0 +1,17 @@
+name: pipelines.impl.anomaly_detection.GaussianEmbeddingsAnomalyDetector
+datasets:
+  train_id:
+  - wwf
+  train_ood: []
+  validation_id: validation_wwf_id
+  validation_ood: validation_wwf_ood
+run_params:
+  text_normalizer_keys:
+  - spaces
+  - sentences_start
+  - uri
+  - email
+  - common_abbr
+  robust_covariance: true
+  support_fraction: 0.9
+  embedder_name: all-mpnet-base-v2

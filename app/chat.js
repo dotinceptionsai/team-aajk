@@ -2,7 +2,7 @@ const chatHistory = document.getElementById('chat-history');
 const chatTextarea = document.getElementById('chat-textarea');
 const chatSendButton = document.getElementById('chat-send-button');
 
-const socket = new WebSocket('ws://localhost:8000/ws');
+const socket = new WebSocket('ws://localhost:8001/ws');
 
 // React to bot responses by putting them in the chat history section
 socket.onmessage = (event) => {

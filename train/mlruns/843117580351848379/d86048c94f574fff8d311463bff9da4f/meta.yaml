@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/d86048c94f574fff8d311463bff9da4f/artifacts
+end_time: 1678733179216
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: d86048c94f574fff8d311463bff9da4f
+run_name: ambitious-crab-403
+run_uuid: d86048c94f574fff8d311463bff9da4f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678732771286
+status: 3
+tags: []
+user_id: jlinho

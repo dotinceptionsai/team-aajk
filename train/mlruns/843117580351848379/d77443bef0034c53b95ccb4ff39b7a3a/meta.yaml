@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/d77443bef0034c53b95ccb4ff39b7a3a/artifacts
+end_time: 1678729955107
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: d77443bef0034c53b95ccb4ff39b7a3a
+run_name: delicate-ram-898
+run_uuid: d77443bef0034c53b95ccb4ff39b7a3a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678729627964
+status: 3
+tags: []
+user_id: jlinho

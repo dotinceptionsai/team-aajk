@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/7df81a316bfb4348888e2d5f1ffb9791/artifacts
+deleted_time: 1678781780689
+end_time: 1678778363684
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 7df81a316bfb4348888e2d5f1ffb9791
+run_name: clumsy-wolf-607
+run_uuid: 7df81a316bfb4348888e2d5f1ffb9791
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678778035846
+status: 3
+tags: []
+user_id: jlinho

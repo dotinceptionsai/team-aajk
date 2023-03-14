@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/88e956b0e96141db89bebb57de96f2a2/artifacts
+deleted_time: 1678738945842
+end_time: 1678738141468
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 88e956b0e96141db89bebb57de96f2a2
+run_name: legendary-grouse-184
+run_uuid: 88e956b0e96141db89bebb57de96f2a2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738107945
+status: 4
+tags: []
+user_id: jlinho

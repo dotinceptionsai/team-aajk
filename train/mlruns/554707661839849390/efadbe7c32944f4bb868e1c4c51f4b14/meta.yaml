@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/efadbe7c32944f4bb868e1c4c51f4b14/artifacts
+deleted_time: 1678777824566
+end_time: 1678777499933
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: efadbe7c32944f4bb868e1c4c51f4b14
+run_name: youthful-snake-363
+run_uuid: efadbe7c32944f4bb868e1c4c51f4b14
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777498504
+status: 4
+tags: []
+user_id: jlinho

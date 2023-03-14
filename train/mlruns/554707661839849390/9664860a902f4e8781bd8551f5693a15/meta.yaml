@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/9664860a902f4e8781bd8551f5693a15/artifacts
+deleted_time: 1678777891471
+end_time: 1678777806274
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 9664860a902f4e8781bd8551f5693a15
+run_name: industrious-hawk-60
+run_uuid: 9664860a902f4e8781bd8551f5693a15
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777793168
+status: 3
+tags: []
+user_id: jlinho

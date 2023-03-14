@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/63567f7d8f174ea4b3b2864ca3795804/artifacts
+deleted_time: 1678781780688
+end_time: 1678778407946
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 63567f7d8f174ea4b3b2864ca3795804
+run_name: legendary-snipe-122
+run_uuid: 63567f7d8f174ea4b3b2864ca3795804
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678778363756
+status: 3
+tags: []
+user_id: jlinho

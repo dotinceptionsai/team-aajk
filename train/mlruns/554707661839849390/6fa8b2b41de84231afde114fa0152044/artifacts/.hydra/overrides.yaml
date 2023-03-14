@@ -1,0 +1,4 @@
+- stop_words=allow
+- robust=robust90
+- +pipeline.run_params.embedder_name=all-mpnet-base-v2
+- ds=wwf

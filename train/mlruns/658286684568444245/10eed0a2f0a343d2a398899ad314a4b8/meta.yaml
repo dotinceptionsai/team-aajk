@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/10eed0a2f0a343d2a398899ad314a4b8/artifacts
+deleted_time: 1678781780689
+end_time: 1678777987742
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 10eed0a2f0a343d2a398899ad314a4b8
+run_name: amusing-shad-382
+run_uuid: 10eed0a2f0a343d2a398899ad314a4b8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777925638
+status: 3
+tags: []
+user_id: jlinho

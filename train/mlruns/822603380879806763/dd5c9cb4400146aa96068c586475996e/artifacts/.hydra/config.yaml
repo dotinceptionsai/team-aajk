@@ -1,0 +1,24 @@
+ds:
+  train_id:
+  - fda
+  train_ood: []
+  validation_id: validation_fda_id
+  validation_ood: validation_fda_ood
+stop_words:
+- spaces
+- sentences_start
+- uri
+- email
+- common_abbr
+robust:
+  robust_covariance: true
+  support_fraction: 0.75
+datafiles_root: ../datasets
+pipeline:
+  _target_: pipelines.impl.anomaly_detection.GaussianEmbeddingsAnomalyDetector
+  datasets: ${ds}
+  run_params:
+    text_normalizer_keys: ${stop_words}
+    robust_covariance: ${robust.robust_covariance}
+    support_fraction: ${robust.support_fraction}
+    embedder_name: all-MiniLM-L6-v2

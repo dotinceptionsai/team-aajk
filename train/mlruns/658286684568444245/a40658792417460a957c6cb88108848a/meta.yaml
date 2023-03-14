@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/a40658792417460a957c6cb88108848a/artifacts
+deleted_time: 1678781780675
+end_time: 1678781706154
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: a40658792417460a957c6cb88108848a
+run_name: lyrical-stoat-501
+run_uuid: a40658792417460a957c6cb88108848a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781143799
+status: 3
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/7b9393fc946e44e4b8fda5dc18d2fd08/artifacts
+deleted_time: 1678738928927
+end_time: 1678738846588
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 7b9393fc946e44e4b8fda5dc18d2fd08
+run_name: youthful-swan-461
+run_uuid: 7b9393fc946e44e4b8fda5dc18d2fd08
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738839415
+status: 4
+tags: []
+user_id: jlinho

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/04e6f06998a7470fae1f673edea3d560/artifacts
+end_time: 1678781879845
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: active
+run_id: 04e6f06998a7470fae1f673edea3d560
+run_name: bustling-shark-792
+run_uuid: 04e6f06998a7470fae1f673edea3d560
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781816917
+status: 3
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/32b2732d8d734feab4c133afc2a03c6c/artifacts
+deleted_time: 1678781780681
+end_time: 1678781143728
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 32b2732d8d734feab4c133afc2a03c6c
+run_name: useful-ram-513
+run_uuid: 32b2732d8d734feab4c133afc2a03c6c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678780152154
+status: 3
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/83335bcac3144b1aa179758b5d050b75/artifacts
+deleted_time: 1678777233222
+end_time: 1678777055255
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 83335bcac3144b1aa179758b5d050b75
+run_name: resilient-yak-558
+run_uuid: 83335bcac3144b1aa179758b5d050b75
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776675129
+status: 4
+tags: []
+user_id: jlinho

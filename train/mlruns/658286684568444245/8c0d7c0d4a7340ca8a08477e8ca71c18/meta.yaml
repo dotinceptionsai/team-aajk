@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/8c0d7c0d4a7340ca8a08477e8ca71c18/artifacts
+deleted_time: 1678783340823
+end_time: 1678782129587
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 8c0d7c0d4a7340ca8a08477e8ca71c18
+run_name: mercurial-boar-877
+run_uuid: 8c0d7c0d4a7340ca8a08477e8ca71c18
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781928401
+status: 4
+tags: []
+user_id: jlinho

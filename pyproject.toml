@@ -30,6 +30,7 @@ llvmlite = [
     { version = "^0.39.1", markers = "platform_machine == 'arm64'" }
 ]
 umap-learn = "^0.5.3"
+mlflow = "^1.22.2"
 
 [tool.poetry.group.app.dependencies]
 fastapi = "^0.89.0"

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/1df1e1addbbc44db82aa5008594a5ad1/artifacts
+deleted_time: 1678738928931
+end_time: 1678738696525
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 1df1e1addbbc44db82aa5008594a5ad1
+run_name: bedecked-colt-382
+run_uuid: 1df1e1addbbc44db82aa5008594a5ad1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738693228
+status: 4
+tags: []
+user_id: jlinho

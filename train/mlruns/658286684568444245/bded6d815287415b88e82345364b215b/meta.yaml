@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/bded6d815287415b88e82345364b215b/artifacts
+deleted_time: 1678777233224
+end_time: 1678776648402
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: bded6d815287415b88e82345364b215b
+run_name: thoughtful-loon-835
+run_uuid: bded6d815287415b88e82345364b215b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776646228
+status: 4
+tags: []
+user_id: jlinho

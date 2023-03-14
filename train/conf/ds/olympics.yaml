@@ -1,0 +1,5 @@
+train_id:
+  - olympics
+train_ood: [ ]
+validation_id: validation_olympics_id
+validation_ood: validation_olympics_ood

@@ -33,7 +33,7 @@
             for (let i = 0; i < files.length; i++) {
                 formData.append('files', files[i]);
             }
-            fetch('http://localhost:8000/import-kb', {
+            fetch('http://localhost:8001/import-kb', {
                 method: 'POST',
                 body: formData
             }).then(response => response.json())

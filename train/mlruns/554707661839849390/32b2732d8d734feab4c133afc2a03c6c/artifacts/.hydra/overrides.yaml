@@ -1,0 +1,4 @@
+- stop_words=allow
+- robust=robust90
+- +pipeline.run_params.embedder_name=all-MiniLM-L6-v2
+- ds=wwf

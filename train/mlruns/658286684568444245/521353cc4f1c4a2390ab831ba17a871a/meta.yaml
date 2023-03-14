@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/521353cc4f1c4a2390ab831ba17a871a/artifacts
+deleted_time: 1678738945842
+end_time: 1678738101284
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 521353cc4f1c4a2390ab831ba17a871a
+run_name: sassy-fly-56
+run_uuid: 521353cc4f1c4a2390ab831ba17a871a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738090365
+status: 4
+tags: []
+user_id: jlinho

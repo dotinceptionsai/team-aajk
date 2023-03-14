@@ -1,0 +1,5 @@
+train_id:
+  - europcar
+train_ood: [ ]
+validation_id: validation_id
+validation_ood: validation_ood

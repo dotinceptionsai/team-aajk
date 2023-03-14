@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/2e3e2d9215a34a7283702b25da4d04ca/artifacts
+deleted_time: 1678738945839
+end_time: 1678738456948
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 2e3e2d9215a34a7283702b25da4d04ca
+run_name: treasured-hen-389
+run_uuid: 2e3e2d9215a34a7283702b25da4d04ca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738450674
+status: 4
+tags: []
+user_id: jlinho

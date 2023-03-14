@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/d8d1f94aa0464eb8a43f3e891869ded9/artifacts
+end_time: 1678739184323
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: d8d1f94aa0464eb8a43f3e891869ded9
+run_name: beautiful-mink-12
+run_uuid: d8d1f94aa0464eb8a43f3e891869ded9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678739101239
+status: 3
+tags: []
+user_id: jlinho

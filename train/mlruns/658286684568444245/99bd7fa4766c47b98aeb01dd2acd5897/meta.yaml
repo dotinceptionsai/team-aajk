@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/99bd7fa4766c47b98aeb01dd2acd5897/artifacts
+end_time: 1678781805924
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: active
+run_id: 99bd7fa4766c47b98aeb01dd2acd5897
+run_name: traveling-slug-867
+run_uuid: 99bd7fa4766c47b98aeb01dd2acd5897
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781789367
+status: 3
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/c12d10f442974dacb7d2d94d0b86ccd6/artifacts
+deleted_time: 1678738928930
+end_time: 1678738703001
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: c12d10f442974dacb7d2d94d0b86ccd6
+run_name: awesome-wren-397
+run_uuid: c12d10f442974dacb7d2d94d0b86ccd6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738696648
+status: 4
+tags: []
+user_id: jlinho

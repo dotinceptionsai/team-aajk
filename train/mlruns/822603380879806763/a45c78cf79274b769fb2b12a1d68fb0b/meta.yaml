@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/a45c78cf79274b769fb2b12a1d68fb0b/artifacts
+deleted_time: 1678738945841
+end_time: 1678738420162
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: a45c78cf79274b769fb2b12a1d68fb0b
+run_name: overjoyed-rat-323
+run_uuid: a45c78cf79274b769fb2b12a1d68fb0b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738347393
+status: 4
+tags: []
+user_id: jlinho

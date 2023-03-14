@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/6fa8b2b41de84231afde114fa0152044/artifacts
+deleted_time: 1678781780679
+end_time: 1678781769458
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 6fa8b2b41de84231afde114fa0152044
+run_name: treasured-jay-772
+run_uuid: 6fa8b2b41de84231afde114fa0152044
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781706237
+status: 4
+tags: []
+user_id: jlinho

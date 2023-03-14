@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/6f51b3b75c8a4373a7d75879857ab831/artifacts
+end_time: 1678730391743
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: 6f51b3b75c8a4373a7d75879857ab831
+run_name: invincible-lynx-28
+run_uuid: 6f51b3b75c8a4373a7d75879857ab831
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678729955177
+status: 3
+tags: []
+user_id: jlinho

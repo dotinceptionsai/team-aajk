@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/e5910e00f39d45c399d74753706e5c6c/artifacts
+deleted_time: 1678777233225
+end_time: 1678776646043
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: e5910e00f39d45c399d74753706e5c6c
+run_name: aged-dolphin-889
+run_uuid: e5910e00f39d45c399d74753706e5c6c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776640950
+status: 4
+tags: []
+user_id: jlinho

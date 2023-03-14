@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/e9c291a08d9f4a968b3423614e59ae97/artifacts
+deleted_time: 1678777233227
+end_time: 1678776378956
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: e9c291a08d9f4a968b3423614e59ae97
+run_name: omniscient-mink-309
+run_uuid: e9c291a08d9f4a968b3423614e59ae97
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776375845
+status: 4
+tags: []
+user_id: jlinho

@@ -12,7 +12,7 @@ from sklearn.pipeline import make_pipeline
 
 import pipelines.impl.preprocessing as tk
 from dataload.dataloading import DataFilesRegistry
-from pipelines.filtering import FilteredSentence, FilterPipeline
+from pipelines.filtering import FilteredSentence, FilterPipeline, FilterTrainFiles
 from pipelines.impl.paragraph import ParagraphTransform
 
 logger = logging.getLogger(__name__)
@@ -33,7 +33,7 @@ class EmbeddingTransformer(BaseEstimator, TransformerMixin):
 
     def transform(self, X, y=None):
         self.__do_init()
-        return self.embedder.encode(X)
+        return self.embedder.encode(X, show_progress_bar=False)
 
 
 class GaussianTransformer(BaseEstimator, TransformerMixin):
@@ -193,6 +193,10 @@ class GaussianEmbeddingsAnomalyDetector(FilterPipeline):
     available_text_normalizers = tk.get_available_normalizers()
     name: str = "GaussianEmbeddingsAnomalyDetector"
 
+    def __init__(self, run_params: dict[str, Any], datasets: FilterTrainFiles):
+        super().__init__(run_params, datasets)
+        self.all_embeddings = None
+
     def _post_init(
         self,
         embedder_name: str = "all-MiniLM-L6-v2",
@@ -237,9 +241,7 @@ class GaussianEmbeddingsAnomalyDetector(FilterPipeline):
             embed = self.embedder.transform(sentence)
             raw_score = self.distribution.transform_one(embed)
             proba = self.calibrator.predict_proba(raw_score)
-            is_in_domain = proba > 0.5
-            friendly_score = np.squeeze(100 - proba * 100)
-            yield FilteredSentence(sentence, is_in_domain, float(friendly_score))
+            yield FilteredSentence(sentence, proba)
 
     def fit(self, registry: DataFilesRegistry) -> None:
         train_paragraphs = _load_paragraphs(self.datasets.train_id, registry)
@@ -303,11 +305,23 @@ class GaussianEmbeddingsAnomalyDetector(FilterPipeline):
     ) -> Sequence[str]:
         verified_sentences = self.sentence_splitter.transform(sentences)
         if len(verified_sentences) != len(sentences):
+            self._report_invalid_sentences(sentences)
+
             if on_invalid_sentence == OnInvalidSentence.FAIL:
                 raise ValueError(INVALID_SENTENCE_MSG)
             else:
                 logger.warning(INVALID_SENTENCE_MSG)
         return verified_sentences
+
+    def _report_invalid_sentences(self, sentences):
+        found_sentences = set()
+        for s in sentences:
+            ts = list(self.sentence_splitter.transform_one(s))
+            if len(ts) != 1:
+                logger.warning(f"Invalid sentence: {s}")
+            if s in found_sentences:
+                logger.warning(f"Duplicate sentence: {s}")
+            found_sentences.add(s)
 
     def export_weights(self) -> dict[str, Any]:
         location, covariance = self.distribution.get_dist_params()

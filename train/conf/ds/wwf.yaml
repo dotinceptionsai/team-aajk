@@ -1,0 +1,5 @@
+train_id:
+  - wwf
+train_ood: [ ]
+validation_id: validation_wwf_id
+validation_ood: validation_wwf_ood

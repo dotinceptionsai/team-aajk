@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/5a908e95c01244cfa32778c50d3ea4b0/artifacts
+end_time: 1678729612895
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: 5a908e95c01244cfa32778c50d3ea4b0
+run_name: bedecked-zebra-898
+run_uuid: 5a908e95c01244cfa32778c50d3ea4b0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678729587177
+status: 3
+tags: []
+user_id: jlinho

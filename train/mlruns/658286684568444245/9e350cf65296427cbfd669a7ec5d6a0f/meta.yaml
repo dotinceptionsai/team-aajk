@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/9e350cf65296427cbfd669a7ec5d6a0f/artifacts
+deleted_time: 1678777233225
+end_time: 1678776445791
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 9e350cf65296427cbfd669a7ec5d6a0f
+run_name: useful-ram-216
+run_uuid: 9e350cf65296427cbfd669a7ec5d6a0f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776434863
+status: 4
+tags: []
+user_id: jlinho

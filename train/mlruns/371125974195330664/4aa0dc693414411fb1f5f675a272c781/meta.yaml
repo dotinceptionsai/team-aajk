@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/371125974195330664/4aa0dc693414411fb1f5f675a272c781/artifacts
+deleted_time: 1678739079931
+end_time: 1678738331537
+entry_point_name: ''
+experiment_id: '371125974195330664'
+lifecycle_stage: deleted
+run_id: 4aa0dc693414411fb1f5f675a272c781
+run_name: intrigued-skink-176
+run_uuid: 4aa0dc693414411fb1f5f675a272c781
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738141537
+status: 4
+tags: []
+user_id: jlinho
