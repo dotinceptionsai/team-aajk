@@ -27,9 +27,14 @@ minimal set of dependencies.
 
 ## Running the call-center front-office app
 - Go into folder `app`
-- Set properties in `app/.env` and set the 2 properties:
-  - the reference to the folder where chosen model is stored 
-  - and set API key for audio transcription
+- Create a file in folder app, in `app/.env` and put the 2 following properties in it:
+  - the reference to the folder where chosen model is stored (there is a `pipeline.yml` file in it)
+  - and API key for audio transcription from deepgram (go on their site and create your api key)
+File should look like this:
+```
+MODEL_PATH="../train/mlruns/843117580351848379/246baef1fb6f4213af0f6c1d0e188c74/artifacts"
+DEEPGRAM_API_KEY=your_api_key
+```
 - Run command `python main.py` to run the server
 - Go to http://localhost:8002 to see the app
 - You can directly speek to the browser or choose to type text in text-box at the bottom of the page
