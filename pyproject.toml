@@ -54,7 +54,8 @@ python-multipart = "^0.0.5"
 aiofiles = "^22.1.0"
 requests = "^2.28.2"
 websockets = "^10.4"
-pyaudio = "^0.2.13"
+deepgram-sdk = "^2.3.0"
+python-dotenv = "^1.0.0"
 
 # Useful only for scraping
 [tool.poetry.group.scrape]

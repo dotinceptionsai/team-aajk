@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Live Filtering of conversation</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+        <link rel="stylesheet" href="/static/style.css">
+    </head>
+    <body>
+        <div id="header">
+            <p id="statusX" class="corner-tip"><i class="fa-solid fa-circle-question"></i> Help</p>
+            <h1><i class="fa-solid fa-headset"></i> Call-Center Demo App</h1>
+            <p id="status" class="corner-tip"><i class="fa-solid fa-plug-circle-xmark"></i> Not connected...</p>
+        </div>
+
+
+        <div id="chat-container">
+            <div id="chat-history"></div>
+            <div id="chat-input">
+                <div><i class="fa-solid fa-keyboard"></i></div>
+                <textarea id="chat-textarea" placeholder="Type your message here"></textarea>
+                <div><i class="fa-solid fa-keyboard"></i></div>
+            </div>
+        </div>
+
+        <script>
+
+
+
+
+
+
+            navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
+                if (!MediaRecorder.isTypeSupported('audio/webm'))
+                    return alert('Browser not supported')
+
+                const mediaRecorder = new MediaRecorder(stream, {
+                    mimeType: 'audio/webm',
+                })
+
+                const socket = new WebSocket('ws://localhost:8002/listen')
+
+                socket.onopen = () => {
+                    document.querySelector('#status').innerHTML = '<i class="fa-solid fa-plug-circle-check"></i> Connected'
+                    console.log({ event: 'onopen' })
+                    mediaRecorder.addEventListener('dataavailable', async (event) => {
+                        if (event.data.size > 0 && socket.readyState == 1) {
+                            socket.send(event.data)
+                        }
+                    })
+                    mediaRecorder.start(250)
+                }
+
+                socket.onmessage = (message) => {
+                    if (message) {
+                        console.log(message)
+                        onBackEndMessage(message)
+                    }
+                }
+
+                socket.onclose = () => {
+                    console.log({ event: 'onclose' })
+                }
+
+                socket.onerror = (error) => {
+                    console.log({ event: 'onerror', error })
+                }
+
+                const chatHistory = document.getElementById('chat-history');
+                const chatTextarea = document.getElementById('chat-textarea');
+
+
+                // React to bot responses by putting them in the chat history section
+                function onBackEndMessage(event) {
+                    const message = JSON.parse(event.data);
+                    addBotResponseToChatHistory(message.sentence, message.relevant, message.score);
+                    scrollToBottom();
+                }
+
+
+                // Send message when Enter key is pressed
+                chatTextarea.addEventListener('keydown', event => {
+                    if (event.keyCode === 13 && !event.shiftKey) {
+                        event.preventDefault();
+                        sendMessage();
+                    }
+                });
+
+                // Send message when textarea reaches a certain number of characters
+                chatTextarea.addEventListener("input", function () {
+                    let words = chatTextarea.value.split(/\s+/);
+                    if (words.length > 30) {
+                        sendMessage();
+                    }
+                });
+
+                function sendMessage() {
+                    const message = chatTextarea.value.trim();
+                    chatTextarea.value = '';
+                    if (message) {
+                        // sent message to backend via POST request on /send
+                        fetch('/text', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify({ 'text':message })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            console.log(data);
+                            for (let d of data) {
+                                addBotResponseToChatHistory(d.sentence, d.relevant, d.score);
+                                scrollToBottom();
+                            }
+                        })
+                        .catch(error => {
+                            console.error(error);
+                        });
+                    }
+                }
+
+                function addBotResponseToChatHistory(message, relevant, score) {
+                    const bubble = createNewBubble(message, relevant, score);
+                    chatHistory.appendChild(bubble);
+                }
+
+                function createNewBubble(message, relevant, score) {
+                    const newBubble = document.createElement('div');
+                    newBubble.classList.add('chat-message', relevant ? 'relevant' : 'irrelevant');
+
+                    const sentenceText = document.createElement('div');
+                    sentenceText.classList.add('sentence');
+                    sentenceText.innerText = message;
+                    newBubble.appendChild(sentenceText);
+
+                    const scoreText = document.createElement('div');
+                    scoreText.classList.add('score');
+                    scoreText.innerText = 'Score: ' + Math.round(score);
+                    newBubble.appendChild(scoreText);
+
+                    scoreText.appendChild(createFeedbackButton(null, 'positive'));
+                    scoreText.appendChild(createFeedbackButton(null, 'negative'));
+                    return newBubble;
+                }
+
+                function createFeedbackButtons(messageElement) {
+                    const messageFeedback = document.createElement('div');
+                    messageFeedback.classList.add('chat-message-feedback');
+                    messageFeedback.appendChild(createFeedbackButton(messageElement, 'positive'));
+                    messageFeedback.appendChild(createFeedbackButton(messageElement, 'negative'));
+                    return messageFeedback;
+                }
+
+                function createFeedbackButton(messageElement, type) {
+                    const feedbackPositiveButton = document.createElement('button');
+                    feedbackPositiveButton.classList.add('chat-message-feedback-button', 'feedback-' + type);
+                    const icon = document.createElement('i');
+                    icon.classList.add('fa', type === 'positive' ? 'fa-thumbs-up' : 'fa-thumbs-down');
+                    feedbackPositiveButton.appendChild(icon);
+                    feedbackPositiveButton.addEventListener('click', () => sendFeedback(messageElement, type));
+                    return feedbackPositiveButton;
+                }
+
+                function scrollToBottom() {
+                    window.scrollTo(0, document.body.scrollHeight);
+                }
+
+            })
+        </script>
+    </body>
+</html>

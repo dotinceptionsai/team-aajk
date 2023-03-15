@@ -27,12 +27,12 @@ minimal set of dependencies.
 
 ## Running the call-center front-office app
 - Go into folder `app`
-- Set properties in `app/config.yml` and set the 2 properties:
+- Set properties in `app/.env` and set the 2 properties:
   - the reference to the folder where chosen model is stored 
   - and set API key for audio transcription
-- Run command `python app.py` to run the server
-- Go to http://localhost:63342/team-aajk/app/chat.html to see the app
-- You need to input one `starter` sentence in the chatbox before starting the conversation
+- Run command `python main.py` to run the server
+- Go to http://localhost:8002 to see the app
+- You can directly speek to the browser or choose to type text in text-box at the bottom of the page
 
 ## Running notebooks
 - Ensure you got dependencies from `notebooks` group `poetry install --only main,ml,notebooks`
@@ -51,7 +51,6 @@ Folders in the project:
 - scraping: contains the scripts used to scrape the FAQ data from the web
 - tests: contains some unit tests
 - **train**: contains the scripts used to train the ML models
-- transcribe: contains the scripts used to transcribe the audio files using an existing service.
 
 
 
