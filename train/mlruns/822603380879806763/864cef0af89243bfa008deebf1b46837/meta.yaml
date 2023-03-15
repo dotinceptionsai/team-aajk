@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/864cef0af89243bfa008deebf1b46837/artifacts
+deleted_time: 1678738945844
+end_time: 1678738560451
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 864cef0af89243bfa008deebf1b46837
+run_name: upset-ray-962
+run_uuid: 864cef0af89243bfa008deebf1b46837
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738554088
+status: 4
+tags: []
+user_id: jlinho

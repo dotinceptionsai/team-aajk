@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/eb34536be494441db74e4d0ae0c3348d/artifacts
+deleted_time: 1678781780685
+end_time: 1678778979515
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: eb34536be494441db74e4d0ae0c3348d
+run_name: worried-penguin-612
+run_uuid: eb34536be494441db74e4d0ae0c3348d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678778890575
+status: 3
+tags: []
+user_id: jlinho

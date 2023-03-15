@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/a28a8cc3f5dc4206bf2775da8c512e48/artifacts
+deleted_time: 1678781780686
+end_time: 1678778890496
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: a28a8cc3f5dc4206bf2775da8c512e48
+run_name: clean-slug-91
+run_uuid: a28a8cc3f5dc4206bf2775da8c512e48
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678778408011
+status: 3
+tags: []
+user_id: jlinho

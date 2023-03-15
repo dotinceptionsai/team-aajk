@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/2c80eb230be34abc92ed65d0c39922e2/artifacts
+end_time: 1678739227332
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: 2c80eb230be34abc92ed65d0c39922e2
+run_name: lyrical-bat-907
+run_uuid: 2c80eb230be34abc92ed65d0c39922e2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678739184405
+status: 3
+tags: []
+user_id: jlinho

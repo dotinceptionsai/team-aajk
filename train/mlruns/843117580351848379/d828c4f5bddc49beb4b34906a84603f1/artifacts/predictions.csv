@@ -1,0 +1,56 @@
+sentence,OOD prob
+Where should I deposit the keys of my car?,0.0
+How can I pay the rental?,0.0
+I want to rent a car.,0.03549711581430409
+how I will be charged in the event of damage or theft?,0.0
+What is the minimum age to rent a car?,0.0
+Can I use a debit card to pay?,0.0
+At what time can I pick up the car?,0.0
+Where can I pick up the car?,0.0
+What if I have an accident?,0.03567999334627081
+How to extend the rental period?,0.0
+Should I return the car with a full tank?,0.0
+What is the maximum number of drivers?,0.0
+What is the maximum number of passengers?,0.08839401626907267
+Why do I need to provide a credit card?,0.0
+Can you please describe the problem with the vehicle?,0.06636930748863168
+"The oil level is fine, but the check engine light is on.",0.42241906984036065
+"In that case, I would recommend that you safely pull over and wait for a tow truck to take the vehicle to the nearest service center.",0.19855604444807845
+I will send the truck to your location and arrange for a replacement vehicle to be delivered to you as soon as possible.,0.14705743063890298
+"Hi, I rented a car from your company and I need to return it one day later than planned.",0.0
+"Hi, I rented a car from your company",0.17536618365822582
+and I need to return it one day later than planned.,0.15513152788703527
+"Unfortunately, there will be additional charges for extending the rental period.",0.0
+The daily rate for the car you rented will apply for each additional day.,0.0
+And please drive safely.,0.30662936839190125
+Can you please provide me with your rental agreement number and the current location of the vehicle?,0.0
+The daily rate for the car you rented is $50 per day.,0.0952992833605969
+"So, for one additional day, the charge would be $50.",0.1558589318135521
+"Sure, the agreement number is 123456 and I'm currently on the highway about 30 miles outside of the city.",0.0921586368234869
+"Hello, thank you for reaching out to our car rental company.",0.24716911791252605
+"Hi, How is it going?",0.5624308824760256
+I am fine,1.0
+I am doing great,0.8422304234377429
+Did you take medicine?,0.7447839891291589
+What's up?,1.0
+"Hi, nice to meet you.",1.0
+A man is riding a horse.,1.0
+What about yesterday?,0.80755163290819
+Tell me a joke,0.9646799027255863
+I hear things once in a while.,0.5755343488360826
+A monkey is playing drums.,1.0
+Get well soon dear,1.0
+My name is John,1.0
+I apologize for the inconvenience.,0.7187516786486702
+Thank you for that information.,1.0
+I'm sorry to hear that.,1.0
+I apologize for the issue.,1.0
+"OK, that sounds good.",0.9588548377124977
+Thank you for your help.,1.0
+You're welcome.,1.0
+Please let me know if there's anything else I can assist you with.,0.5385230629302126
+I understand.,1.0
+Can you tell me how much that will be?,0.5126328828155668
+The engine is making a strange noise and it feels like it's struggling to accelerate.,0.7648339555769743
+Can you please check the oil level and let me know if it is low?,0.5
+I can check the fly rates for you.,0.15158064449154174

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/59717205ef3143afa0248ef492a66443/artifacts
+deleted_time: 1678777444626
+end_time: 1678777241703
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 59717205ef3143afa0248ef492a66443
+run_name: lyrical-moose-867
+run_uuid: 59717205ef3143afa0248ef492a66443
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777178568
+status: 3
+tags: []
+user_id: jlinho

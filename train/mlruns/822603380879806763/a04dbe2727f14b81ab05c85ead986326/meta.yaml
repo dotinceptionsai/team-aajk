@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/a04dbe2727f14b81ab05c85ead986326/artifacts
+deleted_time: 1678738945839
+end_time: 1678738460453
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: a04dbe2727f14b81ab05c85ead986326
+run_name: thundering-zebra-548
+run_uuid: a04dbe2727f14b81ab05c85ead986326
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738457008
+status: 4
+tags: []
+user_id: jlinho

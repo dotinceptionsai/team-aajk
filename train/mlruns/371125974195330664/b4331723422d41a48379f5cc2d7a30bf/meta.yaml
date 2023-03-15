@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/371125974195330664/b4331723422d41a48379f5cc2d7a30bf/artifacts
+deleted_time: 1678739079933
+end_time: 1678738068118
+entry_point_name: ''
+experiment_id: '371125974195330664'
+lifecycle_stage: deleted
+run_id: b4331723422d41a48379f5cc2d7a30bf
+run_name: agreeable-snake-388
+run_uuid: b4331723422d41a48379f5cc2d7a30bf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738065309
+status: 4
+tags: []
+user_id: jlinho

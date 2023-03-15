@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/425911cb83df4130a01046a7894513a2/artifacts
+deleted_time: 1678777233226
+end_time: 1678776447996
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 425911cb83df4130a01046a7894513a2
+run_name: worried-worm-669
+run_uuid: 425911cb83df4130a01046a7894513a2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776445850
+status: 4
+tags: []
+user_id: jlinho

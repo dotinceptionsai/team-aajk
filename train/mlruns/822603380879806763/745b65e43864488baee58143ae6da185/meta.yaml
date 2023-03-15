@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/745b65e43864488baee58143ae6da185/artifacts
+deleted_time: 1678738928927
+end_time: 1678738839292
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 745b65e43864488baee58143ae6da185
+run_name: amusing-dog-400
+run_uuid: 745b65e43864488baee58143ae6da185
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738835847
+status: 4
+tags: []
+user_id: jlinho

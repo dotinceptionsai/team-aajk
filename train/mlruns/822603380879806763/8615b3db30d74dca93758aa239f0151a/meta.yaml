@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/8615b3db30d74dca93758aa239f0151a/artifacts
+end_time: 1678738969483
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: 8615b3db30d74dca93758aa239f0151a
+run_name: welcoming-robin-937
+run_uuid: 8615b3db30d74dca93758aa239f0151a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738925682
+status: 3
+tags: []
+user_id: jlinho

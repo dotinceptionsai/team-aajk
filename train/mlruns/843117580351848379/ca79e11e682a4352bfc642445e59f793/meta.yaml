@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/ca79e11e682a4352bfc642445e59f793/artifacts
+end_time: 1678731122066
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: ca79e11e682a4352bfc642445e59f793
+run_name: resilient-duck-692
+run_uuid: ca79e11e682a4352bfc642445e59f793
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678730798737
+status: 3
+tags: []
+user_id: jlinho

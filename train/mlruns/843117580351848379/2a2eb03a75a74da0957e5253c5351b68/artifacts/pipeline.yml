@@ -1,0 +1,17 @@
+name: pipelines.impl.anomaly_detection.GaussianEmbeddingsAnomalyDetector
+datasets:
+  train_id:
+  - europcar
+  train_ood: []
+  validation_id: validation_id
+  validation_ood: validation_ood
+run_params:
+  text_normalizer_keys:
+  - spaces
+  - sentences_start
+  - uri
+  - email
+  - common_abbr
+  robust_covariance: true
+  support_fraction: 0.95
+  embedder_name: all-MiniLM-L6-v2

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/359c69d17c8c44c4832643489b9e947e/artifacts
+deleted_time: 1678778130246
+end_time: 1678741229617
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: deleted
+run_id: 359c69d17c8c44c4832643489b9e947e
+run_name: dazzling-smelt-730
+run_uuid: 359c69d17c8c44c4832643489b9e947e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678741103862
+status: 4
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/64f3b7b0456a4fdabc64bf907bf7f56c/artifacts
+deleted_time: 1678738928929
+end_time: 1678738715831
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 64f3b7b0456a4fdabc64bf907bf7f56c
+run_name: abrasive-ant-544
+run_uuid: 64f3b7b0456a4fdabc64bf907bf7f56c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738712343
+status: 4
+tags: []
+user_id: jlinho

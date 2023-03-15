@@ -17,16 +17,18 @@ PROP_EXPORTED_AT = "exported_at"
 PROP_ENGINE_NAME = "name"
 PROP_DATASETS = "datasets"
 PROP_RUN_PARAMS = "run_params"
-PROP_TRAIN_OOD_DATASETS = "train_ood_datasets"
-PROP_TRAIN_ID_DATASETS = "train_id_datasets"
-PROP_VALID_ID_DATASET = "validation_id_dataset"
-PROP_VALID_OOD_DATASET = "validation_ood_dataset"
+PROP_TRAIN_OOD_DATASETS = "train_ood"
+PROP_TRAIN_ID_DATASETS = "train_id"
+PROP_VALID_ID_DATASET = "validation_id"
+PROP_VALID_OOD_DATASET = "validation_ood"
 
 FILENAME_PIPELINE = "pipeline.yml"
 FILENAME_WEIGHTS = "weights.yml"
 FILENAME_ND_ARRAYS = "ndarrays.h5"
 
 FriendlyPath = Path | str
+
+P = typing.TypeVar("P", bound=FilterPipeline)
 
 
 #
@@ -43,6 +45,8 @@ FriendlyPath = Path | str
 # the training will be loaded and the filter is ready to be used (without training). If weights are np.arrays, they will
 # be saved in a ndarrays.h5 file that is referenced by the weights.yml file.
 #
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -68,11 +72,18 @@ def list_pipeline_folders(root_folder: FriendlyPath) -> Iterable[Path]:
             yield folder
 
 
-def load_pipeline(model_folder: FriendlyPath, clazz: typing.Type) -> FilterPipeline:
+def load_typed_pipeline(model_folder: FriendlyPath, clazz: typing.Type[P]) -> P:
+    pipe = load_pipeline(model_folder)
+    if not isinstance(pipe, clazz):
+        raise ValueError(
+            f"Expected a pipeline of type {clazz}, but got {type(pipe)} instead"
+        )
+    return typing.cast(P, pipe)
+
+
+def load_pipeline(model_folder: FriendlyPath) -> FilterPipeline:
     """Loads a pipeline from a folder that contains a pipeline.yml file."""
-    logging.info(
-        f"Loading pipeline from {model_folder}, class {clazz} should have been imported in python environment"
-    )
+    logger.info(f"Loading pipeline from {model_folder}")
     model_folder = _ensure_is_path(model_folder)
     model_dict = _read_info_card(model_folder / FILENAME_PIPELINE)
     weights = _read_model_weights(model_folder)
@@ -161,20 +172,18 @@ def _write_h5(file: Path, nd_arrays: dict[str, np.ndarray]):
 
 def _create_model_dict(engine: FilterPipeline) -> dict[str, str]:
     datasets = {
-        PROP_TRAIN_ID_DATASETS: sorted(str(p) for p in engine.files.train_id),
-        PROP_TRAIN_OOD_DATASETS: sorted(str(p) for p in engine.files.train_ood),
-        PROP_VALID_ID_DATASET: _to_str(engine.files.validation_id),
-        PROP_VALID_OOD_DATASET: _to_str(engine.files.validation_ood),
+        PROP_TRAIN_ID_DATASETS: sorted(str(p) for p in engine.datasets.train_id),
+        PROP_TRAIN_OOD_DATASETS: sorted(str(p) for p in engine.datasets.train_ood),
+        PROP_VALID_ID_DATASET: engine.datasets.validation_id,
+        PROP_VALID_OOD_DATASET: engine.datasets.validation_ood,
     }
     return {
-        PROP_ENGINE_NAME: engine.name,
+        PROP_ENGINE_NAME: ".".join(
+            [engine.__class__.__module__, engine.__class__.__name__]
+        ),
         PROP_DATASETS: datasets,
         PROP_RUN_PARAMS: engine.run_params,
     }
-
-
-def _to_str(value: Optional[Path]) -> Optional[str]:
-    return str(value) if value is not None else None
 
 
 def _extract_weights(

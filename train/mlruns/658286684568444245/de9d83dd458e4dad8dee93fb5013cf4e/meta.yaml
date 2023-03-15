@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/de9d83dd458e4dad8dee93fb5013cf4e/artifacts
+deleted_time: 1678777444621
+end_time: 1678777178506
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: de9d83dd458e4dad8dee93fb5013cf4e
+run_name: delicate-boar-460
+run_uuid: de9d83dd458e4dad8dee93fb5013cf4e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777161864
+status: 3
+tags: []
+user_id: jlinho

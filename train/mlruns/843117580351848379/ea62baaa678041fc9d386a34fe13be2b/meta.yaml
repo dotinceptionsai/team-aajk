@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/ea62baaa678041fc9d386a34fe13be2b/artifacts
+end_time: 1678735967457
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: ea62baaa678041fc9d386a34fe13be2b
+run_name: sedate-calf-216
+run_uuid: ea62baaa678041fc9d386a34fe13be2b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678734853546
+status: 3
+tags: []
+user_id: jlinho

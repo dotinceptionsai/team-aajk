@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/f5c35f72f1c541cd9e42161ccad6bd7f/artifacts
+deleted_time: 1678781780691
+end_time: 1678777914017
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: f5c35f72f1c541cd9e42161ccad6bd7f
+run_name: gaudy-robin-715
+run_uuid: f5c35f72f1c541cd9e42161ccad6bd7f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777897856
+status: 3
+tags: []
+user_id: jlinho

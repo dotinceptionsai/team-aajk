@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/2bb60866373f47399acc2e26e0cc21e1/artifacts
+deleted_time: 1678777891465
+end_time: 1678777853429
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 2bb60866373f47399acc2e26e0cc21e1
+run_name: redolent-asp-854
+run_uuid: 2bb60866373f47399acc2e26e0cc21e1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777806338
+status: 3
+tags: []
+user_id: jlinho

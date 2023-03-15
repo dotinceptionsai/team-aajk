@@ -1,0 +1,24 @@
+defaults:
+  - ds: europcar
+  - stop_words: allow
+  - robust: robust85
+  - _self_
+datafiles_root: ../datasets
+hydra:
+  job:
+    chdir: true
+  sweeper:
+    params:
+      stop_words: allow
+      robust: not_robust, robust85, robust90, robust90
+      +pipeline.run_params.embedder_name: all-MiniLM-L6-v2, all-mpnet-base-v2
+      ds: olympics, wwf
+
+pipeline:
+  _target_: pipelines.impl.anomaly_detection.GaussianEmbeddingsAnomalyDetector
+  datasets: ${ds}
+  run_params:
+    text_normalizer_keys: ${stop_words}
+    robust_covariance: ${robust.robust_covariance}
+    support_fraction: ${robust.support_fraction}
+

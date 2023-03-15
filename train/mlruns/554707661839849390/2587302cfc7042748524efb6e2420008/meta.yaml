@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/2587302cfc7042748524efb6e2420008/artifacts
+end_time: 1678781928322
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: active
+run_id: 2587302cfc7042748524efb6e2420008
+run_name: capable-fly-808
+run_uuid: 2587302cfc7042748524efb6e2420008
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781879920
+status: 3
+tags: []
+user_id: jlinho

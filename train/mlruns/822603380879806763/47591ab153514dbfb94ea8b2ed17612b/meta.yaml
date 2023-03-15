@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/47591ab153514dbfb94ea8b2ed17612b/artifacts
+deleted_time: 1678738945837
+end_time: 1678738553970
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 47591ab153514dbfb94ea8b2ed17612b
+run_name: debonair-bat-393
+run_uuid: 47591ab153514dbfb94ea8b2ed17612b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738550742
+status: 4
+tags: []
+user_id: jlinho

@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/01503884e5734fd68fd9397ffe1a5a6c/artifacts
+end_time: 1678729627884
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: 01503884e5734fd68fd9397ffe1a5a6c
+run_name: wise-mule-960
+run_uuid: 01503884e5734fd68fd9397ffe1a5a6c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678729612978
+status: 3
+tags: []
+user_id: jlinho

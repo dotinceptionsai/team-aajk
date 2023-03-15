@@ -1,0 +1,99 @@
+
+
+body {
+    background-color: #343541;
+    color: #ffffff;
+    font-size: smaller;
+    font-family: Söhne, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+}
+
+h1 {
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.corner-tip {
+    margin-block: 0;
+    font-size: smaller;
+}
+
+#chat-history {
+    padding-bottom: 60px;
+}
+
+#chat-input {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    justify-content: center;
+}
+
+#chat-textarea {
+    height: 100%;
+    width: 70%;
+    border: none;
+    outline: none;
+    /* background-color: #40414f; */
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.chat-send-button {
+    width: 25px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    margin-right: 25px;
+}
+
+.chat-message {
+    display: flex;
+    border-radius: 5px;
+    padding-left: 5px;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    align-items: baseline;
+}
+
+.irrelevant {
+    background: #444654;
+}
+
+.relevant {
+    background: #65d5a7;
+    font-weight: bold;
+}
+
+.chat-message-feedback-button {
+    width: 25px;
+    height: 40px;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: small;
+}
+
+.score {
+    text-align: right;
+    font-size: x-small;
+    font-style: italic;
+}
+
+
+
+.fa-keyboard {
+    font-size: 42px;
+    text-align: center;
+    font-weight: lighter;
+}

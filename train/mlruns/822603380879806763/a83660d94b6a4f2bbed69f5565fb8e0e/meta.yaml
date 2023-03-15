@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/a83660d94b6a4f2bbed69f5565fb8e0e/artifacts
+end_time: 1678739310457
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: a83660d94b6a4f2bbed69f5565fb8e0e
+run_name: placid-quail-70
+run_uuid: a83660d94b6a4f2bbed69f5565fb8e0e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678739227402
+status: 3
+tags: []
+user_id: jlinho

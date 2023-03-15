@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/b7af1fa7c9844efb8f93415049750fd9/artifacts
+end_time: 1678729587111
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: b7af1fa7c9844efb8f93415049750fd9
+run_name: clumsy-sow-238
+run_uuid: b7af1fa7c9844efb8f93415049750fd9
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678729578663
+status: 3
+tags: []
+user_id: jlinho

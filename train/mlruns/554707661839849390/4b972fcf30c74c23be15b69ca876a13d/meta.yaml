@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/4b972fcf30c74c23be15b69ca876a13d/artifacts
+end_time: 1678781816851
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: active
+run_id: 4b972fcf30c74c23be15b69ca876a13d
+run_name: peaceful-cub-440
+run_uuid: 4b972fcf30c74c23be15b69ca876a13d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678781805986
+status: 3
+tags: []
+user_id: jlinho

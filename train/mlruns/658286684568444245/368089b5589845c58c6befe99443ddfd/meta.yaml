@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/368089b5589845c58c6befe99443ddfd/artifacts
+deleted_time: 1678777233226
+end_time: 1678776434803
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 368089b5589845c58c6befe99443ddfd
+run_name: masked-slug-20
+run_uuid: 368089b5589845c58c6befe99443ddfd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678776430196
+status: 4
+tags: []
+user_id: jlinho

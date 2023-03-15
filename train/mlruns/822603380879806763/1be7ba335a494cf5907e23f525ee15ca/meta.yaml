@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/1be7ba335a494cf5907e23f525ee15ca/artifacts
+end_time: 1678741103735
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: 1be7ba335a494cf5907e23f525ee15ca
+run_name: popular-seal-534
+run_uuid: 1be7ba335a494cf5907e23f525ee15ca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678741044760
+status: 3
+tags: []
+user_id: jlinho

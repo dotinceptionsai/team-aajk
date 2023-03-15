@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/a6e4e1acc52245f29ec5ca178789cd28/artifacts
+deleted_time: 1678777824566
+end_time: 1678777677262
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: a6e4e1acc52245f29ec5ca178789cd28
+run_name: adaptable-stoat-835
+run_uuid: a6e4e1acc52245f29ec5ca178789cd28
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777673930
+status: 4
+tags: []
+user_id: jlinho

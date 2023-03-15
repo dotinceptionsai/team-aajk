@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/371125974195330664/50ebbc980ce24a08a886a46a0f5dd9f2/artifacts
+deleted_time: 1678739079931
+end_time: 1678738090302
+entry_point_name: ''
+experiment_id: '371125974195330664'
+lifecycle_stage: deleted
+run_id: 50ebbc980ce24a08a886a46a0f5dd9f2
+run_name: bedecked-stoat-123
+run_uuid: 50ebbc980ce24a08a886a46a0f5dd9f2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738081201
+status: 4
+tags: []
+user_id: jlinho

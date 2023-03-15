@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/541d56587f9f429c8c38db6617beb80d/artifacts
+deleted_time: 1678777824569
+end_time: 1678777732534
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 541d56587f9f429c8c38db6617beb80d
+run_name: industrious-foal-919
+run_uuid: 541d56587f9f429c8c38db6617beb80d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777729321
+status: 4
+tags: []
+user_id: jlinho

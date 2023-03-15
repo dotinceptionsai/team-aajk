@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/495bfe9c3fba4f0c8d0336b41ec3a067/artifacts
+deleted_time: 1678777824565
+end_time: 1678777498383
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 495bfe9c3fba4f0c8d0336b41ec3a067
+run_name: nimble-auk-770
+run_uuid: 495bfe9c3fba4f0c8d0336b41ec3a067
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777495068
+status: 4
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/38807bcbdea145a2b5a1b18807a579e7/artifacts
+deleted_time: 1678738928929
+end_time: 1678738723272
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 38807bcbdea145a2b5a1b18807a579e7
+run_name: orderly-sheep-813
+run_uuid: 38807bcbdea145a2b5a1b18807a579e7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738715952
+status: 4
+tags: []
+user_id: jlinho

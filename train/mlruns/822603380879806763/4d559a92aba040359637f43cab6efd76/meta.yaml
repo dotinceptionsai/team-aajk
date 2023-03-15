@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/4d559a92aba040359637f43cab6efd76/artifacts
+end_time: 1678738925599
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: active
+run_id: 4d559a92aba040359637f43cab6efd76
+run_name: bouncy-cat-565
+run_uuid: 4d559a92aba040359637f43cab6efd76
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738881308
+status: 3
+tags: []
+user_id: jlinho

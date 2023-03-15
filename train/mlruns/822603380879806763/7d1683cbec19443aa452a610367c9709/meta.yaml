@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/7d1683cbec19443aa452a610367c9709/artifacts
+deleted_time: 1678738928927
+end_time: 1678738814033
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 7d1683cbec19443aa452a610367c9709
+run_name: invincible-fly-165
+run_uuid: 7d1683cbec19443aa452a610367c9709
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738806964
+status: 4
+tags: []
+user_id: jlinho

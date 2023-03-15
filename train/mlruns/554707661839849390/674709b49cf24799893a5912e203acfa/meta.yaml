@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/674709b49cf24799893a5912e203acfa/artifacts
+deleted_time: 1678739079931
+end_time: 1678738074004
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: 674709b49cf24799893a5912e203acfa
+run_name: flawless-calf-397
+run_uuid: 674709b49cf24799893a5912e203acfa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738071685
+status: 4
+tags: []
+user_id: jlinho

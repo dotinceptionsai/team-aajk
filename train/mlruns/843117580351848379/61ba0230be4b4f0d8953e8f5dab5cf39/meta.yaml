@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/61ba0230be4b4f0d8953e8f5dab5cf39/artifacts
+end_time: 1678732001938
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: 61ba0230be4b4f0d8953e8f5dab5cf39
+run_name: vaunted-cat-89
+run_uuid: 61ba0230be4b4f0d8953e8f5dab5cf39
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678731557481
+status: 3
+tags: []
+user_id: jlinho

@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/554707661839849390/d7ffa820d9094ff191791e5c1ec5a2ed/artifacts
+deleted_time: 1678777824570
+end_time: 1678777762084
+entry_point_name: ''
+experiment_id: '554707661839849390'
+lifecycle_stage: deleted
+run_id: d7ffa820d9094ff191791e5c1ec5a2ed
+run_name: thundering-skink-940
+run_uuid: d7ffa820d9094ff191791e5c1ec5a2ed
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678777758698
+status: 4
+tags: []
+user_id: jlinho

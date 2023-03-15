@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/822603380879806763/45a37fb7d42d4b91b171c43aec628d8d/artifacts
+deleted_time: 1678738945843
+end_time: 1678738081136
+entry_point_name: ''
+experiment_id: '822603380879806763'
+lifecycle_stage: deleted
+run_id: 45a37fb7d42d4b91b171c43aec628d8d
+run_name: languid-conch-429
+run_uuid: 45a37fb7d42d4b91b171c43aec628d8d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678738074071
+status: 4
+tags: []
+user_id: jlinho

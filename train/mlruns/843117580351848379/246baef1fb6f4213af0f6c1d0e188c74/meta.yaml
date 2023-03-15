@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/246baef1fb6f4213af0f6c1d0e188c74/artifacts
+end_time: 1678734853464
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: 246baef1fb6f4213af0f6c1d0e188c74
+run_name: unruly-fawn-67
+run_uuid: 246baef1fb6f4213af0f6c1d0e188c74
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678733512063
+status: 3
+tags: []
+user_id: jlinho

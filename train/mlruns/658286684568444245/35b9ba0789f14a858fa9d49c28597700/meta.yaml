@@ -1,0 +1,16 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/658286684568444245/35b9ba0789f14a858fa9d49c28597700/artifacts
+deleted_time: 1678781780676
+end_time: 1678780152086
+entry_point_name: ''
+experiment_id: '658286684568444245'
+lifecycle_stage: deleted
+run_id: 35b9ba0789f14a858fa9d49c28597700
+run_name: gifted-squid-950
+run_uuid: 35b9ba0789f14a858fa9d49c28597700
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678778979589
+status: 3
+tags: []
+user_id: jlinho

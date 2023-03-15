@@ -1,0 +1,5 @@
+train_id:
+  - nih
+train_ood: [ ]
+validation_id: validation_nih_id
+validation_ood: validation_nih_ood

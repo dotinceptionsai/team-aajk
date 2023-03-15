@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/jlinho/MyGit/team-aajk/train/mlruns/843117580351848379/e420f1d73a7f4437963b2435efa636ff/artifacts
+end_time: 1678731557282
+entry_point_name: ''
+experiment_id: '843117580351848379'
+lifecycle_stage: active
+run_id: e420f1d73a7f4437963b2435efa636ff
+run_name: able-slug-519
+run_uuid: e420f1d73a7f4437963b2435efa636ff
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1678731122138
+status: 3
+tags: []
+user_id: jlinho

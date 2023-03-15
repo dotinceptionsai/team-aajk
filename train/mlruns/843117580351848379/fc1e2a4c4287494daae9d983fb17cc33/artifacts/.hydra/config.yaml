@@ -1,0 +1,24 @@
+ds:
+  train_id:
+  - europcar
+  train_ood: []
+  validation_id: validation_id
+  validation_ood: validation_ood
+stop_words:
+- spaces
+- sentences_start
+- uri
+- email
+- common_abbr
+robust:
+  robust_covariance: true
+  support_fraction: 0.75
+datafiles_root: ../datasets
+pipeline:
+  _target_: pipelines.impl.anomaly_detection.GaussianEmbeddingsAnomalyDetector
+  datasets: ${ds}
+  run_params:
+    text_normalizer_keys: ${stop_words}
+    robust_covariance: ${robust.robust_covariance}
+    support_fraction: ${robust.support_fraction}
+    embedder_name: all-distilroberta-v1
