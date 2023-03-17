@@ -1,0 +1,7 @@
+numpy
+pandas
+nltk
+pyyaml
+scikit-learn
+sentence-transformers
+h5py

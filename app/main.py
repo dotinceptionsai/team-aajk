@@ -98,4 +98,6 @@ def as_json_result(r: FilteredSentence):
 if __name__ == "__main__":
     import uvicorn
 
-    uvicorn.run("main:app", host="localhost", port=8002, reload=True)
+    for s in filter_pipeline.filter_sentences("This is a test sentence."):
+        print(s)
+    uvicorn.run("main:app", host="0.0.0.0", port=8002)
