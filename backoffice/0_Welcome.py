@@ -1,6 +1,5 @@
 import pandas as pd
 import streamlit as st
-
 import backoffice.shared as shared
 
 st.set_page_config(
