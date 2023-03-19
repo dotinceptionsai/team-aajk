@@ -1,0 +1,30 @@
+FROM python:3.10-slim as aajk_base
+WORKDIR /webapp
+COPY requirements-base.txt ./
+COPY dataload ./dataload
+COPY pipelines ./pipelines
+RUN pip install --no-cache-dir -U -r  requirements-base.txt
+RUN python -m nltk.downloader punkt stopwords
+RUN apt-get autoremove && apt-get autoclean && rm -rf /var/lib/apt/lists/*
+
+
+FROM aajk_base as aajk_backoffice
+WORKDIR /webapp
+COPY requirements-ml.txt requirements-backoffice.txt ./
+COPY datasets ./datasets
+COPY backoffice ./backoffice
+COPY analysis ./analysis
+COPY .streamlit ./.streamlit
+COPY train/mlruns/ ./train/mlruns/
+COPY backoffices.sh backoffices.sh
+#RUN apt-get -y update  && apt-get install -y \
+#        build-essential    \
+#    && rm -rf /var/lib/apt/lists/* \
+RUN #apt-get autoremove && apt-get autoclean
+RUN pip install --no-cache-dir -U -r  requirements-ml.txt
+RUN pip install --no-cache-dir -U -r  requirements-backoffice.txt
+# RUN pip install --no-cache-dir -U mlflow
+RUN python -m nltk.downloader averaged_perceptron_tagger maxent_ne_chunker words
+ENV PYTHONPATH=$PYTHONPATH:/webapp
+EXPOSE 8001
+CMD ["streamlit", "run", "backoffice/0_Welcome.py", "--server.port", "8001"]

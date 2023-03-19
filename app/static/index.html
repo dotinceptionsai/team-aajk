@@ -3,177 +3,225 @@
 
 <head>
     <title>Live Filtering of conversation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
     <link rel="stylesheet" href="/static/style.css">
 </head>
 
 <body>
-    <div id="header">
-        <p id="statusX" class="corner-tip"><i class="fa-solid fa-circle-question"></i> Help</p>
-        <h1><i class="fa-solid fa-headset"></i> Call-Center Demo App</h1>
-        <p id="status" class="corner-tip"><i class="fa-solid fa-plug-circle-xmark"></i> Not connected...</p>
+<div id="header">
+    <p id="statusX" class="corner-tip"><i class="fa-solid fa-circle-question"></i> Help
+    </p>
+    <h1><i class="fa-solid fa-headset"></i> Call-Center Demo App</h1>
+    <div id="status_indicators">
+        <p id="model_choice" class="corner-tip"><i
+                class="fa-solid fa-circle-question"></i> Model: None</p>
+        <p id="status" class="corner-tip"><i class="fa-solid fa-circle-question"></i>
+            Not connected...</p>
+        <p id="recorder-status" class="corner-tip"><i
+                class="fa-solid fa-microphone-slash"></i>
+            Not listening...</p>
+    </div>
+</div>
+
+<div class="overlay-form">
+    <div class="close-btn" onclick="toggleForm()">&times;</div>
+    <h1>Create a new account</h1>
+    <p>Join our community. Let's set up your account</p>
+    <div class="form-element">
+        <label for="model_id">Available Models</label>
+        <select id="model_id"/>
     </div>
 
-
-    <div id="chat-container">
-        <div id="chat-history"></div>
-        <div id="chat-input">
-            <div><i class="fa-solid fa-keyboard"></i></div>
-            <textarea id="chat-textarea" placeholder="Type your message here"></textarea>
-            <div><i class="fa-solid fa-keyboard"></i></div>
-        </div>
+    <div class="form-element">
+        <label for="password-2">Confirm password</label>
+        <input type="password" id="password-2">
     </div>
+    <div class="form-element">
+        <button id="model_chosen" onclick="onModelSelected()">Choose Model</button>
+    </div>
+</div>
 
-    <script>
+<div id="force-choose-model" class="center">
+    <button onclick="toggleForm()">Set model</button>
+</div>
 
+<div id="chat-container">
+    <div id="chat-history"></div>
+    <div id="chat-input">
+        <div><i class="fa-solid fa-keyboard"></i></div>
+        <textarea id="chat-textarea" placeholder="Type your message here"></textarea>
+        <div><i class="fa-solid fa-keyboard"></i></div>
+    </div>
+</div>
 
-        // Get URL to websocket server from current url
-        function buildWsUrl() {
-            const url = new URL(window.location.href);
-            const wsProto = (window.location.protocol === "https:") ? "wss://" : "ws://";
-            const wsPort = url.port ? ":" + url.port : "";
-            const wsUrl = wsProto + url.hostname + wsPort + "/listen";
-            return wsUrl;
+<script src="frontoffice.js"></script>
+<script>
+
+    const chatHistory = document.getElementById('chat-history');
+    const chatTextarea = document.getElementById('chat-textarea');
+
+    let frontOffice = new FrontOffice(
+        onModelReady,
+        onWsOpened,
+        onRecordingEnabled,
+        onBackEndMessage
+    );
+
+    frontOffice.init();
+    feedModelList();
+
+    function onModelReady(modelName) {
+        let enabled = modelName !== undefined;
+        let display = enabled ? 'none' : 'block';
+        console.log('Backend ready')
+        if (enabled) {
+            document.querySelector('#model_choice').innerHTML = '<i class="fa-solid fa-circle-check"></i> Model: ' + modelName
+        } else {
+            document.querySelector('#model_choice').innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Model: None'
         }
+        document.querySelector('#chat-textarea').disabled = !enabled;
+        document.querySelector('#force-choose-model').style.display = display;
+    }
 
-        navigator.mediaDevices.getUserMedia({ audio: true }).then((stream) => {
-            if (!MediaRecorder.isTypeSupported('audio/webm'))
-                return alert('Browser not supported')
+    function onWsOpened(ready) {
+        if (ready) {
+            document.querySelector('#status').innerHTML = '<i class="fa-solid fa-plug-circle-check"></i> Connected'
+        } else {
+            document.querySelector('#status').innerHTML = '<i class="fa-solid fa-plug-circle-xmark"></i> Not connected...'
+        }
+    }
 
-            const mediaRecorder = new MediaRecorder(stream, {
-                mimeType: 'audio/webm',
-            })
+    function onRecordingEnabled(enabled) {
+        if (enabled) {
+            document.querySelector('#recorder-status').innerHTML = '<i class="fa-solid fa-microphone"></i> Listening...'
+        } else {
+            document.querySelector('#recorder-status').innerHTML = '<i class="fa-solid fa-microphone-slash"></i> Not listening...'
+        }
+    }
 
-            const socket = new WebSocket(buildWsUrl())
-
-            socket.onopen = () => {
-                document.querySelector('#status').innerHTML = '<i class="fa-solid fa-plug-circle-check"></i> Connected'
-                console.log({ event: 'onopen' })
-                mediaRecorder.addEventListener('dataavailable', async (event) => {
-                    if (event.data.size > 0 && socket.readyState == 1) {
-                        socket.send(event.data)
-                    }
-                })
-                mediaRecorder.start(250)
-            }
-
-            socket.onmessage = (message) => {
-                if (message) {
-                    console.log(message)
-                    onBackEndMessage(message)
-                }
-            }
-
-            socket.onclose = () => {
-                console.log({ event: 'onclose' })
-            }
-
-            socket.onerror = (error) => {
-                console.log({ event: 'onerror', error })
-            }
-
-            const chatHistory = document.getElementById('chat-history');
-            const chatTextarea = document.getElementById('chat-textarea');
-
-
-            // React to bot responses by putting them in the chat history section
-            function onBackEndMessage(event) {
-                const message = JSON.parse(event.data);
-                addBotResponseToChatHistory(message.sentence, message.relevant, message.score);
-                scrollToBottom();
-            }
-
-
-            // Send message when Enter key is pressed
-            chatTextarea.addEventListener('keydown', event => {
-                if (event.keyCode === 13 && !event.shiftKey) {
-                    event.preventDefault();
-                    sendMessage();
-                }
-            });
-
-            // Send message when textarea reaches a certain number of characters
-            chatTextarea.addEventListener("input", function () {
-                let words = chatTextarea.value.split(/\s+/);
-                if (words.length > 30) {
-                    sendMessage();
-                }
-            });
-
-            function sendMessage() {
-                const message = chatTextarea.value.trim();
-                chatTextarea.value = '';
-                if (message) {
-                    // sent message to backend via POST request on /send
-                    fetch('/text', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ 'text': message })
-                    })
-                        .then(response => response.json())
-                        .then(data => {
-                            console.log(data);
-                            for (let d of data) {
-                                addBotResponseToChatHistory(d.sentence, d.relevant, d.score);
-                                scrollToBottom();
-                            }
-                        })
-                        .catch(error => {
-                            console.error(error);
-                        });
-                }
-            }
-
-            function addBotResponseToChatHistory(message, relevant, score) {
-                const bubble = createNewBubble(message, relevant, score);
-                chatHistory.appendChild(bubble);
-            }
-
-            function createNewBubble(message, relevant, score) {
-                const newBubble = document.createElement('div');
-                newBubble.classList.add('chat-message', relevant ? 'relevant' : 'irrelevant');
-
-                const sentenceText = document.createElement('div');
-                sentenceText.classList.add('sentence');
-                sentenceText.innerText = message;
-                newBubble.appendChild(sentenceText);
-
-                const scoreText = document.createElement('div');
-                scoreText.classList.add('score');
-                scoreText.innerText = 'Score: ' + Math.round(score);
-                newBubble.appendChild(scoreText);
-
-                scoreText.appendChild(createFeedbackButton(null, 'positive'));
-                scoreText.appendChild(createFeedbackButton(null, 'negative'));
-                return newBubble;
-            }
-
-            function createFeedbackButtons(messageElement) {
-                const messageFeedback = document.createElement('div');
-                messageFeedback.classList.add('chat-message-feedback');
-                messageFeedback.appendChild(createFeedbackButton(messageElement, 'positive'));
-                messageFeedback.appendChild(createFeedbackButton(messageElement, 'negative'));
-                return messageFeedback;
-            }
-
-            function createFeedbackButton(messageElement, type) {
-                const feedbackPositiveButton = document.createElement('button');
-                feedbackPositiveButton.classList.add('chat-message-feedback-button', 'feedback-' + type);
-                const icon = document.createElement('i');
-                icon.classList.add('fa', type === 'positive' ? 'fa-thumbs-up' : 'fa-thumbs-down');
-                feedbackPositiveButton.appendChild(icon);
-                feedbackPositiveButton.addEventListener('click', () => sendFeedback(messageElement, type));
-                return feedbackPositiveButton;
-            }
-
-            function scrollToBottom() {
-                window.scrollTo(0, document.body.scrollHeight);
-            }
-
+    function onModelSelected() {
+        const model_id = document.getElementById('model_id').value;
+        console.log(model_id);
+        fetch('/active_model', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({'uri': model_id}),
         })
-    </script>
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                toggleForm();
+                frontOffice.init();
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    function onBackEndMessage(message) {
+        addBotResponseToChatHistory(message.sentence, message.relevant, message.score);
+        scrollToBottom();
+    }
+
+    function feedModelList() {
+        fetch('/models')
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const select = document.getElementById('model_id');
+                data.forEach((model) => {
+                    const option = document.createElement('option');
+                    option.value = model.model_uri;
+                    option.text = model.model_uri;
+                    select.appendChild(option);
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+
+    // Toggle the form overlay
+    function toggleForm() {
+        document.body.classList.toggle('activeForm');
+    }
+
+
+
+    function addBotResponseToChatHistory(message, relevant, score) {
+        const bubble = createNewBubble(message, relevant, score);
+        chatHistory.appendChild(bubble);
+    }
+
+    function createNewBubble(message, relevant, score) {
+        const newBubble = document.createElement('div');
+        newBubble.classList.add('chat-message', relevant ? 'relevant' : 'irrelevant');
+
+        const sentenceText = document.createElement('div');
+        sentenceText.classList.add('sentence');
+        sentenceText.innerText = message;
+        newBubble.appendChild(sentenceText);
+
+        const scoreText = document.createElement('div');
+        scoreText.classList.add('score');
+        scoreText.innerText = 'Score: ' + Math.round(score);
+        newBubble.appendChild(scoreText);
+
+        scoreText.appendChild(createFeedbackButton(null, 'positive'));
+        scoreText.appendChild(createFeedbackButton(null, 'negative'));
+        return newBubble;
+    }
+
+    function createFeedbackButtons(messageElement) {
+        const messageFeedback = document.createElement('div');
+        messageFeedback.classList.add('chat-message-feedback');
+        messageFeedback.appendChild(createFeedbackButton(messageElement, 'positive'));
+        messageFeedback.appendChild(createFeedbackButton(messageElement, 'negative'));
+        return messageFeedback;
+    }
+
+    function createFeedbackButton(messageElement, type) {
+        const feedbackPositiveButton = document.createElement('button');
+        feedbackPositiveButton.classList.add('chat-message-feedback-button', 'feedback-' + type);
+        const icon = document.createElement('i');
+        icon.classList.add('fa', type === 'positive' ? 'fa-thumbs-up' : 'fa-thumbs-down');
+        feedbackPositiveButton.appendChild(icon);
+        feedbackPositiveButton.addEventListener('click', () => sendFeedback(messageElement, type));
+        return feedbackPositiveButton;
+    }
+
+    function scrollToBottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function sendMessage() {
+        const message = chatTextarea.value.trim();
+        chatTextarea.value = '';
+        if (message) {
+            frontOffice.sendMessage(message);
+        }
+    }
+
+
+    chatTextarea.addEventListener('keydown', event => {
+        if (event.keyCode === 13 && !event.shiftKey) {
+            event.preventDefault();
+            sendMessage();
+        }
+    });
+
+    // Send message when textarea reaches a certain number of characters
+    chatTextarea.addEventListener("input", function () {
+        let words = chatTextarea.value.split(/\s+/);
+        if (words.length > 30) {
+            sendMessage();
+        }
+    });
+
+</script>
 </body>
 
 </html>

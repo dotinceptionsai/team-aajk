@@ -1,0 +1,6 @@
+[server]
+port = 8001
+
+[theme]
+base="light"
+primaryColor="purple"
