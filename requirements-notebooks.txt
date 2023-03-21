@@ -1,0 +1,6 @@
+ipykernel
+tensorboard
+svgling
+bokeh
+lime
+umap-learn
