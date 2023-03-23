@@ -6,8 +6,6 @@ import streamlit as st
 from analysis import experiments
 from backoffice import shared
 from backoffice.session import SessionKey
-from backoffice.shared import make_sidebar
-
 
 datasets = shared.get_ds_registry()
 

@@ -85,7 +85,9 @@ def display():
                     if manual_cutoff:
                         model.calibrator.cutoff_ = manual_cutoff
 
-                    with st.expander("Sentence distances to center of In-Domain (ID)"):
+                    with st.expander(
+                        "Sentence distances to center of In-Domain (ID)", expanded=True
+                    ):
                         st.caption(
                             "Every sentence with a distance below this cutoff will be considered ID, above will be considered OOD."
                         )
