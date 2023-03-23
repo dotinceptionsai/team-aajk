@@ -1,56 +1,112 @@
+# 🪄 Call-Center conversation filter
 
-# 0. Pre-requisites
+This is project is a conversation Filter🪄application that helps Call-Centers to filter
+live-conversations between an employee and a customer. It tells
+which sentences are relevant to their domain (their FAQs) and which are likely not.
 
-To install from source:
-- Have python `3.10` or above ready
-- Install [poetry](https://python-poetry.org/docs/#installation)
+In general, Call-Centers already own a question-answering software that searches their
+FAQs or Knowledge Base. However, those systems are slow and cannot afford to run on each
+and every utterance spoken by the customer or the employee. It is here that the
+Fantastic Filter comes in:
+it is a fast pre-filtering on the conversation that keeps only sentences that are likely
+to be relevant to the downstream question-answering system.
 
+This backoffice application will guide you through the setup of the filter for your
+Call-Center.
+The frontoffice is an audio chat application that filters the conversation in real-time.
 
-# 1. Running the various webapps
+For this demo app, we only allow a pre-defined set of FAQs that are listed below. Each
+of those have been scraped from the internet. In the future, we will allow you to upload
+your own knowledge base.
+
+# 1. 🐳 Running docker images
+
+Docker images for front-office and back-office are available on docker hub for ARM and
+x86 architectures:
+
+- front-office: `docker pull jlinho/aajk:frontoffice` and run
+  with `docker run -p 8002:8002 jlinho/aajk:frontoffice`
+- back-office: `docker pull jlinho/aajk:backoffice` and run
+  with `docker run -p 8001:8001 jlinho/aajk:backoffice`
+
+To re-build multi-arch images, run:
+`docker buildx build --push --platform linux/amd64,linux/arm64  --tag jlinho/aajk:backoffice -f DockerfileBack .` and
+`docker buildx build --push --platform linux/amd64,linux/arm64  --tag jlinho/aajk:frontoffice -f DockerfileFront .`
+
+# 2. 🤖Running the various webapps from source
 
 Following webapps can be run:
+
 - **backoffice**: Setup Wizard app that allows the customer to setup the call center app
 - **app**: call center app that does the filtering of the useless utterances
 - **mlflow**: MLFlow can be run to view the results of the experiments
 
-## Run experiments and view results using MLFlow
-- At the root of the project run command `poetry install --only main,ml` to install the
-minimal set of dependencies.
+## 2.0. Pre-requisites
+
+To install from source:
+
+- Have python `3.10` or above ready
+- For each app create a virtual environment with pipenv or conda
+- Each app requires base dependencies. Install
+  with `pip install -r requirements-base.txt`
+
+## 2.1 Run experiments and view results using MLFlow
+
+- Inside your virtual environment, run following commands:
+    - `pip install -r requirements-ml.txt` to install dependencies for ML
+    - `pip install mlflow` to get ML flow web-based UI
 - From folder `train` run command `mlflow ui`
 - Go to http://localhost:5000 to see the MLFlow UI web app
 
-## Running the backoffice/Setup Wizard app
-- Ensure you got dependencies from `backoffice` group `poetry install --only main,ml,backoffice`
+## 2.2 Running the backoffice/Setup Wizard app
+
+- Inside your virtual environment, run following commands:
+    - `pip install -r requirements-base.txt` to install base dependencies
+    - `pip install -r requirements-ml.txt` to install dependencies for ML
+    - `pip install -r requirements-backoffice.txt`
 - From root folder run command `streamlit run backoffice/0_Welcome.py`
 - Go to http://localhost:8001 to see the app
 
+## 2.3 Running the call-center front-office app
 
-## Running the call-center front-office app
+- Inside your virtual environment, run following commands:
+    - `pip install -r requirements-base.txt` to install base dependencies
+    - `pip install -r requirements-app.txt`
 - Go into folder `app`
 - Create a file in folder app, in `app/.env` and put the 2 following properties in it:
-  - the reference to the folder where chosen model is stored (there is a `pipeline.yml` file in it)
-  - and API key for audio transcription from deepgram (go on their site and create your api key)
-File should look like this:
+    - the reference to the folder where chosen model is stored (there is
+      a `pipeline.yml` file in it)
+    - and API key for audio transcription from deepgram (go on their site and create
+      your api key)
+      File should look like this:
+
 ```
 MODEL_PATH="../train/mlruns/843117580351848379/246baef1fb6f4213af0f6c1d0e188c74/artifacts"
 DEEPGRAM_API_KEY=your_api_key
 ```
+
 - Run command `python main.py` to run the server
 - Go to http://localhost:8002 to see the app
-- You can directly speek to the browser or choose to type text in text-box at the bottom of the page
+- You can directly speak to the browser or choose to type text in text-box at the bottom
+  of the page
 
-## Running notebooks
-- Ensure you got dependencies from `notebooks` group `poetry install --only main,ml,notebooks`
+## 2.4 Running notebooks
 
+- Inside your virtual environment, run following commands:
+    - `pip install -r requirements-ml.txt` to install dependencies for ML
+    - `pip install -r requirements-notebooks.txt`
 
-# 3. Folder structure
+# 3 📚 Folder structure
+
 Folders in the project:
 
 - **app**: contains a call center app that does the filtering of the useless utterances
 - analysis: contains tools to track experiments and analyze results
-- **backoffice**: contains the wizard app that allows the customer to setup the call center app
+- **backoffice**: contains the wizard app that allows the customer to setup the call
+  center app
 - datasets: cleaned up datasets for training and testing
-- dataload: abstract location of datafiles for easier loading when files are moved around
+- dataload: abstract location of datafiles for easier loading when files are moved
+  around
 - notebooks: contains the notebooks used for EDA and various analysis
 - resources: raw scrapings or raw provided data
 - scraping: contains the scripts used to scrape the FAQ data from the web

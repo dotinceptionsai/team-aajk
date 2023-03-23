@@ -16,7 +16,6 @@ COPY backoffice ./backoffice
 COPY analysis ./analysis
 COPY .streamlit ./.streamlit
 COPY train/mlruns/ ./train/mlruns/
-COPY backoffices.sh backoffices.sh
 #RUN apt-get -y update  && apt-get install -y \
 #        build-essential    \
 #    && rm -rf /var/lib/apt/lists/* \

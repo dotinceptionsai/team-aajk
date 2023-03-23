@@ -38,13 +38,14 @@ def find_most_frequent_words(paragraphs: Iterable[str], n: int = 10):
     top_words = Counter(lp.transform(paragraphs)).most_common(n)
     return pd.DataFrame(top_words, columns=["word", "count"])
 
+
 def find_top_named_entities(paragraphs: Iterable[str], n: int = 10):
-    """ Returns a dataframe of the top n named entities: columns are entity_name, entity_type and count"""
+    """Returns a dataframe of the top n named entities: columns are entity_name, entity_type and count"""
     df_entities = find_named_enties(paragraphs)
     df_top_counts = find_most_frequent_words(paragraphs, n)
-    
+
     # Join together the top words and the named entities on the lower case version of the word
     df_top_counts["word_lower"] = df_top_counts["word"].str.lower()
     df_entities["word_lower"] = df_entities["entity_name"].str.lower()
     df_joined = df_top_counts.merge(df_entities, on="word_lower", how="inner")
-    return df_joined[['entity_name', 'entity_type', 'count']]
+    return df_joined[["entity_name", "entity_type", "count"]]
