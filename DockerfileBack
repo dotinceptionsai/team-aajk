@@ -25,5 +25,6 @@ RUN pip install --no-cache-dir -U -r  requirements-backoffice.txt
 # RUN pip install --no-cache-dir -U mlflow
 RUN python -m nltk.downloader averaged_perceptron_tagger maxent_ne_chunker words
 ENV PYTHONPATH=$PYTHONPATH:/webapp
+RUN python backoffice/deploy.py /webapp/train/mlruns
 EXPOSE 8001
 CMD ["streamlit", "run", "backoffice/0_Welcome.py", "--server.port", "8001"]

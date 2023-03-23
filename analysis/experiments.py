@@ -1,13 +1,13 @@
+import tempfile
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
 from typing import Collection
+from urllib.parse import urlparse, unquote
 
 import mlflow
 import pandas as pd
-import tarfile
-from urllib.parse import urlparse, unquote
-from pathlib import Path
+from mlflow.entities import Experiment, Run, FileInfo
 
 
 # create a dataclass with all the infos of a run
@@ -19,59 +19,72 @@ class RunInfo:
     experiment_name: str
     params: dict
     metrics: dict
-    artifacts: list[Path]
-    artifact_dir: Path
+    artifacts: list[str]
+    artifact_dir: str
 
 
-def get_run_info(experiment_name: str, run_name: str) -> RunInfo:
-    client = mlflow.tracking.client.MlflowClient()
-    experiment = client.get_experiment_by_name(experiment_name)
-    if experiment is None:
-        raise KeyError("Experiment not found")
-    for run in client.search_runs(experiment_ids=[experiment.experiment_id]):
-        if run.info.run_name == run_name:
-            return build_row(client, experiment, run)
-    raise KeyError(f"Run {run_name} not found in experiment {experiment_name}")
+class ExperimentRegistry:
+    def __init__(self, mlruns_location: str | Path = "train/mlruns"):
+        mlruns_path = (
+            Path(mlruns_location)
+            if isinstance(mlruns_location, str)
+            else mlruns_location
+        )
+        mlruns_uri = "file://" + str(mlruns_path.absolute())
+        mlflow.set_tracking_uri(mlruns_uri)
+        self.tracking_uri = mlruns_uri
+        self.client = mlflow.tracking.client.MlflowClient()
+
+    def get_run_info(self, experiment_name: str, run_name: str) -> RunInfo:
+        experiment = self.client.get_experiment_by_name(experiment_name)
+        if experiment is None:
+            raise KeyError("Experiment not found")
+        for run in self.client.search_runs(experiment_ids=[experiment.experiment_id]):
+            if run.info.run_name == run_name:
+                artifacts = self.client.list_artifacts(run.info.run_id)
+                return _build_row(experiment, run, artifacts)
+        raise KeyError(f"Run {run_name} not found in experiment {experiment_name}")
+
+    def get_all_runs(
+        self, experiment_name: str, as_df: bool | None = True
+    ) -> pd.DataFrame | list[RunInfo]:
+        experiment: Experiment = self.client.get_experiment_by_name(experiment_name)
+        if experiment is None:
+            raise Exception("Experiment not found")
+        rows = []
+        run: Run
+        for run in self.client.search_runs(experiment_ids=[experiment.experiment_id]):
+            if run.info.status == "FINISHED" and run.info.lifecycle_stage == "active":
+                artifacts = self.client.list_artifacts(run.info.run_id)
+                row = _build_row(experiment, run, artifacts)
+                rows.append(row)
+        return _run_info_to_df(rows) if as_df else rows
+
+    def build_archive(self, experiment_name: str, run_name: str) -> str:
+        with tempfile.NamedTemporaryFile(suffix=".tar.gz", delete=False) as tmp_file:
+            r = self.get_run_info(experiment_name, run_name)
+            return bundle_artifacts(r.artifact_dir, str(tmp_file.name))
 
 
-def get_all_runs(
-    experiment_name: str, as_df: bool | None = True
-) -> pd.DataFrame | list[RunInfo]:
-    client = mlflow.tracking.client.MlflowClient()
-    experiment = client.get_experiment_by_name(experiment_name)
-    if experiment is None:
-        raise Exception("Experiment not found")
-    rows = []
-    for run in client.search_runs(experiment_ids=[experiment.experiment_id]):
-        if run.info.status == "FINISHED" and run.info.lifecycle_stage == "active":
-            row = build_row(client, experiment, run)
-            rows.append(row)
-    return to_dataframe(rows) if as_df else rows
-
-
-def build_row(client, experiment, run):
+def _build_row(experiment: Experiment, run: Run, artifacts: Collection[FileInfo]):
     experiment_name = experiment.name
     start_time = datetime.fromtimestamp(run.info.start_time / 1000)
     params = run.data.params
     metrics = run.data.metrics
-    artifacts = client.list_artifacts(run.info.run_id)
     artifact_path = Path(run.info.artifact_uri)
-    artifacts = [str(artifact_path / a.path) for a in artifacts]
-    # Put data into a dataclass of type RunInfo
-    row = RunInfo(
+    return RunInfo(
         run.info.run_name,
         run.info.status,
         start_time,
         experiment_name,
         params,
         metrics,
-        artifacts,
+        [str(artifact_path / a.path) for a in artifacts],
         str(artifact_path),
     )
-    return row
 
 
-def to_dataframe(rows: list[RunInfo]) -> pd.DataFrame:
+def _run_info_to_df(rows: list[RunInfo]) -> pd.DataFrame:
     all_rows_df = pd.DataFrame()
     for r in rows:
         row_dict = {
@@ -82,7 +95,6 @@ def to_dataframe(rows: list[RunInfo]) -> pd.DataFrame:
             "artifacts": r.artifacts,
         }
         row_dict = {**row_dict, **r.params, **r.metrics}
-        # concatenate the three dataframes
         df = pd.DataFrame.from_dict(row_dict, orient="index").T
         all_rows_df = pd.concat([all_rows_df, df], axis=0)
 
@@ -94,18 +106,13 @@ def to_dataframe(rows: list[RunInfo]) -> pd.DataFrame:
     return all_rows_df
 
 
-def bundle_artifacts(artifacts: Collection[str], tar_filename: str):
-    tar_file = tarfile.open(tar_filename, "w:gz")
+def bundle_artifacts(artifact_dir: str, tar_filename: str):
+    import shutil
 
-    for artifact in artifacts:
-        path = path_from_file_uri(artifact)
-        if path.exists() and path.is_file():
-            tar_file.add(str(path), arcname=path.name)
-
-    tar_file.close()
+    return shutil.make_archive(tar_filename, "gztar", _path_from_file_uri(artifact_dir))
 
 
-def path_from_file_uri(file_uri: str) -> Path:
+def _path_from_file_uri(file_uri: str) -> Path:
     file_path = urlparse(file_uri).path
     decoded_file_path = unquote(file_path)
     return Path(decoded_file_path)
@@ -141,17 +148,9 @@ def fix_artifact_paths(path: str) -> None:
 
 
 if __name__ == "__main__":
-    mlruns = str(str(Path("/tmp/train/mlruns").absolute()))
-    mlflow.set_tracking_uri("file://" + mlruns)
-    fix_artifact_paths(mlruns)
-
-    rows = get_all_runs("europcar")
-
-    # get the best run
-    # find first row with "id" equals "marvelous-wren-423"
-    row = rows[rows["id"] == "marvelous-wren-423"].iloc[0]
-    zipfile = bundle_artifacts(row.artifacts, "artifacts.tar.gz")
-    print(zipfile)
-
-    # find experiment by name
-    rows.to_csv("all_runs.csv", index=True)
+    experiments = ExperimentRegistry("/Users/jlinho/MyGit/team-aajk/train/mlruns")
+    r = experiments.get_run_info(
+        experiment_name="europcar", run_name="marvelous-wren-423"
+    )
+    ret = experiments.build_archive("europcar", "marvelous-wren-423")
+    print(ret)

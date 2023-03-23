@@ -1,9 +1,6 @@
-from pathlib import Path
-
-import mlflow
 import streamlit as st
 
-from analysis import experiments
+from analysis.experiments import ExperimentRegistry
 from backoffice import shared
 from backoffice.session import SessionKey
 
@@ -17,10 +14,8 @@ def display():
 
     if SessionKey.SELECTED_DATASET in st.session_state:
         ds = st.session_state[SessionKey.SELECTED_DATASET]
-        mlruns = str(str(Path("train/mlruns").absolute()))
-        st.write("Models are served from: ", mlruns)
-        mlflow.set_tracking_uri("file://" + mlruns)
 
+        experiments = ExperimentRegistry()
         df_existing_models = experiments.get_all_runs(experiment_name=ds)
         visible_columns = [
             "id",

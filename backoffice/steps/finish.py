@@ -1,11 +1,11 @@
+from datetime import datetime
 from pathlib import Path
 
-import mlflow
 import numpy as np
 import streamlit as st
 from matplotlib import pyplot as plt
 
-from analysis import experiments
+from analysis.experiments import ExperimentRegistry
 from backoffice import shared
 from backoffice.session import SessionKey
 from pipelines import persistence
@@ -24,16 +24,29 @@ def display():
         ds = st.session_state[SessionKey.SELECTED_DATASET]
         base_model_name = st.session_state[SessionKey.SELECTED_BASE_MODEL]
 
-        mlruns = str(str(Path("train/mlruns").absolute()))
-        mlflow.set_tracking_uri("file://" + mlruns)
+        experiments = ExperimentRegistry()
         run_info = experiments.get_run_info(
             experiment_name=ds, run_name=base_model_name
         )
 
         pipeline_dir = Path(run_info.artifact_dir.replace("file:/", "/"))
-        st.write("Pipeline dir exists: ", pipeline_dir.exists())
-        st.write("Pipeline dir: ", pipeline_dir)
         model = persistence.load_pipeline(pipeline_dir)
+
+        downloadable_archive = experiments.build_archive(
+            experiment_name=ds, run_name=base_model_name
+        )
+
+        with open(downloadable_archive, "rb") as f:
+            st.caption(
+                '<i class="fa-solid fa-cloud-arrow-down" style="font-size:25px;color:purple"></i> Model can be imported in front-office app',
+                unsafe_allow_html=True,
+            )
+            st.download_button(
+                "Download model",
+                f.read(),
+                file_name=f"{run_info.id}-{datetime.now().isoformat()}.tar.gz",
+                mime="application/x-gzip-compressed",
+            )
 
         with st.expander("Base model details"):
             st.write(persistence._create_model_dict(model))
@@ -77,7 +90,7 @@ def display():
             with st.spinner("Explaining..."):
                 if btn2:
                     pred = predict_one([sentence])
-                    st.write("Prediction: ", pred)
+                    st.write("OOD probability: ", round(float(pred[0][1]), 2))
 
                     fig, ax = plt.subplots(figsize=(6, 2))
                     exp = explain(sentence)
