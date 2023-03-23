@@ -1,4 +1,0 @@
-matplotlib
-seaborn
-hydra-core
-mlflow-skinny
