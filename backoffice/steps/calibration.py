@@ -1,10 +1,10 @@
 from pathlib import Path
 
-import mlflow
 import pandas as pd
 import streamlit as st
 
-from analysis import experiments, evaluate
+from analysis import evaluate
+from analysis.experiments import ExperimentRegistry
 from backoffice import shared
 from backoffice.session import SessionKey
 from pipelines import persistence
@@ -22,19 +22,13 @@ def display():
         ds = st.session_state[SessionKey.SELECTED_DATASET]
         base_model_name = st.session_state[SessionKey.SELECTED_BASE_MODEL]
 
-        mlruns = str(str(Path("train/mlruns").absolute()))
-        mlflow.set_tracking_uri("file://" + mlruns)
+        experiments = ExperimentRegistry()
         run_info = experiments.get_run_info(
             experiment_name=ds, run_name=base_model_name
         )
 
         pipeline_dir = Path(run_info.artifact_dir.replace("file:/", "/"))
-        # st.write("Pipeline dir exists: ", pipeline_dir.exists())
-        # st.write("Pipeline dir: ", pipeline_dir)
         model = persistence.load_pipeline(pipeline_dir)
-
-        # with st.expander("Base model details"):
-        #     st.write(persistence._create_model_dict(model))
 
         default_id_sentences = datasets.load_items(model.datasets.validation_id)
         default_ood_sentences = datasets.load_items(model.datasets.validation_ood)
