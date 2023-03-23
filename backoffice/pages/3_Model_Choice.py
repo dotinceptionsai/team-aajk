@@ -4,12 +4,15 @@ import mlflow
 import streamlit as st
 
 from analysis import experiments
-from analysis.experiments import to_dataframe
 from backoffice import shared
+from backoffice.session import SessionKey
 from backoffice.shared import make_sidebar
+
+st.session_state.update(st.session_state)
 
 datasets = shared.get_ds_registry()
 
+shared.make_header(2)
 st.title("Model Choice 🪄")
 
 st.write(
@@ -18,22 +21,39 @@ st.write(
 
 make_sidebar()
 
-
-if "selected_dataset" in st.session_state:
+if SessionKey.SELECTED_DATASET in st.session_state:
+    ds = st.session_state[SessionKey.SELECTED_DATASET]
     mlruns = str(str(Path("train/mlruns").absolute()))
     st.write("Models are served from: ", mlruns)
     mlflow.set_tracking_uri("file://" + mlruns)
 
-    ds = st.session_state.selected_dataset
-    existing_models = experiments.get_all_runs(experiment_name=ds)
+    df_existing_models = experiments.get_all_runs(experiment_name=ds)
+    visible_columns = [
+        "id",
+        "comparison_score",
+        "speed_ms",
+        "log_loss",
+        "f1",
+        "start_time",
+        "embedder_name",
+        "support_fraction",
+        "robust_covariance",
+        "train_id",
+        "val_id",
+        "val_ood",
+    ]
+    df_existing_models = df_existing_models[visible_columns]
+    existing_model_ids = df_existing_models["id"].values.tolist()
 
     # display a dataframe from existing_models and allow the user to select one. Display the selected one in the sidebar
     st.subheader(f"Existing models for dataset: {ds}")
 
-    selected_model_idx = shared.preselected_index("selected_model", existing_models)
-    st.session_state.selected_model = st.selectbox(
+    st.selectbox(
         "Which model would you like to use?",
-        existing_models["id"].values,
-        index=selected_model_idx,
+        existing_model_ids,
+        key=SessionKey.SELECTED_BASE_MODEL,
     )
-    st.dataframe(existing_models, use_container_width=True)
+    st.dataframe(df_existing_models, use_container_width=True)
+    st.write("Selected model: ", st.session_state[SessionKey.SELECTED_BASE_MODEL])
+else:
+    shared.go_back_to("Data Selection", "Select dataset first")

@@ -2,6 +2,7 @@ import pandas as pd
 import streamlit as st
 
 from backoffice import shared
+from backoffice.session import SessionKey
 from backoffice.shared import make_sidebar
 from pipelines.impl.paragraph import ParagraphTransform
 from pipelines.impl.preprocessing import (
@@ -11,8 +12,11 @@ from pipelines.impl.preprocessing import (
     normalize_sent_min_words,
 )
 
+st.session_state.update(st.session_state)
+
 datasets = shared.get_ds_registry()
 
+shared.make_header(1)
 st.title("Sentence Level Checks 🔎")
 
 st.write(
@@ -22,8 +26,9 @@ st.write(
 
 make_sidebar()
 
-if "selected_dataset" in st.session_state:
-    ds = st.session_state.selected_dataset
+
+if SessionKey.SELECTED_DATASET in st.session_state:
+    ds = st.session_state[SessionKey.SELECTED_DATASET]
     paragraphs = datasets.load_items(ds)
     se_paragraphs = pd.Series(paragraphs)
 
@@ -64,4 +69,4 @@ if "selected_dataset" in st.session_state:
         st.write(f"Paragraphs (or sections) count: {len(se_paragraphs)}")
         st.dataframe(df_sentences, use_container_width=True)
 else:
-    st.subheader("Select a dataset to start")
+    shared.go_back_to("Data Selection", "Select dataset first")

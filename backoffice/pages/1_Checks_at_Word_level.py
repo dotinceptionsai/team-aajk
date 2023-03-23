@@ -5,15 +5,18 @@ from sentence_transformers import SentenceTransformer
 from analysis import words
 from analysis.tokens import find_important_split_words
 from backoffice import shared
-from backoffice.shared import make_sidebar
+from backoffice.session import SessionKey
+from backoffice.shared import make_sidebar, link_to
 from pipelines.impl import preprocessing
 from pipelines.impl.paragraph import ParagraphTransform
 
+st.session_state.update(st.session_state)
+
 datasets = shared.get_ds_registry()
 
-st.title("Word Level checks 🔎")
-
 make_sidebar()
+shared.make_header(1)
+st.title("Word Level checks 🔎")
 
 
 def find_dangerous_words(para_series: pd.Series):
@@ -30,8 +33,8 @@ def find_dangerous_words(para_series: pd.Series):
     return find_important_split_words(pt.transform(para_series), tokenizer)
 
 
-if "selected_dataset" in st.session_state:
-    ds = st.session_state.selected_dataset
+if SessionKey.SELECTED_DATASET in st.session_state:
+    ds = st.session_state[SessionKey.SELECTED_DATASET]
     st.subheader(f"Paragraphs of texts: {ds}")
     paragraphs = datasets.load_items(ds)
     se_paragraphs = pd.Series(paragraphs)
@@ -61,4 +64,4 @@ if "selected_dataset" in st.session_state:
             )
 
 else:
-    st.subheader("Select a dataset to start")
+    shared.go_back_to("Data Selection", "Select dataset first")

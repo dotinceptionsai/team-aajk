@@ -175,7 +175,11 @@ async def process_audio(fast_socket: WebSocket):
 async def connect_to_deepgram(transcript_received_handler: Callable[[Dict], None]):
     try:
         socket = await dg_client.transcription.live(
-            {"punctuate": True, "interim_results": False}
+            {
+                "punctuate": True,
+                "interim_results": False,
+                "numerals": True,
+            }
         )
         socket.registerHandler(
             socket.event.CLOSE, lambda c: print(f"Connection closed with code {c}.")

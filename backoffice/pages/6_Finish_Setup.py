@@ -8,6 +8,8 @@ from analysis.experiments import to_dataframe
 from backoffice import shared
 from backoffice.shared import make_sidebar
 
+shared.make_header(4)
+st.session_state.update(st.session_state)
 datasets = shared.get_ds_registry()
 
 st.title("Setup Complete 🎉")

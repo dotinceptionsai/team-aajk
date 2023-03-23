@@ -1,2 +1,3 @@
 streamlit
+extra-streamlit-components
 lime

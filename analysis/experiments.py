@@ -19,10 +19,24 @@ class RunInfo:
     experiment_name: str
     params: dict
     metrics: dict
-    artifacts: list[str]
+    artifacts: list[Path]
+    artifact_dir: Path
 
 
-def get_all_runs(experiment_name: str, as_df: bool | None = True) -> list[RunInfo]:
+def get_run_info(experiment_name: str, run_name: str) -> RunInfo:
+    client = mlflow.tracking.client.MlflowClient()
+    experiment = client.get_experiment_by_name(experiment_name)
+    if experiment is None:
+        raise KeyError("Experiment not found")
+    for run in client.search_runs(experiment_ids=[experiment.experiment_id]):
+        if run.info.run_name == run_name:
+            return build_row(client, experiment, run)
+    raise KeyError(f"Run {run_name} not found in experiment {experiment_name}")
+
+
+def get_all_runs(
+    experiment_name: str, as_df: bool | None = True
+) -> pd.DataFrame | list[RunInfo]:
     client = mlflow.tracking.client.MlflowClient()
     experiment = client.get_experiment_by_name(experiment_name)
     if experiment is None:
@@ -52,6 +66,7 @@ def build_row(client, experiment, run):
         params,
         metrics,
         artifacts,
+        str(artifact_path),
     )
     return row
 
