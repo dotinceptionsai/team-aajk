@@ -2,7 +2,7 @@
 
 This is project is a conversation Filter🪄application that helps Call-Centers to filter
 live-conversations between an employee and a customer. It tells
-which sentences are relevant to their domain (their FAQs) and which are likely not.
+which sentences are relevant to their domain (represented as some FAQs they upload) and which are likely not.
 
 In general, Call-Centers already own a question-answering software that searches their
 FAQs or Knowledge Base. However, those systems are slow and cannot afford to run on each
@@ -16,8 +16,7 @@ Call-Center.
 The frontoffice is an audio chat application that filters the conversation in real-time.
 
 For this demo app, we only allow a pre-defined set of FAQs that are listed below. Each
-of those have been scraped from the internet. In the future, we will allow you to upload
-your own knowledge base.
+of those have been scraped from the internet. It is easy to use the code with your own knowledge base instead.
 
 # 1. 🐳 Running docker images
 
@@ -30,8 +29,8 @@ x86 architectures:
   with `docker run -p 8001:8001 jlinho/aajk:backoffice`
 
 To re-build multi-arch images, run:
-`docker buildx build --push --platform linux/amd64,linux/arm64  --tag jlinho/aajk:backoffice -f DockerfileBack .` and
-`docker buildx build --push --platform linux/amd64,linux/arm64  --tag jlinho/aajk:frontoffice -f DockerfileFront .`
+- for backoffice: `docker buildx build --push --platform linux/amd64,linux/arm64  --tag <your_name>/<your_repo>:backoffice -f DockerfileBack .` and
+- for frontoffice: `docker buildx build --push --platform linux/amd64,linux/arm64  --tag <your_name>/<your_repo>:frontoffice -f DockerfileFront .`
 
 # 2. 🤖Running the various webapps from source
 
@@ -46,7 +45,11 @@ Following webapps can be run:
 To install from source:
 
 - Have python `3.10` or above ready
-- For each app create a virtual environment with pipenv or conda
+- For each app create a virtual environment with pipenv or conda. For instance, you can run following to create 4 virtual environments: 
+  - `conda create -n frontoffice python=3.10`
+  - `conda create -n backoffice python=3.10`
+  - `conda create -n notebooks python=3.10`
+  - `conda create -n mlflow-tracking python=3.10`
 - Each app requires base dependencies. Install
   with `pip install -r requirements-base.txt`
 
@@ -111,7 +114,7 @@ Folders in the project:
 - resources: raw scrapings or raw provided data
 - scraping: contains the scripts used to scrape the FAQ data from the web
 - tests: contains some unit tests
-- **train**: contains the scripts used to train the ML models
+- **train**: contains a script and config to run variations of the ML model and parameters. Script `train/training.py` is meant to be run with [Hydra](https://hydra.cc/) to run all conbinations of parameters, models and datasets as defined in folder `train/conf`. The command to run once you enter in folder `train` is `python training.py hydra.mode=MULTIRUN`
 
 
 

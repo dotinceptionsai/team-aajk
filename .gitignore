@@ -166,4 +166,5 @@ cython_debug/
 /.vscode/
 /app/.secret
 /app/.env
-
+/mlruns
+/train/mlruns/models/
