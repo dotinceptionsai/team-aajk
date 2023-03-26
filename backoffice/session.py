@@ -7,10 +7,9 @@ DEFAULT_CLEANUPS = ["spaces", "sentences_start", "uri", "email", "common_abbr"]
 
 @dataclass
 class State:
-    selected_dataset: str = None
-    selected_base_model: str = None
-    selected_calibration: str = None
-    current_stage: int = 0
+    selected_dataset: str | None = None
+    selected_base_model: str | None = None
+    selected_calibration: str | None = None
 
 
 class SessionKey(str, Enum):

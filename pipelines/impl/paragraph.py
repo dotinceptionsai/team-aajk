@@ -1,9 +1,12 @@
+""" A set of text transformation functions that work on raw block/paragraphs of text.
+Transformers can be chained together to form a new aggregated text transformation.
+"""
 from typing import Callable, Iterable
 
 import numpy as np
 import pandas as pd
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.pipeline import Pipeline, make_pipeline
+from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import FunctionTransformer
 
 """ Transforms a string to a sequence of strings. """
@@ -24,8 +27,8 @@ class ParagraphTransform(BaseEstimator, TransformerMixin):
     ):
         self.text_transformers = list(text_transformers)
         self.unique_sentences = unique_sentences
-        self.lazy_func = None
-        self.eager_func = None
+        self.lazy_func: TextTransformer | None = None
+        self.eager_func: FunctionTransformer | None = None
 
     def __do_init(self):
         if not self.lazy_func:
@@ -40,7 +43,7 @@ class ParagraphTransform(BaseEstimator, TransformerMixin):
 
     def transform_one(self, text) -> Iterable[str]:
         self.__do_init()
-        return self.lazy_func(text)
+        return self.lazy_func(text)  # type: ignore
 
     def fit(self, X, y=None):
         return self

@@ -57,6 +57,11 @@ class FilterPipeline(abc.ABC):
         ...
 
     @abc.abstractmethod
+    def predict_proba(self, sentences) -> tuple[Collection[float], Collection[str]]:
+        """Trains the filter pipeline"""
+        ...
+
+    @abc.abstractmethod
     def export_weights(self) -> dict[str, Any]:
         """Exports the weights computed during training of the filter pipeline as a dictionary"""
         ...

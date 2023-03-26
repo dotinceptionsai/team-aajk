@@ -15,16 +15,38 @@ from pydantic import BaseModel
 
 from dataload.dataloading import DataFilesRegistry
 from pipelines import persistence
-from pipelines.filtering import FilteredSentence
+from pipelines.filtering import FilteredSentence, FilterPipeline
 
 
 class TextMessage(BaseModel):
     text: str
 
 
+class FilterPipelineRef:
+    """A reference to the pipeline. Allows to preload the pipeline."""
+
+    def __init__(self) -> None:
+        self.model_path: Path | None = None
+        self.pipe: FilterPipeline | None = None
+
+    def set(self, model_path: Path) -> None:
+        if not model_path.exists():
+            raise ValueError(f"Model directory not found: {model_path}")
+
+        # A trick to force downloading the HuggingFace transformer backing the pipeline
+        test_pipe = persistence.load_pipeline(model_path)
+        for s in test_pipe.filter_sentences("test me"):
+            print(s)
+        self.model_path = model_path
+        self.pipe = test_pipe
+
+    def is_set(self) -> bool:
+        return self.model_path is not None
+
+
 load_dotenv()
 
-active_pipeline = dict()
+active_pipeline = FilterPipelineRef()
 
 model_dir = os.getenv("MODEL_DIR")
 # filter_pipeline: FilterPipeline | None  # = persistence.load_pipeline(os.getenv("MODEL_DIR"))
@@ -41,9 +63,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 @app.get("/ready")
 async def ready():
     return {
-        "ready": "pipe" in active_pipeline,
-        "filter_pipeline_dir": to_model_uri(active_pipeline["dir"])
-        if "dir" in active_pipeline
+        "ready": active_pipeline.is_set(),
+        "model_path": to_model_uri(active_pipeline.model_path)
+        if active_pipeline.is_set()
         else None,
     }
 
@@ -55,15 +77,7 @@ class ModelChoice(BaseModel):
 @app.post("/active_model")
 async def set_active_model(model: ModelChoice):
     model_path = to_model_path(model.uri)
-
-    if not model_path.exists():
-        raise Exception("Model not found")
-
-    test_pipe = persistence.load_pipeline(model_path)
-    for s in test_pipe.filter_sentences("test me"):
-        print(s)
-    active_pipeline["pipe"] = test_pipe
-    active_pipeline["dir"] = model_path
+    active_pipeline.set(model_path)
     return model
 
 
@@ -71,12 +85,11 @@ def to_model_uri(model_path: Path):
     return f"/models/{model_path.parent.name}/{model_path.name}"
 
 
-def to_model_path(model_uri):
+def to_model_path(model_uri: str) -> Path:
     file_path = urlparse(model_uri).path
     decoded_file_path = unquote(file_path)
     folder_path = decoded_file_path.split("/models/")[1]
-    model_path = Path(f"{model_dir}/{folder_path}")
-    return model_path
+    return Path(f"{model_dir}/{folder_path}")
 
 
 @app.post("/models/{category}")
@@ -130,7 +143,7 @@ async def redirect_typer():
 
 @app.post("/text")
 def on_text_message(message: TextMessage):
-    filter_pipeline = active_pipeline["pipe"]
+    filter_pipeline = active_pipeline.pipe
     if filter_pipeline is None:
         raise Exception("No model loaded")
     return [as_json_result(r) for r in filter_pipeline.filter_sentences(message.text)]
@@ -138,7 +151,7 @@ def on_text_message(message: TextMessage):
 
 @app.websocket("/listen")
 async def on_audio_message(websocket: WebSocket):
-    filter_pipeline = active_pipeline["pipe"]
+    filter_pipeline = active_pipeline.pipe
     if filter_pipeline is None:
         raise Exception("No model loaded")
     await websocket.accept()
@@ -156,7 +169,8 @@ async def on_audio_message(websocket: WebSocket):
 
 
 async def process_audio(fast_socket: WebSocket):
-    pipe_ = active_pipeline["pipe"]
+    assert active_pipeline.pipe is not None
+    pipe_ = active_pipeline.pipe
 
     async def get_transcript(data: Dict) -> None:
         if "channel" in data:
@@ -168,7 +182,7 @@ async def process_audio(fast_socket: WebSocket):
                 for r in pipe_.filter_sentences(transcript):
                     await fast_socket.send_json(as_json_result(r))
 
-    deepgram_socket = await connect_to_deepgram(get_transcript)
+    deepgram_socket = await connect_to_deepgram(get_transcript)  # type: ignore
     return deepgram_socket
 
 

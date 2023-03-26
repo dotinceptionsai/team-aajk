@@ -1,9 +1,14 @@
+"""
+Simple performance scoring functions for a FilterPipeline.
+"""
 import time
 from dataclasses import dataclass
-from typing import Iterable
+from typing import Iterable, Collection
 
 import numpy as np
 from sklearn.metrics import f1_score, log_loss
+
+from pipelines.filtering import FilterPipeline
 
 
 @dataclass
@@ -18,25 +23,30 @@ class Scoring:
     y_pred: Iterable[int]
 
 
-def evaluate_speed_ms(my_model, sentences):
-    # measure the speed of the model
+def evaluate_speed_ms(
+    pipeline: FilterPipeline, sentences: Collection[str], *, repeats: int = 10
+) -> float:
+    """Evaluate the speed of the pipeline in milliseconds per sentence."""
     time_start = time.time_ns()
     text = ".".join(sentences)
 
     x = 1
-    repeats = 10
     for i in range(repeats):
-        for fs in my_model.filter_sentences(text):
+        for _ in pipeline.filter_sentences(text):
             x += 1
     time_end = time.time_ns()
     elapsed_nanos = (time_end - time_start) / repeats / len(sentences)
-    # return in milliseconds
     return elapsed_nanos / 1_000_000
 
 
-def evaluate_model(my_model, id_sentences, ood_sentences):
-    id_probs, id_items = my_model.predict_proba(id_sentences)
-    ood_probs, ood_items = my_model.predict_proba(ood_sentences)
+def evaluate_model(
+    pipeline: FilterPipeline,
+    id_sentences: Collection[str],
+    ood_sentences: Collection[str],
+) -> Scoring:
+    """Evaluate the model for speed and filter quality on the given sentences."""
+    id_probs, id_items = pipeline.predict_proba(id_sentences)
+    ood_probs, ood_items = pipeline.predict_proba(ood_sentences)
 
     y_probs = np.hstack([np.array(id_probs), np.array(ood_probs)])
     y_true = np.concatenate([np.zeros(len(id_items)), np.ones(len(ood_items))])

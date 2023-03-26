@@ -23,9 +23,7 @@ def display():
         base_model_name = st.session_state[SessionKey.SELECTED_BASE_MODEL]
 
         experiments = ExperimentRegistry()
-        run_info = experiments.get_run_info(
-            experiment_name=ds, run_name=base_model_name
-        )
+        run_info = experiments.get_run_info(experiment_name=ds, run_id=base_model_name)
 
         pipeline_dir = Path(run_info.artifact_dir.replace("file:/", "/"))
         model = persistence.load_pipeline(pipeline_dir)

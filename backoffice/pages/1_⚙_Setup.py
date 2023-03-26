@@ -1,8 +1,7 @@
+import extra_streamlit_components as stx
 import streamlit as st
 
 import backoffice.shared as shared
-import extra_streamlit_components as stx
-
 
 with st.spinner("Loading..."):
     from backoffice.steps import (
@@ -14,7 +13,7 @@ with st.spinner("Loading..."):
     )
 
 st.session_state.update(
-    {k: v for k, v in st.session_state.items() if k.startswith("SessionKey")}
+    {k: v for k, v in st.session_state.items() if str(k).startswith("SessionKey")}
 )
 
 shared.make_sidebar()
@@ -36,13 +35,6 @@ current_step = stx.stepper_bar(
         "Verify",
     ]
 )
-
-# <i class="fa-solid fa-check"></i>
-# <i class="fa-solid fa-solid fa-check-double"></i>
-# <i class="fa-solid fa-certificate"></i>
-# <i class="fa-solid fa-spell-check"></i>fa-gears
-# <i class="fa-solid fa-list-check"></i>
-# <i class="fa-solid fa-circle-check"></i>
 
 if current_step == 0:
     st.write(

@@ -38,13 +38,13 @@ class EmbeddingTransformer(BaseEstimator, TransformerMixin):
 
 class GaussianTransformer(BaseEstimator, TransformerMixin):
     def __init__(self, robust_covariance: bool = False, support_fraction: float = 0.85):
-        self.gaussian = None
+        self.gaussian: EmpiricalCovariance = None
         self.robust_covariance: bool = robust_covariance
         self.support_fraction: float = support_fraction
 
-    def __do_init(self):
+    def __do_init(self) -> None:
         if not self.gaussian:
-            self.gaussian: EmpiricalCovariance = (
+            self.gaussian = (
                 MinCovDet(support_fraction=self.support_fraction)
                 if self.robust_covariance
                 else EmpiricalCovariance()
@@ -197,7 +197,7 @@ class GaussianEmbeddingsAnomalyDetector(FilterPipeline):
         super().__init__(run_params, datasets)
         self.all_embeddings = None
 
-    def _post_init(
+    def _post_init(  # type: ignore[override]
         self,
         embedder_name: str = "all-MiniLM-L6-v2",
         robust_covariance: bool = False,

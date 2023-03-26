@@ -1,3 +1,4 @@
+""" A set of preprocessing functions to prepare text for sentence splitting by NLTK """
 import logging
 import re
 from typing import Callable, Iterable, Optional, Sequence
