@@ -1,6 +1,6 @@
-import csv
+""" Functions to export scraped data to yml files (for ML parsing) or TSV (for nice viz on GitHub and excel)."""
 from pathlib import Path
-from typing import Iterable
+from typing import Iterable, Collection
 
 import pandas as pd
 import yaml
@@ -8,23 +8,22 @@ import yaml
 from scraping.scrapers import Scraper, QA
 
 
-def export_yml(scraper_name: str, scraped: Iterable[QA], target_folder: Path):
+def export_yml(scraper_name: str, qas: Iterable[QA], target_folder: Path):
     filename = scraper_name + ".yml"
     yml_file = target_folder / filename
     with open(yml_file, "w") as f:
         items = []
-        for i in scraped:
-            # items.append({"question": i.question, "answer": i.answer})
+        for i in qas:
             items.append(i.question)
             items.append(i.answer)
         yaml.dump(items, f, sort_keys=False)
 
 
-def export_tsv(scraper_name: str, scraped: Iterable[QA], target_folder: Path):
+def export_tsv(scraper_name: str, qas: Collection[QA], target_folder: Path):
     filename = scraper_name + ".tsv"
     csv_file = target_folder / filename
-    questions = [qa.question for qa in scraped]
-    answers = [qa.answer.replace('"', "") for qa in scraped]
+    questions = [qa.question for qa in qas]
+    answers = [qa.answer.replace('"', "") for qa in qas]
     df = pd.DataFrame({"question": questions, "answer": answers})
     df.to_csv(csv_file, sep="\t", index=False, header=True)
 

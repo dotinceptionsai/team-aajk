@@ -6,9 +6,10 @@ from dataclasses import dataclass
 from typing import Iterable
 
 import requests
-from bs4 import BeautifulSoup, Tag
+from bs4 import BeautifulSoup, Tag, PageElement
 
-SCRAPER_TYPE = typing.TypeVar("SCRAPER", bound="Scraper")
+# We do not have Self type. Consider a Type[SomeScraper] as a factory of scraper objects.
+ScraperClassType = typing.Callable[[], "Scraper"]
 
 
 def sentence_ended(sentence: str) -> bool:
@@ -27,10 +28,10 @@ class QA:
 
 class Scraper(abc.ABC):
     name: str
-    _registered_types: dict[str, typing.Type[SCRAPER_TYPE]] = {}
+    _registered_types: dict[str, ScraperClassType] = {}
 
     @abc.abstractmethod
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         ...
 
     def __init_subclass__(cls, **kwargs):
@@ -49,7 +50,7 @@ class NIHScraper(Scraper):
     name = "nih"
     url = "https://search.grants.nih.gov/faq/api/faq/664"
 
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         qas: list[QA] = []
 
         resp = requests.get(self.url, headers={"Accept": "application/json"})
@@ -84,7 +85,7 @@ class OlympicsScraper(Scraper):
     site = "https://olympics.com"
     root_page = "/ioc/faq"
 
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         qas: list[QA] = []
 
         root_page = requests.get(
@@ -153,7 +154,7 @@ class EuropcarScraper(Scraper):
     root_url = "https://faq.europcar.com/"
     max_depth = 3
 
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         qas: list[QA] = []
         self._feed_qa_items(qas, self.root_url, self.max_depth)
         return qas
@@ -209,7 +210,7 @@ class FedoraScraper(Scraper):
     name = "fedora"
     url = "https://fedoraproject.org/wiki/FAQ#Getting_Started"
 
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         qas: list[QA] = []
         page = requests.get(self.url)
         soup = BeautifulSoup(page.content, "html.parser")
@@ -234,7 +235,9 @@ class FedoraScraper(Scraper):
     def _extract_answer(tag: Tag) -> str:
         content = []
         next_p = tag
-        while (next_p := next_p.find_next_sibling()) and FedoraScraper._is_para(next_p):
+        while (next_p := next_p.find_next_sibling()) and FedoraScraper._is_para(  # type: ignore
+            next_p
+        ):
             answer = next_p.get_text().strip()
             if answer:
                 content.append(answer)
@@ -242,7 +245,8 @@ class FedoraScraper(Scraper):
         return full_answer
 
     @staticmethod
-    def _is_para(tag: Tag) -> bool:
+    def _is_para(tag: PageElement) -> bool:
+        assert isinstance(tag, Tag)
         return tag is not None and tag.name == "p"
 
 
@@ -250,7 +254,7 @@ class WwfScraper(Scraper):
     name = "wwf"
     url = "https://www.wwf.org.uk/faqs"
 
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         qas: list[QA] = []
         page = requests.get(self.url)
         soup = BeautifulSoup(page.content, "html.parser")
@@ -274,6 +278,7 @@ class WwfScraper(Scraper):
     def _extract_answer(tag: Tag) -> str:
         content = []
         answer_div = tag.find_next_sibling()
+        assert isinstance(answer_div, Tag)
         assert answer_div.name == "div" and answer_div["class"] == ["faqfield-answer"]
 
         for p in answer_div.find_all("p"):
@@ -289,7 +294,7 @@ class FdaCovidScraper(Scraper):
     site = "https://www.fda.gov/"
     page = "emergency-preparedness-and-response/coronavirus-disease-2019-covid-19/covid-19-frequently-asked-questions"
 
-    def scrape(self) -> Iterable[QA]:
+    def scrape(self) -> typing.Collection[QA]:
         qas: list[QA] = []
         url = self.site + self.page
         print(f"Visiting {url} ...")
@@ -309,7 +314,11 @@ class FdaCovidScraper(Scraper):
 
     @staticmethod
     def _extract_qa(item: Tag) -> QA:
-        qdiv, adiv = [child for child in item.children if child.name == "div"]
+        qdiv, adiv = [
+            child
+            for child in item.children
+            if isinstance(child, Tag) and child.name == "div"
+        ]
         full_question = FdaCovidScraper._extract_question(qdiv)
         full_answer = FdaCovidScraper._extract_answer(adiv)
         return QA(full_question, full_answer)

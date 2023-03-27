@@ -170,7 +170,7 @@ def _write_h5(file: Path, nd_arrays: dict[str, np.ndarray]):
                 f.create_dataset(k, data=v)
 
 
-def _create_model_dict(engine: FilterPipeline) -> dict[str, str]:
+def _create_model_dict(engine: FilterPipeline) -> dict[str, Any]:
     datasets = {
         PROP_TRAIN_ID_DATASETS: sorted(str(p) for p in engine.datasets.train_id),
         PROP_TRAIN_OOD_DATASETS: sorted(str(p) for p in engine.datasets.train_ood),
@@ -188,7 +188,7 @@ def _create_model_dict(engine: FilterPipeline) -> dict[str, str]:
 
 def _extract_weights(
     raw_weights: dict[str, Any]
-) -> (dict[str, Any], dict[str, np.ndarray]):
+) -> tuple[dict[str, Any], dict[str, np.ndarray]]:
     weights: dict[str, Any] = {
         PROP_EXPORTED_AT: datetime.now().strftime("%Y%m%d_%H%M%S")
     }

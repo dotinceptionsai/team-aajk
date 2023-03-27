@@ -8,8 +8,10 @@ from pipelines.impl.paragraph import ParagraphTransform
 from pipelines.impl.preprocessing import no_stop_words, to_lowercase, to_words
 
 
-def find_named_enties(paragraphs: Iterable[str]):
-    """Lists named entites as a dataframe with columns entity_name and entity_type"""
+def find_named_entities(paragraphs: Iterable[str]) -> pd.DataFrame:
+    """Lists named entities as a dataframe with columns entity_name and entity_type
+    Returns a dataframe with two columns: entity_name and entity_type (as defined by nltk tagger)
+    """
     entities = {}
     for text in paragraphs:
         for chunk in nltk.ne_chunk(nltk.pos_tag(nltk.word_tokenize(text))):
@@ -41,7 +43,7 @@ def find_most_frequent_words(paragraphs: Iterable[str], n: int = 10):
 
 def find_top_named_entities(paragraphs: Iterable[str], n: int = 10):
     """Returns a dataframe of the top n named entities: columns are entity_name, entity_type and count"""
-    df_entities = find_named_enties(paragraphs)
+    df_entities = find_named_entities(paragraphs)
     df_top_counts = find_most_frequent_words(paragraphs, n)
 
     # Join together the top words and the named entities on the lower case version of the word

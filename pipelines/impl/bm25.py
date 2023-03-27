@@ -1,3 +1,5 @@
+""" A simple algorithm to filter sentences based on IDF word frequencies: this was
+initially used to benchmark other technics against"""
 import logging
 import math
 from collections import defaultdict
@@ -6,6 +8,7 @@ from typing import Iterable, Mapping, Collection, MutableMapping, Any
 import pipelines.impl.preprocessing as tk
 from dataload.dataloading import DataFilesRegistry
 from pipelines.filtering import FilterPipeline, FilteredSentence
+from pipelines.impl.paragraph import pipelined
 
 logger = logging.getLogger(__name__)
 
@@ -124,16 +127,19 @@ class _OkapiBM25:
 
 
 class Bm25FilterPipeline(FilterPipeline):
-    sentence_parser: tk.TextTransformer = tk.pipelined(
-        tk.split_in_sentences, tk.chunker(20)
+    sentence_parser: tk.TextTransformer = pipelined(
+        tk.split_into_sentences, tk.chunker(20)
     )
-    tokenizer: tk.TextTransformer = tk.pipelined(
+    tokenizer: tk.TextTransformer = pipelined(
         tk.to_words, tk.no_stop_words, tk.lemmatize
     )
     model: _OkapiBM25 = None
 
     def _post_init(self, k1: float, b: float) -> None:
         self.model = _OkapiBM25(k1, b)
+
+    def predict_proba(self, sentences) -> tuple[Collection[float], Collection[str]]:
+        pass
 
     def filter_sentences(self, text: str) -> Iterable[FilteredSentence]:
         if not self.model or not self.model.ready():

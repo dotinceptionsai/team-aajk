@@ -20,10 +20,10 @@ class FrontOffice {
         if (!this.modelReady) {
             try {
                 let response = await fetch('/ready')
-                let data = await response.json()
-                if (data.ready) {
+                let {model_path, ready} = await response.json()
+                if (ready) {
                     this.modelReady = true;
-                    this.onModelReady(data.filter_pipeline_dir);
+                    this.onModelReady(model_path);
                 } else {
                     this.modelReady = false;
                     this.onModelReady(undefined);
@@ -31,7 +31,7 @@ class FrontOffice {
             } catch (error) {
                 console.log(error)
                 this.modelReady = false;
-                this.onModelReady(data.filter_pipeline_dir);
+                this.onModelReady(undefined);
             }
         }
         return this.modelReady;

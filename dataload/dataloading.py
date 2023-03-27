@@ -1,4 +1,5 @@
 from pathlib import Path
+from typing import MutableMapping
 
 import yaml
 
@@ -17,7 +18,7 @@ class DataFilesRegistry:
             data_root = Path(data_root)
         self.data_root = data_root
         self.glob = "**/*.yml"
-        self._datafiles = {}
+        self._datafiles: MutableMapping[str, Path] = {}
 
         for p in data_root.glob(self.glob):
             if p.stem in self._datafiles:
