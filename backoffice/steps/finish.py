@@ -13,15 +13,18 @@ from pipelines import persistence
 
 
 def display():
-    st.write(
-        "Bravo! You have successfully setup your environment. You can now start using the filter."
-    )
 
     if SessionKey.SELECTED_DATASET not in st.session_state:
         shared.go_back_to("Data Selection", "Select dataset first")
     elif SessionKey.SELECTED_BASE_MODEL not in st.session_state:
         shared.go_back_to("Model Choice", "Select base model first")
+    elif SessionKey.SELECTED_CUTOFF not in st.session_state:
+        shared.go_back_to("Calibrate", "Calibrate the model first")
     else:
+        st.write(
+            "Bravo! You have successfully setup your environment. You can now start using the filter."
+        )
+
         ds = st.session_state[SessionKey.SELECTED_DATASET]
         base_model_name = st.session_state[SessionKey.SELECTED_BASE_MODEL]
         selected_cutoff = st.session_state[SessionKey.SELECTED_CUTOFF]

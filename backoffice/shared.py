@@ -46,6 +46,10 @@ def make_sidebar():
         if model:
             st.markdown(f"Selected model: **{model}**")
 
+        model = "Done" if SessionKey.SELECTED_CUTOFF in st.session_state else "Not Done"
+        if model:
+            st.markdown(f"Calibration: **{model}**")
+
 
 # checks if datasets dir exists
 def get_ds_registry():
@@ -82,9 +86,7 @@ def link_to(link_text: str, page_name: str):
 
 def go_back_to(page_name: str, message: str):
     st.subheader(message)
-    redirect_button = st.button(f"Go back to {page_name}")
-    if redirect_button:
-        switch_page(page_name)
+    st.write(f"Go back to {page_name}")
 
 
 # Copied from streamlit extras to avoid adding big dependency
