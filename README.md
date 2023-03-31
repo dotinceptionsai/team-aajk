@@ -18,6 +18,14 @@ The frontoffice is an audio chat application that filters the conversation in re
 For this demo app, we only allow a pre-defined set of FAQs that are listed below. Each
 of those have been scraped from the internet. It is easy to use the code with your own knowledge base instead.
 
+Hosted online demo apps are available by following links:
+- [Frontoffice](https://aajk-frontoffice.egfn7pcahn7sg.us-east-1.cs.amazonlightsail.com/static/index.html)
+- [Backoffice](https://aajk-backoffice.coas5aik7f8ii.eu-central-1.cs.amazonlightsail.com/Setup)
+
+The backoffice app allows you to setup the filter for your Call-Center. It is a wizard that at the ends allows
+you to download an archive. This archive is then uploadable to the frontoffice app. (see 
+[Frontoffice Help](https://iced-marigold-172.notion.site/Help-Center-49ea625e8acd405d8a445a88cb6daed4) for more details)
+
 # 1. 🐳 Running docker images
 
 Docker images for front-office and back-office are available on docker hub for ARM and
@@ -27,6 +35,8 @@ x86 architectures:
   with `docker run -p 8002:8002 jlinho/aajk:frontoffice`
 - back-office: `docker pull jlinho/aajk:backoffice` and run
   with `docker run -p 8001:8001 jlinho/aajk:backoffice`
+
+To access the front-office app, go to http://localhost:8002 and to access the back-office app, go to http://localhost:8001
 
 To re-build multi-arch images, run:
 - for backoffice: `docker buildx build --push --platform linux/amd64,linux/arm64  --tag <your_name>/<your_repo>:backoffice -f DockerfileBack .` and
@@ -98,6 +108,11 @@ DEEPGRAM_API_KEY=your_api_key
 - Inside your virtual environment, run following commands:
     - `pip install -r requirements-ml.txt` to install dependencies for ML
     - `pip install -r requirements-notebooks.txt`
+
+Main notebooks:
+- An overview is provided by the notebook `notebooks/Walkthrough.ipynb`
+- Model is explained in `notebooks/performance_baselie.ipynb` .
+Other notebooks represent intermediate deliverable but may sometimes be outdated.
 
 # 3 📚 Folder structure
 
