@@ -4,6 +4,11 @@ import backoffice.shared as shared
 from backoffice.session import SessionKey
 
 
+def _reset():
+    st.session_state.pop(SessionKey.SELECTED_BASE_MODEL, None)
+    st.session_state.pop(SessionKey.SELECTED_CUTOFF, None)
+
+
 def display():
     st.write(
         "Those are the datasets available. They have been scraped from the internet. In the future you will get the option to upload your FAQ:"
@@ -23,5 +28,5 @@ def display():
         existing_datasets,
         key=SessionKey.SELECTED_DATASET,
         format_func=lambda x: dataset_descriptions.get(x, x),
-        on_change=lambda: st.session_state.pop(SessionKey.SELECTED_BASE_MODEL, None),
+        on_change=_reset,
     )
