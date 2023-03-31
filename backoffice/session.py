@@ -16,7 +16,7 @@ class SessionKey(str, Enum):
     SELECTED_DATASET = "selected_dataset"
     SELECTED_CLEANUPS = "selected_cleanups"
     SELECTED_BASE_MODEL = "selected_base_model"
-    SELECTED_CALIBRATION = "selected_calibration"
+    SELECTED_CUTOFF = "selected_cutoff"
     SELECTED_VERIFICATION = "selected_verification"
     SELECTED_SETUP_STAGE = "selected_setup_stage"
     SELECTED_SETUP = "selected_setup"

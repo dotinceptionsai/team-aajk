@@ -77,6 +77,8 @@ def display():
                     if manual_cutoff:
                         model.calibrator.cutoff_ = manual_cutoff
 
+                    st.session_state[SessionKey.SELECTED_CUTOFF] = model.calibrator.cutoff_
+
                     with st.expander(
                         "Sentence distances to center of In-Domain (ID)", expanded=True
                     ):
