@@ -1,3 +1,4 @@
+import tempfile
 from datetime import datetime
 from pathlib import Path
 
@@ -23,16 +24,31 @@ def display():
     else:
         ds = st.session_state[SessionKey.SELECTED_DATASET]
         base_model_name = st.session_state[SessionKey.SELECTED_BASE_MODEL]
+        selected_cutoff = st.session_state[SessionKey.SELECTED_CUTOFF]
 
         experiments = ExperimentRegistry()
         run_info = experiments.get_run_info(experiment_name=ds, run_id=base_model_name)
 
         pipeline_dir = Path(run_info.artifact_dir.replace("file:/", "/"))
         model = persistence.load_pipeline(pipeline_dir)
+        model.calibrator.cutoff_ = selected_cutoff
 
-        downloadable_archive = experiments.build_archive(
-            experiment_name=ds, run_name=base_model_name
-        )
+        downloadable_archive = None
+        with tempfile.TemporaryDirectory() as tmpdirname:
+            persistence.save_pipeline(model, tmpdirname)
+
+            with tempfile.NamedTemporaryFile(
+                suffix=".tar.gz", delete=False
+            ) as tmp_file:
+                import shutil
+
+                downloadable_archive = shutil.make_archive(
+                    str(tmp_file.name), "gztar", tmpdirname
+                )
+
+        # downloadable_archive = experiments.build_archive(
+        #     experiment_name=ds, run_name=base_model_name
+        # )
 
         with open(downloadable_archive, "rb") as f:
             st.caption(

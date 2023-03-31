@@ -111,16 +111,28 @@ h1 {
   left:0px;
   width:100vw;
   height:0vh;
-  background:rgba(0,0,0,0.8);
+  background:rgb(52, 53, 65, 0.8);
   z-index:-1;
   opacity:0;
   padding:80px 100px;
   overflow:hidden;
   box-sizing:border-box;
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  align-items: center;
   transition: top 500ms ease-in-out,
               opacity 500ms ease-in-out,
               height 0ms ease-in-out 500ms;
 }
+
+.overlay-form .form-content {
+   justify-items: right;
+   display: flex;
+   flex-direction: column;
+   justify-content: stretch;
+}
+
 .overlay-form .close-btn {
   position:absolute;
   top:20px;
@@ -130,58 +142,10 @@ h1 {
   font-weight:600;
   cursor:pointer;
 }
-.overlay-form h1 {
-  font-size:32px;
-  color:#fff;
-}
+
 .overlay-form p {
-  font-size:16px;
-  color:#eee;
-  margin:-15px 0px 30px;
-}
-.overlay-form .form-element {
-  margin:20px 0px;
-}
-.overlay-form label {
-  display:block;
-  font-size:17px;
-  color:#eee;
-  margin-bottom:5px;
-}
-.overlay-form input {
-  width:100%;
-  padding:6px;
-  font-size:17px;
-  border:2px solid #eee;
-  background:transparent;
-  outline:none;
-  border-radius:10px;
-}
-.overlay-form button,
-.center button {
-  margin-top:10px;
-  width:100px;
-  height:35px;
-  font-size:15px;
-  text-transform:uppercase;
-  background:#fff;
-  color:#222;
-  border:none;
-  outline:none;
-  border-radius:10px;
-}
-.center {
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-}
-.center button {
-  width:150px;
-  height:40px;
-  font-weight:600;
-  box-shadow:3px 3px 2px 1px rgba(0,0,0,0.1);
-  cursor:pointer;
+    font-style: italic;
+    margin-top: 150px;
 }
 
 body.activeForm .overlay-form {
@@ -192,4 +156,20 @@ body.activeForm .overlay-form {
   transition: top 500ms ease-in-out,
               opacity 500ms ease-in-out,
               height 0ms ease-in-out 0ms;
+}
+
+#model_choice {
+    cursor: pointer;
+}
+
+#help {
+    cursor: pointer;
+}
+
+.form-element {
+    margin: 10px;
+}
+
+#upload-form {
+    border-style: solid;
 }

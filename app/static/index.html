@@ -10,12 +10,13 @@
 
 <body>
 <div id="header">
-    <p id="statusX" class="corner-tip"><i class="fa-solid fa-circle-question"></i> Help
+    <p id="help" class="corner-tip"><i class="fa-solid fa-circle-question"></i> Help
     </p>
     <h1><i class="fa-solid fa-headset"></i> Call-Center Demo App</h1>
     <div id="status_indicators">
-        <p id="model_choice" class="corner-tip"><i
-                class="fa-solid fa-circle-question"></i> Model: None</p>
+        <p id="model_choice" class="corner-tip" onclick="toggleForm(true)"><i
+                class="fa-solid fa-circle-question"></i> Model: Click here to select one
+        </p>
         <p id="status" class="corner-tip"><i class="fa-solid fa-circle-question"></i>
             Not connected...</p>
         <p id="recorder-status" class="corner-tip"><i
@@ -24,26 +25,32 @@
     </div>
 </div>
 
-<div class="overlay-form">
-    <div class="close-btn" onclick="toggleForm()">&times;</div>
-    <h1>Create a new account</h1>
-    <p>Join our community. Let's set up your account</p>
-    <div class="form-element">
-        <label for="model_id">Available Models</label>
-        <select id="model_id"/>
-    </div>
+<div class="overlay-form" id="overlay-form">
+    <div class="close-btn" onclick="toggleForm(false)">&times;</div>
+    <h1><i class="fa-solid fa-screwdriver-wrench"></i> Configure</h1>
 
-    <div class="form-element">
-        <label for="password-2">Confirm password</label>
-        <input type="password" id="password-2">
-    </div>
-    <div class="form-element">
-        <button id="model_chosen" onclick="onModelSelected()">Choose Model</button>
-    </div>
-</div>
+    <div class="form-content">
+        <div class="form-element">
+            <label for="model_id">Choose one of uploaded models</label>
+            <select id="model_id"></select>
+        </div>
+        <p class="form-element">If no model is selectable, you can upload one using
+            below button</p>
+        <form id="upload-form">
+            <div class="form-element">
+                <label for="modelFile">Upload model configuration file:</label>
+                <input type="file" name="modelFile" id="modelFile" required>
+            </div>
+            <div class="form-element">
+                <label for="model-file-category">Please provide a model category
+                    (lower-case alphabetic only, min 3-chars)</label>
+                <input type="text" id="model-file-category" pattern="[a-z]{3,}"
+                       required/>
+            </div>
+            <input type="submit" value="Upload" id="upload-button" class="form-element">
+        </form>
 
-<div id="force-choose-model" class="center">
-    <button onclick="toggleForm()">Set model</button>
+    </div>
 </div>
 
 <div id="chat-container">
@@ -73,15 +80,14 @@
 
     function onModelReady(modelName) {
         let enabled = modelName !== undefined;
-        let display = enabled ? 'none' : 'block';
-        console.log('Backend ready')
         if (enabled) {
-            document.querySelector('#model_choice').innerHTML = '<i class="fa-solid fa-circle-check"></i> Model: ' + modelName
+            document.querySelector('#model_choice').innerHTML = '<i class="fa-solid fa-circle-check"></i> Model: ' + modelName;
+            document.querySelector('#chat-textarea').enabled = true;
         } else {
-            document.querySelector('#model_choice').innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Model: None'
+            document.querySelector('#model_choice').innerHTML = '<i class="fa-solid fa-circle-xmark"></i> Model: Please click here to select a model';
+            document.querySelector('#chat-textarea').enabled = false;
+            toggleForm(true);
         }
-        document.querySelector('#chat-textarea').disabled = !enabled;
-        document.querySelector('#force-choose-model').style.display = display;
     }
 
     function onWsOpened(ready) {
@@ -100,26 +106,64 @@
         }
     }
 
-    function onModelSelected() {
-        const model_id = document.getElementById('model_id').value;
-        console.log(model_id);
-        fetch('/active_model', {
+    const modelSelector = document.getElementById('model_id');
+    modelSelector.addEventListener('change', async () => {
+        const model_id = modelSelector.value;
+        try {
+            const response = await fetch('/active_model', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({'uri': model_id}),
+            });
+
+            await response.json();
+            window.location.reload();
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    });
+
+    const form = document.getElementById('upload-form');
+    const uploadButton = document.getElementById('upload-button');
+
+    uploadButton.addEventListener('click', (event) => {
+        event.preventDefault();
+
+        const formData = new FormData();
+        const fileInput = document.getElementById('modelFile');
+        const categoryInput = document.getElementById('model-file-category');
+        formData.append('file', fileInput.files[0]);
+        const uploadEndpointTemplate = '/models/{placeholder}?preload=false';
+        // replace placeholder with category from categoryInput
+        let uploadEndpoint = uploadEndpointTemplate.replace('{placeholder}', categoryInput.value.trim());
+
+        if (fileInput.files.length === 0) {
+            alert('Please select a file to upload.');
+            return;
+        }
+        if (!categoryInput || categoryInput.value.trim().length < 3) {
+            alert('Category must be at least 3 characters long.');
+            return;
+        }
+
+
+        fetch(uploadEndpoint, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({'uri': model_id}),
+            body: formData
+        }).then(response => {
+            if (!response.ok) {
+                alert('Impossible to upload given file.');
+                throw Error(response.statusText);
+            }
+            alert('Model uploaded successfully. You can now select a model from dropdown menu.');
+            feedModelList();
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                toggleForm();
-                frontOffice.init();
-            })
             .catch(error => {
                 console.error(error);
             });
-    }
+    });
 
     function onBackEndMessage(message) {
         addBotResponseToChatHistory(message.sentence, message.relevant, message.score);
@@ -131,7 +175,16 @@
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                const select = document.getElementById('model_id');
+                const select = modelSelector;
+                // clear all options in select
+                while (select.firstChild) {
+                    select.removeChild(select.firstChild);
+                }
+                const option = document.createElement('option');
+                option.value = "";
+                option.text = "--Select a model--";
+                option.selected = true;
+                select.appendChild(option);
                 data.forEach((model) => {
                     const option = document.createElement('option');
                     option.value = model.model_uri;
@@ -145,10 +198,12 @@
     }
 
     // Toggle the form overlay
-    function toggleForm() {
-        document.body.classList.toggle('activeForm');
+    function toggleForm(show) {
+        document.body.classList.remove('activeForm');
+        if (show) {
+            document.body.classList.add('activeForm');
+        }
     }
-
 
 
     function addBotResponseToChatHistory(message, relevant, score) {
@@ -219,6 +274,11 @@
         if (words.length > 30) {
             sendMessage();
         }
+    });
+
+    const helpButton = document.getElementById('help');
+    helpButton.addEventListener('click', () => {
+        window.open("https://iced-marigold-172.notion.site/Help-Center-49ea625e8acd405d8a445a88cb6daed4", "_blank");
     });
 
 </script>
