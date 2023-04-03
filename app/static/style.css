@@ -158,11 +158,7 @@ body.activeForm .overlay-form {
               height 0ms ease-in-out 0ms;
 }
 
-#model_choice {
-    cursor: pointer;
-}
-
-#help {
+.clickable {
     cursor: pointer;
 }
 
