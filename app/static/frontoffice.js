@@ -89,14 +89,26 @@ class FrontOffice {
                         }
                     })
                     this.mediaRecorder.start(250)
-                    this.onRecordingEnabled(true)
+                    this.onRecordingEnabled('recording')
                 }
             } catch (error) {
                 console.log(error)
-                this.onRecordingEnabled(true)
+                this.onRecordingEnabled('inactive')
             }
         }
         return this.mediaServices;
+    }
+
+    async toggleAudioRecording() {
+        if (this.mediaRecorder) {
+            if (this.mediaRecorder.state === 'paused') {
+                this.mediaRecorder.resume()
+                this.onRecordingEnabled('recording')
+            } else if (this.mediaRecorder.state === 'recording') {
+                this.mediaRecorder.pause()
+                this.onRecordingEnabled('paused')
+            }
+        }
     }
 
     async sendMessage(message) {

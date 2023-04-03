@@ -10,16 +10,16 @@
 
 <body>
 <div id="header">
-    <p id="help" class="corner-tip"><i class="fa-solid fa-circle-question"></i> Help
+    <p id="help" class="corner-tip clickable"><i class="fa-solid fa-circle-question"></i> Help
     </p>
     <h1><i class="fa-solid fa-headset"></i> Call-Center Demo App</h1>
     <div id="status_indicators">
-        <p id="model_choice" class="corner-tip" onclick="toggleForm(true)"><i
+        <p id="model_choice" class="corner-tip clickable" onclick="toggleForm(true)"><i
                 class="fa-solid fa-circle-question"></i> Model: Click here to select one
         </p>
         <p id="status" class="corner-tip"><i class="fa-solid fa-circle-question"></i>
             Not connected...</p>
-        <p id="recorder-status" class="corner-tip"><i
+        <p id="recorder-status" class="corner-tip clickable"><i
                 class="fa-solid fa-microphone-slash"></i>
             Not listening...</p>
     </div>
@@ -98,9 +98,11 @@
         }
     }
 
-    function onRecordingEnabled(enabled) {
-        if (enabled) {
+    function onRecordingEnabled(status) {
+        if (status === 'recording') {
             document.querySelector('#recorder-status').innerHTML = '<i class="fa-solid fa-microphone"></i> Listening...'
+        } else if (status === 'paused') {
+            document.querySelector('#recorder-status').innerHTML = '<i class="fa-solid fa-pause"></i> Paused...'
         } else {
             document.querySelector('#recorder-status').innerHTML = '<i class="fa-solid fa-microphone-slash"></i> Not listening...'
         }
@@ -279,6 +281,11 @@
     const helpButton = document.getElementById('help');
     helpButton.addEventListener('click', () => {
         window.open("https://iced-marigold-172.notion.site/Help-Center-49ea625e8acd405d8a445a88cb6daed4", "_blank");
+    });
+
+    const recorderStatusButton = document.getElementById('recorder-status');
+    recorderStatusButton.addEventListener('click', () => {
+        frontOffice.toggleAudioRecording();
     });
 
 </script>
